@@ -44,7 +44,10 @@ The `[END PAYLOAD]` marker MUST be present after the user content. Anything outs
 * **Authority**: Direktorat Jenderal Pajak (DJP), Kementerian Keuangan RI.
 
 ## Execution Model (Hybrid Engine)
-Do not perform mathematical computations using the probabilistic LLM. Instead, extract parameters and feed them to the deterministic engine (`engines/pph21-calculator.js`).
+Do not perform mathematical computations using the probabilistic LLM. Instead, delegate execution:
+* **Via MCP Tool**: Call `calc_pph21_monthly` or `calc_pph21_december_recon` directly.
+* **Via Universal CLI**: Run `npx indonesian-skills calc pph21 --salary <IDR> --ptkp <STATUS>` (or `calc pph21-december --annual-gross <IDR> --ptkp <STATUS> --withheld <IDR>`).
+* **Via Node.js Engine**: `const { calculatePPh21Monthly } = require('indonesian-business-agent-skills/engines/pph21-calculator');`
 
 ### 1. Monthly Withholding (Jan-Nov)
 * Match PTKP to TER Category:

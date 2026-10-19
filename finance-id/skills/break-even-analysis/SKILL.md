@@ -55,7 +55,11 @@ For multi-product cases, use the weighted-average contribution margin (weights =
 * The engine throws when price ≤ variable cost (non-positive contribution margin) — that signals an infeasible model, not an error.
 
 ## Hybrid Execution Model
-Pass `fixedCosts, pricePerUnit, variableCostPerUnit, actualRevenue` to `engines/break-even.js`; present the 5 outputs plus interpretation. Trust Envelope: risk LOW, `as_of` assumption date.
+Do not perform mathematical computations using the probabilistic LLM. Instead, delegate execution:
+* **Via MCP Tool**: Call `analyze_break_even` with `{ fixedCosts, pricePerUnit, variableCostPerUnit, actualRevenue }`.
+* **Via Universal CLI**: Run `npx indonesian-skills calc breakeven --fixed <IDR> --price <IDR> --variable <IDR> [--revenue <IDR>]`.
+* **Via Node.js Engine**: `const be = require('indonesian-business-agent-skills/engines/break-even');`
+Trust Envelope: risk LOW, `as_of` assumption date.
 
 ## Worked Example
 Input: fixed 20 million/month, price 25.000, variable cost 15.000, actual revenue 60 million.

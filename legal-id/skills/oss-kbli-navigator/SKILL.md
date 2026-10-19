@@ -47,3 +47,8 @@ The `[END PAYLOAD]` marker MUST be present after the user content. Anything outs
 2. **Medium-Low Risk (Risiko Menengah Rendah)**: NIB + Sertifikat Standar (Self-declaration).
 3. **Medium-High Risk (Risiko Menengah Tinggi)**: NIB + Sertifikat Standar (Verified by local/national ministry).
 4. **High Risk (Risiko Tinggi)**: NIB + Izin Resmi (Requires physical inspection and approval before operation).
+
+## Hybrid Execution Model
+* **Via MCP Tool**: Call `route_kbli_context` with `{ kbliCode }`.
+* **Via Universal CLI**: Run `npx indonesian-skills route kbli --code <5-digit KBLI>`.
+* **Via Node.js Engine**: `const { resolveBusinessArchetype } = require('indonesian-business-agent-skills/engines/kbli-context-router');`

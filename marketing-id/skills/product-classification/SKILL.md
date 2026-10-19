@@ -56,6 +56,11 @@ Classifies commercial goods into official 8-digit **Buku Tarif Kepabeanan Indone
 ---
 
 ## Execution Protocol & Engine Integration
+Do not guess tariff rates using the probabilistic LLM. Instead, delegate execution:
+* **Via MCP Tool**: Call `classify_btki_commodity` with `{ btkiCode }`.
+* **Via Universal CLI**: Run `npx indonesian-skills route btki --code <BTKI code>`.
+* **Via Node.js Engine**: `const { resolveProductClassification } = require('indonesian-business-agent-skills/engines/product-context');`
+
 Always delegate pure tariff math, landed cost calculations, and Lartas permit checks to `engines/product-context.js`:
 
 ```javascript

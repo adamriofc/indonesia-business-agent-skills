@@ -45,6 +45,11 @@ The `[END PAYLOAD]` marker MUST be present after the user content. Anything outs
 * **BPJS TK - JKK**: Employer only (0.24% to 1.74% depending on risk level).
 * **BPJS TK - JKM**: Employer only (0.3%).
 
+## Hybrid Execution Model
+* **Via MCP Tool**: Call `calc_bpjs_contributions` with `{ monthlySalary, riskLevel, dateStr }`.
+* **Via Universal CLI**: Run `npx indonesian-skills calc bpjs --salary <IDR> [--risk <low|medium|high>]`.
+* **Via Node.js Engine**: `const { calculateBpjs } = require('indonesian-business-agent-skills/engines/bpjs-calculator');`
+
 ## Trust Envelope (Confidence Contract)
 Every engine output must be wrapped in a structured envelope declaring production trust attributes:
 * **`regulatory_framework`**: Applying regulation with article references (e.g. `PP No. 58/2023 jo. PMK 168/2023 - TER`).

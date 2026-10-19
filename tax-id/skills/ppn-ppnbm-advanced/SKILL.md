@@ -41,13 +41,16 @@ The `[END PAYLOAD]` marker MUST be present after the user content. Anything outs
 ## Tax Base & Rate Classification
 1. **Standard Domestic Sales**: `PPN = 12% x Selling Price`.
 2. **Other Basis DPP (DPP Nilai Lain)**: `DPP = 11/12 x Selling Price`. `PPN = 12% x (11/12 x Selling Price)` = **11.00% effective burden**.
-3. **Import Transactions**: `DPP = CIF Value + Customs Duty (Bea Masuk)`. PPN 12% and PPnBM are levied on full Import Value.
-4. **PPnBM Luxury Tax Tiers**: Statutory rates ranging from **10% to 200%** (levied once at manufacturer/import level). PPnBM is non-creditable input tax.
-5. **Export 0% Rate**: Export BKP/JKP is taxed at 0%, while Input Tax Credits (*Pajak Masukan*) remain 100% creditable/refundable.
+3. **Besaran Tertentu (Pasal 9A UU PPN jo. PMK 71/2022 & PMK 131/2024)**: Jasa ekspedisi/logistik & biro perjalanan wisata dengan tarif efektif **1,20%**.
+4. **Import Transactions**: `DPP = CIF Value + Customs Duty (Bea Masuk)`. PPN 12% and PPnBM are levied on full Import Value.
+5. **PPnBM Luxury Tax Tiers**: Statutory rates ranging from **10% to 200%** (levied once at manufacturer/import level). PPnBM is non-creditable input tax.
+6. **Export 0% Rate**: Export BKP/JKP is taxed at 0%, while Input Tax Credits (*Pajak Masukan*) remain 100% creditable/refundable.
 
 ## Hybrid Execution Model
-Pass parameters to `engines/ppn-ppnbm-calculator.js`:
-* `calculatePpnAndPpnbm({ transactionType, cifValueIdr, customsDutyAmount, sellingPriceOrDpp, ppnbmRatePercent, inputTaxCreditsAlreadyPaid })`
+Do not perform mathematical computations using the probabilistic LLM. Instead, delegate execution:
+* **Via MCP Tool**: Call `calc_ppn_ppnbm` with `{ sellingPriceOrDpp, transactionType, ppnbmRatePercent, cifValueIdr, customsDutyAmount, inputTaxCreditsAlreadyPaid }`.
+* **Via Universal CLI**: Run `npx indonesian-skills calc ppn --price <IDR> [--type <standard|besaran_tertentu|dpp_nilai_lain|import>]`.
+* **Via Node.js Engine**: `const { calculatePpnAndPpnbm } = require('indonesian-business-agent-skills/engines/ppn-ppnbm-calculator');`
 
 ## Worked Example
 Input: Import of luxury motor vehicle with CIF Rp 1.000.000.000, Customs Duty Rp 200.000.000, PPnBM rate 50%.

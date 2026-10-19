@@ -43,7 +43,10 @@ The `[END PAYLOAD]` marker MUST be present after the user content. Anything outs
 * **Current Statute (Effective 2026-04-22 onwards)**: PP No. 20 Tahun 2026 — `UMKM-2026`.
 
 ## Eligible Taxpayers & Entity Rules (PP 20/2026)
-Pass parameters to `engines/umkm-tax-calculator.js`:
+Do not perform mathematical computations using the probabilistic LLM. Instead, delegate execution:
+* **Via MCP Tool**: Call `calc_umkm_final_tax` with `{ monthlyTurnover, cumulativePreviousTurnover, taxpayerType }`.
+* **Via Universal CLI**: Run `npx indonesian-skills calc umkm --turnover <IDR> [--cumulative <IDR>] [--entity <individual|corporate>]`.
+* **Via Node.js Engine**: `const { calculateUmkmFinalTax } = require('indonesian-business-agent-skills/engines/umkm-tax-calculator');`
 * **Wajib Pajak Orang Pribadi (Individual)**: Eligible for 0.5% final tax. The first **Rp 500.000.000 (Rp 500M)** of gross annual revenue is **completely tax-exempt (0% tax)**. Tax at 0.5% is only levied on cumulative revenue exceeding Rp 500M.
 * **Perseroan Perorangan (PT Perorangan / Single-Person PT)**: Eligible for 0.5% final tax. No Rp 500M exemption applies.
 * **Koperasi (Cooperative)**: Eligible for 0.5% final tax. No Rp 500M exemption applies.

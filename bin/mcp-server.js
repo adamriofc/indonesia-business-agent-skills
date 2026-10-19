@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Native Zero-Dependency MCP Server for Indonesian Business Agent Skills
- * Exposes deterministic engines as Model Context Protocol (MCP) tools over stdio.
+ * Exposes all deterministic engines as Model Context Protocol (MCP) tools over stdio.
  * Pure Node.js 18+, zero external npm dependencies, cross-platform & lightweight.
  */
 
@@ -15,6 +15,9 @@ const ENGINES = path.join(ROOT, 'engines');
 // Lazy load engines to minimize memory footprint
 const engines = {
   pph21: () => require(path.join(ENGINES, 'pph21-calculator')),
+  pph21Grossup: () => require(path.join(ENGINES, 'pph21-grossup-calculator')),
+  pphBadan: () => require(path.join(ENGINES, 'pph-badan-calculator')),
+  pph23: () => require(path.join(ENGINES, 'pph23-26-calculator')),
   phk: () => require(path.join(ENGINES, 'phk-calculator')),
   thr: () => require(path.join(ENGINES, 'thr-calculator')),
   bpjs: () => require(path.join(ENGINES, 'bpjs-calculator')),
@@ -26,7 +29,19 @@ const engines = {
   kbli: () => require(path.join(ENGINES, 'kbli-context-router')),
   compliance: () => require(path.join(ENGINES, 'compliance-risk-engine')),
   decision: () => require(path.join(ENGINES, 'decision-engine')),
-  marketplace: () => require(path.join(ENGINES, 'marketplace-fee-calculator'))
+  marketplace: () => require(path.join(ENGINES, 'marketplace-fee-calculator')),
+  npv: () => require(path.join(ENGINES, 'npv')),
+  irr: () => require(path.join(ENGINES, 'irr')),
+  depreciation: () => require(path.join(ENGINES, 'depreciation')),
+  loan: () => require(path.join(ENGINES, 'loan-amortization')),
+  ratios: () => require(path.join(ENGINES, 'financial-ratios')),
+  workingCapital: () => require(path.join(ENGINES, 'working-capital')),
+  marketSizing: () => require(path.join(ENGINES, 'market-sizing-engine')),
+  unitEconomics: () => require(path.join(ENGINES, 'marketing-unit-economics')),
+  thincap: () => require(path.join(ENGINES, 'transfer-pricing-engine')),
+  regulatoryDiff: () => require(path.join(ENGINES, 'regulatory-diff')),
+  regulatoryImpact: () => require(path.join(ENGINES, 'regulatory-impact-engine')),
+  productContext: () => require(path.join(ENGINES, 'product-context'))
 };
 
 const TOOLS = [
@@ -61,6 +76,37 @@ const TOOLS = [
     }
   },
   {
+    name: "calc_pph_badan",
+    description: "Calculate 22% Corporate Income Tax (PPh Badan) with Pasal 31E UU PPh sliding scale facility and fiscal reconciliation.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        grossTurnover: { type: "number", description: "Annual gross revenue in IDR (Peredaran bruto)" },
+        commercialNetProfit: { type: "number", description: "Commercial net profit in IDR" },
+        positiveFiscalAdjustments: { type: "number", default: 0, description: "Positive fiscal adjustments (Koreksi fiskal positif)" },
+        negativeFiscalAdjustments: { type: "number", default: 0, description: "Negative fiscal adjustments (Koreksi fiskal negatif)" },
+        priorYearFiscalLossCarryForward: { type: "number", default: 0, description: "Prior year fiscal loss compensation in IDR" },
+        taxYear: { type: "number", default: 2026, description: "Tax year" }
+      },
+      required: ["grossTurnover", "commercialNetProfit"]
+    }
+  },
+  {
+    name: "calc_pph23_26",
+    description: "Calculate PPh 23 (2% service / 15% royalty) and PPh 26 (20% offshore / Tax Treaty DGT Form).",
+    inputSchema: {
+      type: "object",
+      properties: {
+        grossAmount: { type: "number", description: "Gross transaction amount in IDR" },
+        transactionType: { type: "string", default: "service", description: "service, rent, royalty, dividend, interest, or offshore" },
+        hasNpwp: { type: "boolean", default: true, description: "Whether vendor has NPWP (false applies 100% penalty)" },
+        hasDgtForm: { type: "boolean", default: false, description: "Whether offshore recipient has valid DGT Form" },
+        taxTreatyRatePercent: { type: "number", description: "Reduced tax treaty rate percentage if DGT Form is valid" }
+      },
+      required: ["grossAmount"]
+    }
+  },
+  {
     name: "calc_phk_severance",
     description: "Calculate statutory severance packages (Uang Pesangon, UPMK, UPH, Uang Pisah) for employment termination under PP No. 35/2021.",
     inputSchema: {
@@ -76,6 +122,18 @@ const TOOLS = [
         uangPisahAmount: { type: "number", default: 0, description: "Contractual separation pay (Uang pisah) in IDR" }
       },
       required: ["monthlyWage", "tenureYears", "reasonKey"]
+    }
+  },
+  {
+    name: "calc_pkwt_compensation",
+    description: "Calculate statutory PKWT contract completion compensation pay under PP No. 35/2021 Pasal 15-17.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        monthlyWage: { type: "number", description: "Monthly wage in IDR" },
+        tenureMonths: { type: "number", description: "Service duration in months" }
+      },
+      required: ["monthlyWage", "tenureMonths"]
     }
   },
   {
@@ -139,6 +197,21 @@ const TOOLS = [
     }
   },
   {
+    name: "calc_marketplace_fee",
+    description: "Calculate marketplace net seller payout, platform admin fee, and free shipping extra deductions (Shopee, Tokopedia, TikTok Shop).",
+    inputSchema: {
+      type: "object",
+      properties: {
+        sellingPrice: { type: "number", description: "Selling price per item in IDR" },
+        platform: { type: "string", default: "shopee", description: "Platform: shopee, tokopedia, tiktok_shop" },
+        sellerTier: { type: "string", default: "star", description: "Seller tier: non_star, star, star_plus, mall, regular, power_merchant, official_store, standard" },
+        freeShippingExtra: { type: "boolean", default: true, description: "Whether Free Shipping Extra program is active" },
+        adSpendBudget: { type: "number", default: 0, description: "Optional advertising budget per sale in IDR" }
+      },
+      required: ["sellingPrice"]
+    }
+  },
+  {
     name: "audit_pkwtt_compliance",
     description: "Audit PKWT/PKWTT employment contract compliance, probation limits (max 3 months), and auto-conversion triggers under PP 35/2021 & UU 6/2023.",
     inputSchema: {
@@ -169,6 +242,73 @@ const TOOLS = [
     }
   },
   {
+    name: "calc_npv",
+    description: "Calculate Net Present Value (NPV) using discounted cash flow formula with optional terminal value.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        rate: { type: "number", description: "Discount rate / WACC (e.g. 0.10 for 10%)" },
+        cashflows: { type: "array", items: { type: "number" }, description: "Cash flow array, cashflows[0] is initial investment (negative)" },
+        terminalValue: { type: "number", description: "Optional terminal value" },
+        terminalYearIndex: { type: "number", description: "Year index for terminal value" }
+      },
+      required: ["rate", "cashflows"]
+    }
+  },
+  {
+    name: "calc_irr",
+    description: "Calculate Internal Rate of Return (IRR) via deterministic bisection.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        cashflows: { type: "array", items: { type: "number" }, description: "Cash flow array with initial negative investment" }
+      },
+      required: ["cashflows"]
+    }
+  },
+  {
+    name: "calc_depreciation",
+    description: "Calculate fixed asset depreciation schedules per PSAK 16 (Straight Line, Double Declining, Sum of Years Digits).",
+    inputSchema: {
+      type: "object",
+      properties: {
+        cost: { type: "number", description: "Asset initial acquisition cost in IDR" },
+        salvage: { type: "number", description: "Estimated salvage/residual value in IDR" },
+        lifeYears: { type: "number", description: "Useful economic life in years" },
+        method: { type: "string", default: "straight_line", description: "straight_line, double_declining, or sum_of_years" }
+      },
+      required: ["cost", "salvage", "lifeYears"]
+    }
+  },
+  {
+    name: "calc_loan_amortization",
+    description: "Generate complete fixed-rate monthly loan amortization schedule and calculate total interest.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        principal: { type: "number", description: "Loan principal amount in IDR" },
+        annualRate: { type: "number", description: "Annual interest rate (e.g. 0.12 for 12%)" },
+        months: { type: "number", description: "Loan duration in months" }
+      },
+      required: ["principal", "annualRate", "months"]
+    }
+  },
+  {
+    name: "calc_working_capital",
+    description: "Compute Net Working Capital (NWC), Working Capital Ratio, and Cash Conversion Cycle (CCC).",
+    inputSchema: {
+      type: "object",
+      properties: {
+        currentAssets: { type: "number", description: "Current assets in IDR" },
+        currentLiabilities: { type: "number", description: "Current liabilities in IDR" },
+        daysInventory: { type: "number", description: "Days Inventory Outstanding (DIO)" },
+        daysSalesOutstanding: { type: "number", description: "Days Sales Outstanding (DSO)" },
+        daysPayables: { type: "number", description: "Days Payables Outstanding (DPO)" }
+      },
+      required: ["currentAssets", "currentLiabilities"]
+    }
+  },
+  {
     name: "route_kbli_context",
     description: "Map 5-digit Indonesian KBLI 2020 codes to canonical Business Archetypes and operational profiles.",
     inputSchema: {
@@ -177,6 +317,17 @@ const TOOLS = [
         kbliCode: { type: "string", description: "5-digit KBLI code (e.g. 70209, 56101, 62010)" }
       },
       required: ["kbliCode"]
+    }
+  },
+  {
+    name: "classify_btki_commodity",
+    description: "Resolve Indonesian BTKI 2022 commodity classification, import duties, PPN rate, PPh 22 import, and Lartas permits.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        btkiCode: { type: "string", description: "8-digit BTKI code (e.g. 0901.21.10, 8471.30.20, 8517.13.00)" }
+      },
+      required: ["btkiCode"]
     }
   }
 ];
@@ -198,6 +349,14 @@ function handleToolCall(name, args) {
         args.dateStr
       );
     }
+    case "calc_pph_badan": {
+      const fn = engines.pphBadan().calculateCorporateTax;
+      return fn(args);
+    }
+    case "calc_pph23_26": {
+      const fn = engines.pph23().calculatePPh23And26;
+      return fn(args.grossAmount, args.transactionType, args.hasNpwp !== false, args.hasDgtForm, args.taxTreatyRatePercent);
+    }
     case "calc_phk_severance": {
       const fn = engines.phk().calculatePhk;
       return fn(
@@ -207,6 +366,10 @@ function handleToolCall(name, args) {
         args.remainingLeaveDays || 0,
         args.uangPisahAmount || 0
       );
+    }
+    case "calc_pkwt_compensation": {
+      const fn = engines.pkwtComp().calculatePkwtCompensation;
+      return fn(args.monthlyWage, args.tenureMonths);
     }
     case "calc_thr_payout": {
       const fn = engines.thr().calculateThr;
@@ -223,6 +386,10 @@ function handleToolCall(name, args) {
     case "calc_ppn_ppnbm": {
       const fn = engines.ppn().calculatePpnAndPpnbm;
       return fn(args);
+    }
+    case "calc_marketplace_fee": {
+      const fn = engines.marketplace().calculateMarketplaceFee;
+      return fn(args.sellingPrice, args.platform, args.sellerTier, args.freeShippingExtra !== false, args.adSpendBudget || 0);
     }
     case "audit_pkwtt_compliance": {
       const fn = engines.pkwtt().auditPkwttStatus;
@@ -243,9 +410,46 @@ function handleToolCall(name, args) {
         marginOfSafety: mos
       };
     }
+    case "calc_npv": {
+      const { npv, npvWithTerminalValue } = engines.npv();
+      if (args.terminalValue !== undefined) {
+        return { npv: npvWithTerminalValue(args.rate, args.cashflows, args.terminalValue, args.terminalYearIndex || (args.cashflows.length - 1)) };
+      }
+      return { npv: npv(args.rate, args.cashflows) };
+    }
+    case "calc_irr": {
+      return engines.irr().irr(args.cashflows);
+    }
+    case "calc_depreciation": {
+      const dep = engines.depreciation();
+      const method = (args.method || 'straight_line').toLowerCase();
+      if (method === 'double_declining' || method === 'ddb') {
+        return dep.doubleDeclining(args.cost, args.salvage, args.lifeYears);
+      } else if (method === 'sum_of_years' || method === 'syd') {
+        return dep.sumOfYearsDigits(args.cost, args.salvage, args.lifeYears);
+      }
+      return dep.straightLine(args.cost, args.salvage, args.lifeYears);
+    }
+    case "calc_loan_amortization": {
+      return engines.loan().amortizationSchedule(args.principal, args.annualRate, args.months);
+    }
+    case "calc_working_capital": {
+      const wc = engines.workingCapital();
+      const nwc = wc.netWorkingCapital(args.currentAssets, args.currentLiabilities);
+      const ratio = wc.workingCapitalRatio(args.currentAssets, args.currentLiabilities);
+      let ccc = null;
+      if (args.daysInventory !== undefined && args.daysSalesOutstanding !== undefined && args.daysPayables !== undefined) {
+        ccc = wc.cashConversionCycle(args.daysInventory, args.daysSalesOutstanding, args.daysPayables);
+      }
+      return { netWorkingCapital: nwc, workingCapitalRatio: ratio, cashConversionCycle: ccc };
+    }
     case "route_kbli_context": {
       const fn = engines.kbli().resolveBusinessArchetype;
       return fn(args);
+    }
+    case "classify_btki_commodity": {
+      const fn = engines.productContext().resolveProductClassification;
+      return fn(args.btkiCode);
     }
     default:
       throw new Error(`Unknown tool '${name}'`);

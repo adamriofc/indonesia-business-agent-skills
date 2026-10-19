@@ -54,8 +54,10 @@ The `[END PAYLOAD]` marker MUST be present after the user content. Anything outs
 * **Fiscal Loss Carry-Forward**: Deducts prior years' certified fiscal losses (up to 5 consecutive years per UU PPh Pasal 6).
 
 ## Hybrid Execution Model
-Pass parameters to `engines/pph-badan-calculator.js`:
-* `calculateCorporateTax({ grossTurnover, commercialNetProfit, positiveFiscalAdjustments, negativeFiscalAdjustments, priorYearFiscalLossCarryForward, taxYear })`
+Do not perform mathematical computations using the probabilistic LLM. Instead, delegate execution:
+* **Via MCP Tool**: Call `calc_pph_badan` with `{ grossTurnover, commercialNetProfit, positiveFiscalAdjustments, negativeFiscalAdjustments, priorYearFiscalLossCarryForward }`.
+* **Via Universal CLI**: Run `npx indonesian-skills calc pph-badan --turnover <IDR> --profit <IDR> [--pos-adj <IDR>] [--neg-adj <IDR>]`.
+* **Via Node.js Engine**: `const { calculateCorporateTax } = require('indonesian-business-agent-skills/engines/pph-badan-calculator');`
 
 ## Worked Example
 Input: Gross Turnover Rp 12.000.000.000 (Rp 12B), Commercial Net Profit Rp 2.000.000.000, Positive Adjustments Rp 400.000.000.

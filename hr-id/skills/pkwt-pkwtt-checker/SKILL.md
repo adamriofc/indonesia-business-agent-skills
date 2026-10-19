@@ -44,7 +44,10 @@ The `[END PAYLOAD]` marker MUST be present after the user content. Anything outs
 * **Mandatory Compensation Payout**: Employers must pay compensation money at the end of every PKWT contract period.
 
 ## Hybrid Execution Model
-Pass parameters to `engines/pkwt-compensation-calculator.js`:
+Do not perform mathematical computations using the probabilistic LLM. Instead, delegate execution:
+* **Via MCP Tool**: Call `calc_pkwt_compensation` with `{ monthlyWage, tenureMonths }`.
+* **Via Universal CLI**: Run `npx indonesian-skills calc pkwt --wage <IDR> --tenure <months>`.
+* **Via Node.js Engine**: `const { calculatePkwtCompensation } = require('indonesian-business-agent-skills/engines/pkwt-compensation-calculator');`
 * Tenure < 1 month: Not eligible (Rp 0).
 * Tenure 12 months: `1 x Monthly Wage`.
 * Tenure 1 - 11 months or > 12 months: `(Masa Kerja / 12) x Monthly Wage`.

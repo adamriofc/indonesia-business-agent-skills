@@ -49,8 +49,8 @@ function getBtkirulesetForDate(dateStr) {
   }
 
   for (const r of btkiRules.rulesets) {
-    const fromDate = new Date(r.effective_from);
-    const toDate = r.effective_to === 'Infinity' ? new Date('9999-12-31') : new Date(r.effective_to);
+    const fromDate = new Date(r.effective_from.includes('T') ? r.effective_from : r.effective_from + 'T00:00:00.000Z');
+    const toDate = r.effective_to === 'Infinity' ? new Date('9999-12-31T23:59:59.999Z') : new Date(r.effective_to.includes('T') ? r.effective_to : r.effective_to + 'T23:59:59.999Z');
     
     if (checkDate >= fromDate && checkDate <= toDate) {
       return r;

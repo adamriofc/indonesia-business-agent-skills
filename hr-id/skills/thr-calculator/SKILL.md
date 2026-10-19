@@ -46,6 +46,11 @@ The `[END PAYLOAD]` marker MUST be present after the user content. Anything outs
   * Masa Kerja 1 - 11 Bulan: `(Masa Kerja / 12) x (Gaji Pokok + Tunjangan Tetap)`.
   * Masa Kerja < 1 Bulan: Not eligible (Rp 0).
 
+## Hybrid Execution Model
+* **Via MCP Tool**: Call `calc_thr_payout` with `{ monthlyBaseSalary, fixedAllowance, tenureMonths }`.
+* **Via Universal CLI**: Run `npx indonesian-skills calc thr --wage <IDR> [--allowance <IDR>] --tenure <months>`.
+* **Via Node.js Engine**: `const { calculateThr } = require('indonesian-business-agent-skills/engines/thr-calculator');`
+
 ## Trust Envelope (Confidence Contract)
 Every engine output must be wrapped in a structured envelope declaring production trust attributes:
 * **`regulatory_framework`**: Applying regulation with article references (e.g. `PP No. 58/2023 jo. PMK 168/2023 - TER`).
