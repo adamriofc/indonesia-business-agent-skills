@@ -112,7 +112,13 @@ function daysInventoryOutstanding(cogs, avgInventory) {
 }
 
 function cashConversionCycle(dio, dso, dpo) {
-  return round4(Number(dio) + Number(dso) - Number(dpo));
+  const dioN = Number(dio);
+  const dsoN = Number(dso);
+  const dpoN = Number(dpo);
+  if (isNaN(dioN) || isNaN(dsoN) || isNaN(dpoN)) {
+    throw new Error("INVALID_INPUT: 'dio', 'dso', and 'dpo' must be valid numbers");
+  }
+  return round4(dioN + dsoN - dpoN);
 }
 
 module.exports = {

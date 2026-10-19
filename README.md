@@ -5,7 +5,7 @@
 **Open-source Indonesian business intelligence for AI agents — combining regulatory-grounded skills, temporal rulesets, deterministic engines, and auditable provenance.**
 
 <p align="center">
-  <img src="docs/indonesian-business-agent-skills-hero.svg?v=6.16.3" alt="Indonesian Business Agent Skills Banner" width="100%">
+  <img src="docs/indonesian-business-agent-skills-hero.svg?v=6.17.0" alt="Indonesian Business Agent Skills Banner" width="100%">
 </p>
 
 <p align="center">
@@ -24,19 +24,19 @@
 <!-- GENERATED:STATS -->
 | Metric | Single Source of Truth Value | Measurement Scope |
 |---|---|---|
-| **Repository Version** | `v6.16.3` | SemVer release boundary |
+| **Repository Version** | `v6.17.0` | SemVer release boundary |
 | **Canonical Plugins** | `6` | Active plugin packages (`legal-id`, `tax-id`, `hr-id`, `finance-id`, `marketing-id`, `strategic-id`) |
 | **Agent Skills** | `88` | Machine-readable `SKILL.md` capability packs |
-| **Deterministic Engines** | `39` | Pure Node.js calculation & regulatory diff engines (`engines/`) |
+| **Deterministic Engines** | `40` | Pure Node.js calculation & regulatory diff engines (`engines/`) |
 | **Golden Cases** | `121` | Static corpus cases across 27 benchmark domains |
 | **Benchmark Assertions** | `434` | Deterministic assertions in `tests/benchmarks/` |
-| **Total Test Assertions** | `526+` | Deepened matrix assertions across full `npm test` suite |
+| **Total Test Assertions** | `558+` | Deepened matrix assertions across full `npm test` suite |
 | **Node.js Compatibility** | `20 / 22 / 24` | `20` (Minimum), `22` (LTS Recommended), `24` (Current Tested) |
 <!-- /GENERATED:STATS -->
 
 > **Evidence Boundary Note**: Independent external domain validation and enterprise production proof are still pending.
 
-**Indonesian Business Agent Skills** is an open-source domain-intelligence infrastructure designed to give AI agents an authentic Indonesian business and regulatory intelligence layer. Built for **OpenWork Desktop**, **OpenCode CLI**, **Claude Code (CLI)**, **Cursor IDE**, **Codex**, **OpenClaw**, **Hermes**, and custom agent frameworks, this repository integrates **88 Agent Skills** across **6 canonical plugins** (`legal-id`, `tax-id`, `hr-id`, `finance-id`, `marketing-id`, `strategic-id`) with **39 Deterministic Computational & Regulatory Diff Engines** (`engines/`) and single-source-of-truth temporal JSON rulesets (`engines/rules/`).
+**Indonesian Business Agent Skills** is an open-source domain-intelligence infrastructure designed to give AI agents an authentic Indonesian business and regulatory intelligence layer. Built for **OpenWork Desktop**, **OpenCode CLI**, **Claude Code (CLI)**, **Cursor IDE**, **Codex**, **OpenClaw**, **Hermes**, and custom agent frameworks, this repository integrates **88 Agent Skills** across **6 canonical plugins** (`legal-id`, `tax-id`, `hr-id`, `finance-id`, `marketing-id`, `strategic-id`) with **40 Deterministic Computational & Regulatory Diff Engines** (`engines/`) and single-source-of-truth temporal JSON rulesets (`engines/rules/`).
 
 ### 💡 Why Standard LLMs Fail at Indonesian Business & Compliance Calculations
 Generic AI models (such as unassisted ChatGPT or Claude) predict words probabilistically (*token prediction*). When tasked with calculating TER PPh 21 income tax, PHK severance payouts, or corporate loan interest, standard LLMs encounter 3 critical failure modes:
@@ -142,19 +142,19 @@ README.md (What / Why / Overview & Demo)
 
 ```text
 ┌─────────────────────────────────────────────────────────────────┐
-│              INDONESIAN BUSINESS AGENT SUITE v6.16.3            │
-│         88 Skills · 6 Domains · 39 Deterministic Engines        │
+│              INDONESIAN BUSINESS AGENT SUITE v6.17.0            │
+│         88 Skills · 6 Domains · 40 Deterministic Engines        │
 ├──────────────────────────┬──────────────────────────────────────┤
 │  FULL SUITE              │  SELECTIVE PROFILES                  │
 │  All 6 domains           │  Finance & Strategy                  │
 │  88 skills               │  People & Payroll                    │
-│  39 engines              │  Compliance                          │
+│  40 engines              │  Compliance                          │
 │                          │  Go-to-Market                        │
 └──────────────────────────┴──────────────────────────────────────┘
 ```
 
 ### Profile A — Full Business Suite (Recommended)
-> All 6 domains · 88 skills · 39 engines
+> All 6 domains · 88 skills · 40 engines
 
 ```bash
 npx skills add adamriofc/indonesian-business-agent-skills
@@ -215,6 +215,10 @@ npx skills add adamriofc/indonesian-business-agent-skills
 # Selective installation by agent platform or skill domain
 npx skills add adamriofc/indonesian-business-agent-skills --agent claude-code
 npx skills add adamriofc/indonesian-business-agent-skills --skill pph21-calculator
+
+# Direct deterministic execution via Universal CLI (Zero external dependencies)
+npx indonesian-skills calc pph21 --salary 10000000 --ptkp TK/0
+npx indonesian-skills calc phk --wage 10000000 --tenure 5 --reason resignation
 ```
 
 ### 2. Claude Code Marketplace (Official Plugin Integration)
@@ -249,6 +253,18 @@ cp -r .agents/skills/* .cursor/skills/
 2. Click **Add Plugin from Repository**.
 3. Input the GitHub URL: `https://github.com/adamriofc/indonesian-business-agent-skills`.
 4. The 6 plugins and 88 skills activate automatically.
+
+*Native MCP Server Integration (OpenWork Library / Claude Desktop)*:
+```json
+{
+  "mcpServers": {
+    "indonesian-business": {
+      "command": "npx",
+      "args": ["-y", "indonesian-skills-mcp"]
+    }
+  }
+}
+```
 
 ---
 

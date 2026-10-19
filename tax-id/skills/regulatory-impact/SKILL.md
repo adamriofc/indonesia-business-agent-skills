@@ -1,7 +1,7 @@
 ---
 name: regulatory-impact
 description: "Evaluates regulatory changes and ruleset transitions (e.g. PP 55/2022 to PP 20/2026, BPJS wage cap updates) against a company profile to compute business impact, affected domains, required action checklists, and compliance deadlines."
-argument-hint: <domain: umkm|bpjs|phk> <fromRuleset> <toRuleset>
+argument-hint: "<domain: umkm|bpjs|phk> <fromRuleset> <toRuleset>"
 risk_level: HIGH
 rule_type: statutory
 quality_tier: expert-reviewed
@@ -9,7 +9,7 @@ allowed-tools: bash
 capability:
   purpose: [tax_calculation, statutory_compliance]
   not_for: [tax_legal_opinion, autonomous_filing]
-  requires: [<domain: umkm|bpjs|phk> <fromRuleset> <toRuleset>]
+  requires: ["<domain: umkm|bpjs|phk>", "<fromRuleset>", "<toRuleset>"]
   produces: [taxAmount, effectiveRatePercent, statutoryReference, safeToUse]
   consumes: [hr.payroll_cost, context.asOfDate]
   deterministic: true

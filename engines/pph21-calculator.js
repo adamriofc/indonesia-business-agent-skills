@@ -155,7 +155,11 @@ function calculatePPh21DecemberReconciliation(annualGrossIncome, ptkpStatus = 'T
     totalAnnualTax = Math.round(totalAnnualTax * pphRules.non_npwp_penalty_rate);
   }
 
-  const decTaxToWithhold = Math.max(0, totalAnnualTax - clampRupiah(janToNovTaxWithheld));
+  const netTaxDiff = totalAnnualTax - clampRupiah(janToNovTaxWithheld);
+  const isOverpaid = netTaxDiff < 0;
+  const decTaxToWithhold = isOverpaid ? 0 : netTaxDiff;
+  const overpaymentRefundAmount = isOverpaid ? Math.abs(netTaxDiff) : 0;
+  const taxStatus = isOverpaid ? 'LEBIH_BAYAR' : (netTaxDiff === 0 ? 'NIHIL' : 'KURANG_BAYAR');
 
   return {
     annualGrossIncome: annualGross,
@@ -168,6 +172,12 @@ function calculatePPh21DecemberReconciliation(annualGrossIncome, ptkpStatus = 'T
     totalAnnualTaxArt17: totalAnnualTax,
     janToNovTaxWithheld: clampRupiah(janToNovTaxWithheld),
     decemberTaxWithheld: decTaxToWithhold,
+    isOverpaid,
+    overpaymentRefundAmount,
+    taxStatus,
+    statutoryAction: isOverpaid
+      ? "Pemberi kerja wajib mengembalikan kelebihan pemotongan sebesar Rp " + overpaymentRefundAmount.toLocaleString('id-ID') + " kepada pegawai beserta bukti potong 1721-A1 paling lambat akhir bulan berikutnya (PMK 168/2023 Pasal 14 ayat (2))."
+      : (decTaxToWithhold > 0 ? "Pemberi kerja memotong sisa pajak terutang sebesar Rp " + decTaxToWithhold.toLocaleString('id-ID') + " pada penggajian Desember." : "Kewajiban pajak tahunan telah terpenuhi (Nihil)."),
     hasNpwp: isNPWPValid,
     calculationDate: activeDateStr,
     rulesetId: pphRules.rulesetId,

@@ -18,8 +18,12 @@ function contributionMarginRatio(pricePerUnit, variableCostPerUnit) {
 }
 
 function breakEvenUnits(fixedCosts, pricePerUnit, variableCostPerUnit) {
+  const fc = Number(fixedCosts);
+  if (isNaN(fc) || fc < 0) {
+    throw new Error("INVALID_INPUT: 'fixedCosts' must be a non-negative number");
+  }
   const cm = contributionMargin(pricePerUnit, variableCostPerUnit);
-  return Math.ceil(Number(fixedCosts) / cm);
+  return Math.ceil(fc / cm);
 }
 
 function breakEvenRevenue(fixedCosts, pricePerUnit, variableCostPerUnit) {
@@ -28,7 +32,12 @@ function breakEvenRevenue(fixedCosts, pricePerUnit, variableCostPerUnit) {
 }
 
 function marginOfSafety(actualRevenue, breakEvenRevenueAmount) {
-  return Math.round(Number(actualRevenue) - Number(breakEvenRevenueAmount));
+  const rev = Number(actualRevenue);
+  const beRev = Number(breakEvenRevenueAmount);
+  if (isNaN(rev) || isNaN(beRev)) {
+    throw new Error("INVALID_INPUT: 'actualRevenue' and 'breakEvenRevenueAmount' must be valid numbers");
+  }
+  return Math.round(rev - beRev);
 }
 
 module.exports = {

@@ -1,6 +1,6 @@
 {
   "name": "indonesian-business-agent-skills",
-  "version": "6.16.3",
+  "version": "6.17.0",
   "description": "Production-oriented AI domain-intelligence infrastructure for Indonesian legal, tax, HR, finance, marketing, and strategic business reasoning.",
   "scripts": {
     "test": "node tests/schema/validator.test.js && node tests/units/engines.test.js && node tests/units/new-engines.test.js && node tests/units/strategic-engines.test.js && node tests/units/strategic-management-engines.test.js && node tests/units/marketing-engines.test.js && node tests/units/context-contract.test.js && node tests/units/finance-engines.test.js && node tests/units/product-context.test.js && node tests/units/pph21-matrix.test.js && node tests/units/phk-matrix.test.js && node tests/units/cross-engine-invariants.test.js && node tests/integration/workflow.test.js && node tests/benchmarks/fixture/nlp-extraction-fixture.test.js && node tests/benchmarks/synthetic/cross-domain-synthetic.test.js && node tests/benchmarks/business-scenario-regression.test.js && node tests/benchmarks/agent-capability.test.js && node tests/security/injection.test.js && node tests/security/adversarial.test.js && node tests/security/supply-chain.test.js",
@@ -16,11 +16,18 @@
     "validate:docs": "node scripts/validate-docs.js",
     "validate:capabilities": "node scripts/validate-capabilities.js",
     "validate:suite": "node scripts/validate-suite.js",
-    "test:suite": "node tests/suite/suite-discovery.test.js"
+    "test:suite": "node tests/suite/suite-discovery.test.js",
+    "test:sandbox": "bash scripts/sandbox-test.sh",
+    "watch:regulatory": "node scripts/regulatory-watch.js"
   },
   "author": "adamriofc",
   "license": "MIT",
+  "bin": {
+    "indonesian-skills": "bin/cli.js",
+    "indonesian-skills-mcp": "bin/mcp-server.js"
+  },
   "files": [
+    "bin",
     "engines",
     "legal-id",
     "tax-id",

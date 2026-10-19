@@ -2,23 +2,23 @@
   "manifestVersion": "1.2.0",
   "provenancePolicy": "The git tag is the authoritative immutable release boundary. This manifest documents release lineage (version, source, metrics) but does NOT attempt to self-reference its own commit hash — such self-referential SHA attestation is cryptographically impossible in Git. Integrity is established by: (1) immutable git tag, (2) SHA256SUMS.txt for rulesets, (3) canonical-metadata.json, (4) npm test golden corpus.",
   "repository": "https://github.com/adamriofc/indonesian-business-agent-skills",
-  "releaseVersion": "v6.16.3",
-  "releaseTag": "v6.16.3",
-  "releaseSourceCommitHash": "aaf5950f0e9218fee7dce55fb94ed3f79ce18edd",
-  "releaseSourceDescription": "Feature commit for v6.16.3: final release lock — tag boundary hygiene, ancestor-verified provenance lineage in validator Check [16]",
-  "generatedAt": "2026-08-16T01:07:41.359Z",
+  "releaseVersion": "v6.17.0",
+  "releaseTag": "v6.17.0",
+  "releaseSourceCommitHash": "cfcea726518cf5a044f69992088c64034943bcd8",
+  "releaseSourceDescription": "Feature commit for v6.17.0: universal CLI runner, native MCP bridge, statutory bugfixes & security hardening",
+  "generatedAt": "2026-10-19T04:52:43.385Z",
   "metrics": {
     "plugins": 6,
     "skills": 88,
-    "engines": 39,
+    "engines": 40,
     "goldenCases": 121,
     "benchmarkDomains": 27,
     "benchmarkAssertions": 434,
-    "totalTestAssertions": 526
+    "totalTestAssertions": 558
   },
   "integrityHashes": {
     "sha256sumsFileHash": "f9f46ba56a97d8bf2c2db7d3853813b47caa85461f349221a84d6e6631b6a82b",
-    "benchmarkArtifactHash": "5eae977b488c5a81b32cdfd31879878b497b8613f0e44d70d92075a37494d08c"
+    "benchmarkArtifactHash": "e4b44efac4b3ef59e80f7406ab1d1f50d5c44c74a806ab8a915119365b3cc961"
   },
   "nodeMatrix": {
     "minimumSupported": "20",

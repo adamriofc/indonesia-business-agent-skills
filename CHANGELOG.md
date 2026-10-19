@@ -2,6 +2,22 @@
 
 All notable changes to this project are documented here in reverse chronological order. Regulatory/statutory changes are additionally tracked per-rule in [REGULATORY_CHANGELOG.md](./REGULATORY_CHANGELOG.md); provenance of every rule in [PROVENANCE.md](./PROVENANCE.md); release cadence in [REGULATORY_PIPELINE.md](./REGULATORY_PIPELINE.md).
 
+## [6.17.0] - 2026-10-19
+
+### Universal CLI Runner, Native Zero-Dependency MCP Server, Statutory Bugfixes & Hardened Ingestion
+
+- **P0 — Universal CLI Runner (`bin/cli.js`)**: Added standalone agnostic CLI runner supporting commands like `indonesian-skills calc pph21`, `calc phk`, `calc thr`, `calc bpjs`, `calc umkm`, `calc ppn`, `calc breakeven`, `audit pkwtt`, and `route kbli`. Registered under `"bin"` in `package.json` for seamless `npx indonesian-skills` execution with zero external npm dependencies.
+- **P0 — Native Zero-Dependency MCP Server (`bin/mcp-server.js`)**: Added full Model Context Protocol (MCP) server over stdio, providing 10 native tools (`calc_pph21_monthly`, `calc_pph21_december_recon`, `calc_phk_severance`, `calc_thr_payout`, `calc_bpjs_contributions`, `calc_umkm_final_tax`, `calc_ppn_ppnbm`, `audit_pkwtt_compliance`, `analyze_break_even`, `route_kbli_context`) for direct invocation in OpenWork, Claude Code, and Cursor without bash scripting friction.
+- **P0 — PPh 21 December Overpayment (Lebih Bayar) Restitution**: Fixed `engines/pph21-calculator.js` where `Math.max(0, ...)` erased employee tax overpayment. Engine now fully computes and reports `isOverpaid`, `overpaymentRefundAmount`, `taxStatus: LEBIH_BAYAR`, and statutory employer restitution directive under PMK No. 168/2023 Pasal 14 ayat (2).
+- **P0 — PHK Reason Resolution & Fail-Closed Guard**: Fixed `engines/phk-calculator.js` to normalize NL reason aliases (e.g. `resign`, `mengundurkan diri` -> `resignation`) and fail-closed with `INVALID_INPUT` on unrecognized reasons, preventing voluntary resignations from erroneously defaulting to 50M IDR efficiency severance. Added `uangPisah` and UPH tracking under PP No. 35/2021 Pasal 50.
+- **P0 — YAML Frontmatter Syntax Fixes**: Corrected invalid nested flow sequences and unquoted colon scalars in 6 flagship skills (`phk-calculator`, `margin-pricing-calculator`, `ansoff-matrix`, `pph21-calculator`, `pph23-26-calculator`, `regulatory-impact`). Hardened `tests/schema/validator.test.js` to strictly enforce YAML specification compliance.
+- **P1 — PPN Besaran Tertentu 1.2%**: Extended `engines/ppn-ppnbm-calculator.js` with `besaran_tertentu` effective 1.2% rate for logistics, freight forwarding, and travel agencies under Pasal 9A UU PPN jo. PMK 71/2022 & PMK 131/2024.
+- **P1 — PKWT 5-Year Tenure Cap Warning**: Enhanced `engines/pkwt-compensation-calculator.js` to flag tenures exceeding 60 months with `isExceedingMaxTenure: true` and warning of statutory automatic conversion to permanent employment (PKWTT) under PP 35/2021 Pasal 8.
+- **P1 — Silent NaN Elimination**: Refactored `engines/break-even.js`, `engines/financial-ratios.js`, and `engines/working-capital.js` to assert valid numeric inputs and throw structured `INVALID_INPUT` errors instead of silently returning `NaN`.
+- **P1 — Closed Prompt Delimiter Boundary**: Standardized the closed `[SYSTEM INSTRUCTION] ... [UNTRUSTED DATA PAYLOAD] ... [END PAYLOAD]` boundary across all 88 skills. Extracted `engines/security-sanitizer.js` as an official production sanitization module and updated `tests/security/injection.test.js` to audit all 88 skills.
+- **P1 — Agnostic Sandbox & Regulatory Monitoring**: Added `scripts/sandbox-test.sh` for unprivileged Bubblewrap sandbox validation with automatic fallback, and `scripts/regulatory-watch.js` for lightweight zero-lock-in statutory portal checks.
+- **All artifacts synchronized to v6.17.0**: `package.json`, `package-lock.json`, `canonical-metadata.json`, `registry/index.json`, all 5 `bundles/*.json`, `README.md`, `docs/METRICS.md`, `docs/BENCHMARK.md`.
+
 ## [6.16.3] - 2026-08-16
 
 ### Final Release Lock — Tag Boundary Hygiene & Ancestor-Verified Lineage

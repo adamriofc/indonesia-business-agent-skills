@@ -1,7 +1,7 @@
 ---
 name: phk-calculator
 description: "Calculate statutory employee severance packages (Pesangon) under Government Regulation PP No. 35/2021 using hybrid execution."
-argument-hint: <gaji_pokok_tunjangan_tetap> <masa_kerja_tahun> <alasan_phk> [sisa_cuti]
+argument-hint: "<gaji_pokok_tunjangan_tetap> <masa_kerja_tahun> <alasan_phk> [sisa_cuti]"
 risk_level: HIGH
 rule_type: statutory
 quality_tier: tested
@@ -9,7 +9,7 @@ allowed-tools: bash
 capability:
   purpose: [labor_compliance, severance_calculation]
   not_for: [unmediated_employee_termination, autonomous_legal_notice]
-  requires: [<gaji_pokok_tunjangan_tetap> <masa_kerja_tahun> <alasan_phk> [sisa_cuti]]
+  requires: ["<gaji_pokok_tunjangan_tetap>", "<masa_kerja_tahun>", "<alasan_phk>", "[sisa_cuti]"]
   produces: [payoutAmount, statutoryEntitlements, complianceStatus]
   consumes: [context.employeeCount, context.scale]
   deterministic: true

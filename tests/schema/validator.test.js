@@ -22,17 +22,29 @@ function parseYamlFrontmatter(yamlStr) {
   const result = {};
   let currentTopKey = null;
 
-  for (const line of lines) {
-    if (!line.trim() || line.trim().startsWith('#')) continue;
-    const isIndented = /^\s+/.test(line);
+  for (let i = 0; i < lines.length; i++) {
+    const rawLine = lines[i];
+    if (!rawLine.trim() || rawLine.trim().startsWith('#')) continue;
+    const isIndented = /^\s+/.test(rawLine);
 
     if (isIndented && currentTopKey) {
       // Sub-key inside current top key object
-      const trimmed = line.trim();
+      const trimmed = rawLine.trim();
       const colonIdx = trimmed.indexOf(':');
       if (colonIdx !== -1) {
         const subKey = trimmed.slice(0, colonIdx).trim();
-        const subVal = trimmed.slice(colonIdx + 1).trim().replace(/^['"]|['"]$/g, '');
+        const rawSubVal = trimmed.slice(colonIdx + 1).trim();
+
+        // Strict YAML syntax check for flow sequences with illegal nested brackets
+        if (rawSubVal.startsWith('[') && rawSubVal.endsWith(']')) {
+          const inner = rawSubVal.slice(1, -1).trim();
+          // detect illegal unquoted nested brackets like [<a b> [c]] without comma or quotes
+          if (/\[[^\]]*\]/.test(inner) && !/^\s*"/.test(inner) && !/^\s*'/.test(inner) && !inner.includes('","') && !inner.includes("','")) {
+            throw new Error(`Invalid YAML flow sequence at line ${i + 1}: unquoted nested bracket detected in "${trimmed}"`);
+          }
+        }
+
+        const subVal = rawSubVal.replace(/^['"]|['"]$/g, '');
         if (typeof result[currentTopKey] !== 'object' || result[currentTopKey] === null) {
           result[currentTopKey] = {};
         }
@@ -41,12 +53,19 @@ function parseYamlFrontmatter(yamlStr) {
       continue;
     }
 
-    const trimmed = line.trim();
+    const trimmed = rawLine.trim();
     const colonIdx = trimmed.indexOf(':');
     if (colonIdx === -1) continue;
 
     const key = trimmed.slice(0, colonIdx).trim();
-    const value = trimmed.slice(colonIdx + 1).trim().replace(/^['"]|['"]$/g, '');
+    const rawVal = trimmed.slice(colonIdx + 1).trim();
+
+    // Strict YAML syntax check: unquoted colons in values (e.g. key: <foo: bar>)
+    if (rawVal && !rawVal.startsWith('"') && !rawVal.startsWith("'") && !rawVal.startsWith('[') && rawVal.includes(': ')) {
+      throw new Error(`Invalid YAML scalar at line ${i + 1}: unquoted colon in value "${trimmed}"`);
+    }
+
+    const value = rawVal.replace(/^['"]|['"]$/g, '');
 
     if (key) {
       currentTopKey = key;

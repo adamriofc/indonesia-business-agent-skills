@@ -1,7 +1,7 @@
 ---
 name: ansoff-matrix
 description: "Evaluates corporate growth vectors using Igor Ansoff's Growth Matrix (Market Penetration, Market Development, Product Development, Diversification) to balance growth vs risk."
-argument-hint: <productType: existing|new> <marketType: existing|new>
+argument-hint: "<productType: existing|new> <marketType: existing|new>"
 risk_level: MEDIUM
 rule_type: professional-standard
 quality_tier: expert-reviewed
@@ -9,7 +9,7 @@ allowed-tools: bash
 capability:
   purpose: [framework_evaluation, scenario_planning]
   not_for: [board_of_directors_guarantee, hostile_takeover_advisory]
-  requires: [<productType: existing|new> <marketType: existing|new>]
+  requires: ["<productType: existing|new>", "<marketType: existing|new>"]
   produces: [businessArchetype, compositeScore, resilienceAssessment, topOption]
   consumes: [context.businessArchetype, finance.netProfit]
   deterministic: false

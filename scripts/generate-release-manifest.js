@@ -59,16 +59,18 @@ function generateReleaseManifest() {
   const metadata = JSON.parse(fs.readFileSync(metadataPath, 'utf8'));
 
   const releaseTag = getReleaseTag(metadata.version);
-  const releaseCommitHash = getReleaseCommitHash(metadata.version);
+  const releaseSourceCommitHash = getReleaseCommitHash(metadata.version);
   const benchmarkHash = calculateFileHash(path.join(ROOT, 'docs/benchmark-results/latest.json'));
   const sha256sumsHash = calculateFileHash(path.join(ROOT, 'SHA256SUMS.txt'));
 
   const manifest = {
-    manifestVersion: "1.1.0",
+    manifestVersion: "1.2.0",
+    provenancePolicy: "The git tag is the authoritative immutable release boundary. This manifest documents release lineage (version, source, metrics) but does NOT attempt to self-reference its own commit hash — such self-referential SHA attestation is cryptographically impossible in Git. Integrity is established by: (1) immutable git tag, (2) SHA256SUMS.txt for rulesets, (3) canonical-metadata.json, (4) npm test golden corpus.",
     repository: "https://github.com/adamriofc/indonesian-business-agent-skills",
     releaseVersion: `v${metadata.version}`,
     releaseTag,
-    releaseCommitHash,
+    releaseSourceCommitHash,
+    releaseSourceDescription: `Feature commit for v${metadata.version}: universal CLI runner, native MCP bridge, statutory bugfixes & security hardening`,
     generatedAt: new Date().toISOString(),
     metrics: {
       plugins: metadata.plugins,
@@ -96,7 +98,7 @@ function generateReleaseManifest() {
 
   console.log(`✅ Generated ${manifestPath}`);
   console.log(`    ✓ Release Tag:     ${releaseTag}`);
-  console.log(`    ✓ Commit Hash:     ${releaseCommitHash}`);
+  console.log(`    ✓ Commit Hash:     ${releaseSourceCommitHash}`);
   console.log(`    ✓ Ruleset Hash:    ${sha256sumsHash ? sha256sumsHash.slice(0, 16) + '...' : 'N/A'}`);
 }
 

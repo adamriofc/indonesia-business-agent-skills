@@ -18,7 +18,7 @@ To ensure scientific rigor, clear nomenclature, and eliminate unsubstantiated cl
 > **Honest scoping note:** Tier 3 is a deterministic regression benchmark — every expected value is compared exactly against ruleset-derived outputs. It is **not** an LLM recommendation-quality measurement; recommendation-quality claims are reserved for the empirical LLM baseline comparison in Section 3.
 
 ### Golden Corpus & Benchmark Artifact Scope:
-- **Static Golden Corpus (`tests/golden/`)**: **121 golden cases across all 39 engine modules** (27 benchmark domains) — fast batch, deterministic, zero-dependency.
+- **Static Golden Corpus (`tests/golden/`)**: **121 golden cases across all 40 engine modules** (27 benchmark domains) — fast batch, deterministic, zero-dependency.
 - **Deepened Matrix in CI**: 425 PPh 21 cases, 225 PHK cases, 50 enterprise integration scenario assertions, 38 engine modules, security suite (see `npm test`).
 - **Benchmark Artifact**: Automatically generated at `docs/benchmark-results/latest.json`.
 
@@ -28,7 +28,7 @@ Run command: `node scripts/benchmark.js [--llm] [--json-report docs/benchmark-re
 
 ## 2. Latest Deterministic Execution Results (Tier 1)
 
-**Date: 2026-08-15 — Node.js v26.7.0 — `scripts/benchmark.js` v6.16.3 (39-engine coverage, 27 domains, 121 golden cases)**
+**Date: 2026-10-19 — Node.js v26.12.0 — `scripts/benchmark.js` v6.17.0 (40-engine coverage, 27 domains, 121 golden cases)**
 
 | Benchmark Domain | Cases | Golden Accuracy Pass Rate | Determinism (3×) | Throughput |
 |---|---|---|---|---|

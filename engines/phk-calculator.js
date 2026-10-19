@@ -39,12 +39,53 @@ const REASON_MULTIPLIERS = {
   resignation: { up: 0.0, upmk: 0.0, description: "Pengunduran Diri Atas Kemauan Sendiri (Art. 50)" }
 };
 
-function calculatePhk(monthlyWage, tenureYears, reasonKey = 'efficiency_loss', remainingLeaveDays = 0) {
+const REASON_ALIASES = {
+  "resign": "resignation",
+  "resignation": "resignation",
+  "mengundurkan_diri": "resignation",
+  "mengundurkan diri": "resignation",
+  "berhenti": "resignation",
+  "pensiun": "retirement",
+  "retirement": "retirement",
+  "efficiency_loss": "efficiency_loss",
+  "efisiensi_rugi": "efficiency_loss",
+  "rugi": "efficiency_loss",
+  "efficiency_prevent_loss": "efficiency_prevent_loss",
+  "efisiensi_cegah_rugi": "efficiency_prevent_loss",
+  "cegah_rugi": "efficiency_prevent_loss",
+  "merger_employee_reject": "merger_employee_reject",
+  "merger_employer_reject": "merger_employer_reject",
+  "bankruptcy": "bankruptcy",
+  "pailit": "bankruptcy",
+  "force_majeure": "force_majeure",
+  "keadaan_memaksa": "force_majeure",
+  "major_violation": "major_violation",
+  "pelanggaran_berat": "major_violation",
+  "sp3": "major_violation"
+};
+
+function normalizeReasonKey(rawKey) {
+  if (!rawKey) return "efficiency_loss";
+  const clean = String(rawKey).trim().toLowerCase().replace(/[\s-]+/g, "_");
+  if (REASON_MULTIPLIERS[clean]) return clean;
+  if (REASON_ALIASES[clean]) return REASON_ALIASES[clean];
+  const directAlias = REASON_ALIASES[String(rawKey).trim().toLowerCase()];
+  if (directAlias) return directAlias;
+  return null;
+}
+
+function calculatePhk(monthlyWage, tenureYears, reasonKey = 'efficiency_loss', remainingLeaveDays = 0, uangPisahAmount = 0) {
   const wage = Math.max(0, Number(monthlyWage) || 0);
   const tenure = Math.max(0, Number(tenureYears) || 0);
   const leaveDays = Math.max(0, Number(remainingLeaveDays) || 0);
+  const uangPisah = Math.max(0, Number(uangPisahAmount) || 0);
 
-  const reason = REASON_MULTIPLIERS[reasonKey] || REASON_MULTIPLIERS.efficiency_loss;
+  const normalizedKey = normalizeReasonKey(reasonKey);
+  if (!normalizedKey) {
+    throw new Error(`INVALID_INPUT: Unrecognized PHK reasonKey '${reasonKey}'. Valid reasons: ${Object.keys(REASON_MULTIPLIERS).join(', ')}`);
+  }
+
+  const reason = REASON_MULTIPLIERS[normalizedKey];
 
   const baseUpMonths = getPesangonBaseMultiplier(tenure);
   const baseUpmkMonths = getUpmkMultiplier(tenure);
@@ -59,12 +100,12 @@ function calculatePhk(monthlyWage, tenureYears, reasonKey = 'efficiency_loss', r
   const leavePayout = Math.round((leaveDays / 25) * wage);
   const uphTotal = leavePayout;
 
-  const totalSeverance = pesangonAmount + upmkAmount + uphTotal;
+  const totalSeverance = pesangonAmount + upmkAmount + uphTotal + uangPisah;
 
   return {
     monthlyWage: wage,
     tenureYears: tenure,
-    reasonKey,
+    reasonKey: normalizedKey,
     reasonDescription: reason.description,
     breakdown: {
       uangPesangon: {
@@ -83,6 +124,10 @@ function calculatePhk(monthlyWage, tenureYears, reasonKey = 'efficiency_loss', r
         unusedLeaveDays: leaveDays,
         leavePayoutAmount: leavePayout,
         totalUphAmount: uphTotal
+      },
+      uangPisah: {
+        amount: uangPisah,
+        reference: "Diatur dalam Perjanjian Kerja / PP / PKB (PP 35/2021 Art. 50 & 52)"
       }
     },
     totalPayout: totalSeverance,
@@ -92,5 +137,7 @@ function calculatePhk(monthlyWage, tenureYears, reasonKey = 'efficiency_loss', r
 
 module.exports = {
   calculatePhk,
-  REASON_MULTIPLIERS
+  REASON_MULTIPLIERS,
+  REASON_ALIASES,
+  normalizeReasonKey
 };

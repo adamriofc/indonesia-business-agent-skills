@@ -4,45 +4,14 @@ const path = require('path');
 const { calculateBpjs } = require('../../engines/bpjs-calculator');
 const { calculatePPh21Monthly } = require('../../engines/pph21-calculator');
 const { calculatePhk } = require('../../engines/phk-calculator');
+const { extractIsolatedPayload, sanitizeUntrustedPayload } = require('../../engines/security-sanitizer');
 
-// Mock LLM Ingestion Parser simulating the closed prompt boundary isolation described in SECURITY.md.
-// Robustness notes:
-//  - Closes on the LAST [END PAYLOAD] occurrence so payloads that embed the marker text
-//    cannot prematurely terminate the untrusted region (delimiter-break defense).
-//  - Sanitizes active content (script tags, URLs) after isolation.
+// Standard LLM Ingestion Parser using production engines/security-sanitizer.js
 function agentIngestParser(untrustedInputDocument, systemInstructionTemplate) {
   const isolatedPrompt = systemInstructionTemplate
     .replace('{{user_input_contract_or_document}}', untrustedInputDocument);
 
-  const payloadStart = isolatedPrompt.indexOf('[UNTRUSTED DATA PAYLOAD]');
-  const payloadEnd = isolatedPrompt.lastIndexOf('[END PAYLOAD]');
-
-  if (payloadStart === -1 || payloadEnd === -1) {
-    throw new Error("Security Violation: Delimiter boundaries missing.");
-  }
-  if (payloadEnd <= payloadStart) {
-    throw new Error("Security Violation: [END PAYLOAD] appears before [UNTRUSTED DATA PAYLOAD].");
-  }
-
-  const isolatedPayload = isolatedPrompt.slice(payloadStart + '[UNTRUSTED DATA PAYLOAD]'.length, payloadEnd).trim();
-
-  // Exfiltration scan: strip script/html tags and any URL (incl. markdown links) iteratively
-  let sanitizedPayload = isolatedPayload;
-  let prev;
-  do {
-    prev = sanitizedPayload;
-    sanitizedPayload = sanitizedPayload
-      .replace(/<script\b[\s\S]*?<\/script\s*>/gi, '')
-      .replace(/\[[^\]]*\]\((https?:\/\/[^)\s]+)\)/gi, '[REDACTED_URL]')
-      .replace(/https?:\/\/[^\s)\]]+/gi, '[REDACTED_URL]');
-  } while (sanitizedPayload !== prev);
-
-  return {
-    rawPrompt: isolatedPrompt,
-    isolatedPayload,
-    sanitizedPayload,
-    isProtected: true
-  };
+  return extractIsolatedPayload(isolatedPrompt);
 }
 
 function runAdversarialTests() {

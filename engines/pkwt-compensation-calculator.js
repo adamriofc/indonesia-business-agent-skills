@@ -27,13 +27,20 @@ function calculatePkwtCompensation(monthlyWage, tenureMonths) {
     formulaStr = `(${tenure} / 12) x Monthly Wage`;
   }
 
+  const isExceedingMaxTenure = tenure > 60;
+  const statutoryWarning = isExceedingMaxTenure
+    ? "PERINGATAN STATUTER: Masa kerja PKWT kumulatif (" + tenure + " bulan) melebihi batas maksimal 5 tahun (60 bulan) per PP 35/2021 Pasal 8. Demi hukum perjanjian kerja berubah status menjadi PKWTT (Tetap)."
+    : null;
+
   return {
     isEligible: true,
     tenureMonths: tenure,
     monthlyWage: wage,
     formulaApplied: formulaStr,
     statutoryCompensationPayout: finalPayout,
-    statutoryReference: "PP No. 35 Tahun 2021 Pasal 15 - 17"
+    isExceedingMaxTenure,
+    statutoryWarning,
+    statutoryReference: "PP No. 35 Tahun 2021 Pasal 15 - 17 (jo. Pasal 8 batas maksimal 5 tahun)"
   };
 }
 

@@ -40,6 +40,13 @@ function calculatePpnAndPpnbm({
     ppnAmount = Math.round(dppBase * STATUTORY_PPN_RATE);
     ppnbmAmount = Math.round(price * ppnbmRate);
     effectivePpnBurdenPercent = "11.00%"; // 12% * (11/12) = 11%
+  } else if (type === 'besaran_tertentu_1_2' || type === 'besaran_tertentu' || type === 'logistik' || type === 'freight_forwarding' || type === 'travel') {
+    // Besaran Tertentu Pasal 9A UU PPN jo. PMK 71/2022 & PMK 131/2024 (10% x tarif PPN 12% = 1.2% effective)
+    dppBase = price;
+    ppnRateApplied = 0.012;
+    ppnAmount = Math.round(price * 0.012);
+    ppnbmAmount = Math.round(price * ppnbmRate);
+    effectivePpnBurdenPercent = "1.20%";
   } else if (type === 'export_zero') {
     // Export BKP/JKP: 0% PPN rate, Input Tax remains fully creditable
     dppBase = price;

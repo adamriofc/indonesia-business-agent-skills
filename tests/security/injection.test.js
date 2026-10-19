@@ -2,20 +2,35 @@ const fs = require('fs');
 const path = require('path');
 const assert = require('assert');
 
-// Flagship skills that ingest untrusted user inputs (agreements, logs, process descriptions)
-const SENSITIVE_INPUT_SKILLS = [
-  'legal-id/skills/contract-reviewer/SKILL.md',
-  'legal-id/skills/pdp-compliance/SKILL.md',
-  'marketing-id/skills/analisis-kompetitor-marketplace/SKILL.md',
-  'hr-id/skills/phk-calculator/SKILL.md'
-];
+function discoverAllSkillPaths(rootDir) {
+  const bundles = ['legal-id', 'tax-id', 'hr-id', 'finance-id', 'marketing-id', 'strategic-id'];
+  const skillPaths = [];
+
+  bundles.forEach(bundle => {
+    const skillsDir = path.join(rootDir, bundle, 'skills');
+    if (fs.existsSync(skillsDir)) {
+      const skills = fs.readdirSync(skillsDir);
+      skills.forEach(skill => {
+        const skillPath = path.join(bundle, 'skills', skill, 'SKILL.md');
+        if (fs.existsSync(path.join(rootDir, skillPath))) {
+          skillPaths.push(skillPath);
+        }
+      });
+    }
+  });
+
+  return skillPaths;
+}
 
 function runSecurityTests() {
   console.log("🛡️ Running Prompt Injection Defense Security Tests...\n");
   const rootDir = path.join(__dirname, '../..');
   let failures = 0;
+  const allSkills = discoverAllSkillPaths(rootDir);
 
-  SENSITIVE_INPUT_SKILLS.forEach(skillRelPath => {
+  console.log(`  Scanning all ${allSkills.length} skills across 6 plugins for closed delimiter boundaries...`);
+
+  allSkills.forEach(skillRelPath => {
     const filePath = path.join(rootDir, skillRelPath);
     if (!fs.existsSync(filePath)) {
       console.warn(`⚠️ Skipping missing skill file: ${skillRelPath}`);
@@ -33,8 +48,6 @@ function runSecurityTests() {
     if (!hasOpenMarker || !hasCloseMarker) {
       console.error(`❌ Security Violation: ${skillRelPath} does not implement a CLOSED payload boundary (both '[UNTRUSTED DATA PAYLOAD]' and '[END PAYLOAD]' required).`);
       failures++;
-    } else {
-      console.log(`✅ Security Verified: ${skillRelPath} implements a complete closed prompt injection mitigation boundary.`);
     }
   });
 
@@ -42,7 +55,8 @@ function runSecurityTests() {
     console.error(`\n❌ Security testing FAILED with ${failures} violations.`);
     process.exit(1);
   } else {
-    console.log("\n✅ Security Policy Verification Passed: Delimiter boundaries enforced on all ingestion skills.");
+    console.log(`✅ Security Verified: All ${allSkills.length} skills implement complete closed prompt injection mitigation boundaries.`);
+    console.log("✅ Security Policy Verification Passed: Delimiter boundaries enforced on all ingestion skills.");
   }
 }
 
