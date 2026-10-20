@@ -251,12 +251,17 @@ cp -r .agents/skills/* .cursor/skills/
 > *"Please configure the Indonesian Business MCP Server in my MCP client settings (such as OpenWork Settings > Library or claude_desktop_config.json) with command `npx` and args `[\"-y\", \"indonesian-skills-mcp\"]`."*
 
 ### 5. Custom SDK & REST API Microservice
-Directly import engines into your Node.js/TypeScript backend or run the standalone zero-dependency REST microservice:
+Directly import engines into your Node.js/TypeScript backend or run the standalone zero-dependency REST microservice to serve calculations across any tech stack (Python, PHP Laravel, Go, Java, C#, or ERP webhooks):
 
 ```javascript
 // Programmatic SDK Import (Node.js / TypeScript)
-const { calculatePPh21Monthly, calculatePhk, calculateBpjs } = require('indonesian-business-agent-skills');
+const { calculatePPh21Monthly, calculatePhk, calculateBpjs, resolveProductClassification } = require('indonesian-business-agent-skills');
+
+// PPh 21 TER Tax Calculation
 const pph = calculatePPh21Monthly(10000000, 'TK/0');
+
+// PHK Severance Calculation (PP 35/2021)
+const severance = calculatePhk(10000000, 5, 'resignation');
 ```
 
 ```bash
@@ -268,6 +273,36 @@ curl -X POST http://localhost:3000/api/v1/calc/pph21 \
   -H "Content-Type: application/json" \
   -d '{"grossSalary": 10000000, "ptkpStatus": "TK/0"}'
 ```
+
+```python
+# Python Integration Example
+import requests
+
+res = requests.post("http://localhost:3000/api/v1/calc/pph21", json={
+    "grossSalary": 10000000,
+    "ptkpStatus": "TK/0"
+})
+print("Tax Withheld:", res.json()["result"]["monthlyTaxWithheld"])
+```
+
+| Core REST Endpoints (`POST /api/v1/...`) | Functionality & Target Statute |
+|---|---|
+| `/calc/pph21` | PPh 21 TER monthly withholding (PP 58/2023 & PMK 168/2023) |
+| `/calc/pph21-december` | December annual reconciliation & Overpayment Refund (Lebih Bayar) |
+| `/calc/pph-badan` | Corporate Income Tax 22% & Article 31E sliding scale facility |
+| `/calc/pph23-26` | PPh 23 (2% service) & PPh 26 (20% offshore / Tax Treaty DGT Form) |
+| `/calc/phk` | Statutory PHK severance package calculation (PP 35/2021) |
+| `/calc/pkwt` | Mandatory contract completion compensation pay (PP 35/2021 Art. 15) |
+| `/calc/thr` | Religious holiday allowance calculation (Permenaker 6/2016) |
+| `/calc/bpjs` | BPJS Ketenagakerjaan (JKK/JKM/JHT/JP) & Kesehatan contributions |
+| `/calc/umkm` | 0.5% MSME final tax with Rp 500M annual threshold exemption (PP 20/2026) |
+| `/calc/ppn` | PPN 12%, Besaran Tertentu 1.2% (logistics/travel), and PPnBM luxury tax |
+| `/calc/marketplace` | Net seller payout & platform admin fee (Shopee, Tokopedia, TikTok) |
+| `/calc/breakeven` | Break-even units, revenue, contribution margin & margin of safety |
+| `/calc/npv` & `/calc/irr` | Capital budgeting discounted cash flows & Internal Rate of Return |
+| `/route/kbli` | 5-digit KBLI 2020 code classification to Business Archetype |
+| `/route/btki` | BTKI 2022 / HS-6 commodity classification, import duty & landed cost |
+| `/audit/pkwtt` | PKWT/PKWTT compliance, probation audit & auto-conversion triggers |
 
 **💬 AI Agent Prompt Guide**:
 > *"Please start the Indonesian Business REST API microservice by running `npx indonesian-skills serve --port 3000` or import calculation engines directly via `require('indonesian-business-agent-skills')`."*
@@ -802,7 +837,10 @@ console.log(diff);
 > **Answer**: Outputs serve as decision-support intelligence. While calculation math is 100% verified against statutory gazettes, high-risk decisions (such as formal PHK severance execution or tax audit filings) require review by a licensed Indonesian advocate or tax consultant.
 
 ### Q8: How do we integrate these engines into our corporate ERP, HRIS, or custom API?
-> **Answer**: Refer to `integrations/README.md`. Since engines are pure modular JavaScript functions, you can import functions (`calculatePPh21Monthly`, `calculateCorporateTax`, `auditTransferPricingThinCap`, `calculatePhk`) directly into your backend Node.js, REST API, or ERP system.
+> **Answer**: Refer to `integrations/README.md`. Integration is supported through 3 enterprise-grade paths:
+> 1. **Root SDK Module**: Directly import engines into your Node.js/TypeScript backend via `const { pph21, phk, bpjs } = require('indonesian-business-agent-skills');`.
+> 2. **Standalone REST Microservice**: Run `npx indonesian-skills serve --port 3000` to expose 28+ native JSON HTTP endpoints callable from Python (FastAPI/Django), PHP (Laravel), Go, Java, or ERP webhooks.
+> 3. **Universal CLI**: Execute deterministic calculations from bash scripts or cron jobs via `npx indonesian-skills calc <target>`.
 
 ---
 
