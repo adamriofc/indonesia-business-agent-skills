@@ -221,6 +221,9 @@ npx indonesian-skills calc pph21 --salary 10000000 --ptkp TK/0
 npx indonesian-skills calc phk --wage 10000000 --tenure 5 --reason resignation
 ```
 
+**💬 AI Agent Prompt Guide**:
+> *"Please install the Indonesian Business Agent Skills package into my workspace by running `npx skills add adamriofc/indonesian-business-agent-skills`."*
+
 ### 2. Claude Code Marketplace (Official Plugin Integration)
 Register the repository as a marketplace source and install individual plugins:
 ```bash
@@ -232,6 +235,9 @@ claude plugin install legal-id@indonesian-business-agent-skills
 claude plugin install tax-id@indonesian-business-agent-skills
 claude plugin install finance-id@indonesian-business-agent-skills
 ```
+
+**💬 AI Agent Prompt Guide**:
+> *"Please register the marketplace source `adamriofc/indonesian-business-agent-skills` and install the domain plugins (`tax-id`, `hr-id`, `legal-id`, `finance-id`, `marketing-id`, `strategic-id`) using `claude plugin install <plugin>@indonesian-business-agent-skills`."*
 
 ### 3. Portable Agent Skills Standard (.agents / .opencode / .cursor)
 For native skill discovery without plugins, copy skills to the `.agents/skills/` directory:
@@ -247,6 +253,9 @@ mkdir -p .opencode/skills .cursor/skills
 cp -r .agents/skills/* .opencode/skills/
 cp -r .agents/skills/* .cursor/skills/
 ```
+
+**💬 AI Agent Prompt Guide**:
+> *"Please clone `https://github.com/adamriofc/indonesian-business-agent-skills` and copy all skills from its domain directories (`legal-id/skills`, `tax-id/skills`, `hr-id/skills`, `finance-id/skills`, `marketing-id/skills`, `strategic-id/skills`) into my project's `.agents/skills/` (or `.opencode/skills/` / `.cursor/skills/`)."*
 
 ### 4. OpenWork Desktop & Cloud
 1. Open **Settings > Plugins**.
@@ -265,6 +274,9 @@ cp -r .agents/skills/* .cursor/skills/
   }
 }
 ```
+
+**💬 AI Agent Prompt Guide**:
+> *"Please configure the Indonesian Business MCP Server in my MCP client settings (such as OpenWork Settings > Library or claude_desktop_config.json) with command `npx` and args `[\"-y\", \"indonesian-skills-mcp\"]`."*
 
 ---
 
