@@ -5,7 +5,7 @@
 **Open-source Indonesian business intelligence for AI agents — combining regulatory-grounded skills, temporal rulesets, deterministic engines, and auditable provenance.**
 
 <p align="center">
-  <img src="docs/indonesian-business-agent-skills-hero.svg?v=6.17.0" alt="Indonesian Business Agent Skills Banner" width="100%">
+  <img src="docs/indonesian-business-agent-skills-hero.svg" alt="Indonesian Business Agent Skills Banner" width="100%">
 </p>
 
 <p align="center">
