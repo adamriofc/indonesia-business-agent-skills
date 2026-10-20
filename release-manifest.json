@@ -4,9 +4,9 @@
   "repository": "https://github.com/adamriofc/indonesian-business-agent-skills",
   "releaseVersion": "v6.17.1",
   "releaseTag": "v6.17.1",
-  "releaseSourceCommitHash": "5b302d5",
+  "releaseSourceCommitHash": "150c64d",
   "releaseSourceDescription": "Feature commit for v6.17.1: universal CLI runner, native MCP bridge, statutory bugfixes & security hardening",
-  "generatedAt": "2026-10-20T16:10:34.099Z",
+  "generatedAt": "2026-10-20T16:21:23.389Z",
   "metrics": {
     "plugins": 6,
     "skills": 88,
