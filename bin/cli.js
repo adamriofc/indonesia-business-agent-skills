@@ -340,7 +340,8 @@ function run() {
       } else if (subAction === 'btki') {
         const { resolveProductClassification } = require(path.join(ENGINES, 'product-context'));
         const code = String(flags.code || flags.btki || '');
-        result = resolveProductClassification(code);
+        const cif = Number(flags.cif || flags['cif-value'] || 0);
+        result = resolveProductClassification({ targetHsCode: code, cifValueIdr: cif });
       } else {
         throw new Error(`Unknown route target '${subAction}'. Run 'indonesian-skills help' for available commands.`);
       }

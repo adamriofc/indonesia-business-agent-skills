@@ -449,7 +449,7 @@ function handleToolCall(name, args) {
     }
     case "classify_btki_commodity": {
       const fn = engines.productContext().resolveProductClassification;
-      return fn(args.btkiCode);
+      return fn({ targetHsCode: args.btkiCode, cifValueIdr: args.cifValueIdr || 0 });
     }
     default:
       throw new Error(`Unknown tool '${name}'`);

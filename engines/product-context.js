@@ -109,17 +109,19 @@ function createDefaultProductContext(overrides = {}) {
 /**
  * Resolves product classification & tariff duties against BTKI rulesets.
  */
-function resolveProductClassification({
-  productName = '',
-  description = '',
-  attributes = {},
-  targetHsCode = null,
-  cifValueIdr = 0,
-  importerStatus = {},
-  hasNpwp = true,
-  usesApi = true,
-  dateStr = null
-}) {
+function resolveProductClassification(input = {}) {
+  const params = typeof input === 'string' ? { targetHsCode: input } : (input || {});
+  const {
+    productName = '',
+    description = '',
+    attributes = {},
+    targetHsCode = null,
+    cifValueIdr = 0,
+    importerStatus = {},
+    hasNpwp = true,
+    usesApi = true,
+    dateStr = null
+  } = params;
   const activeDateStr = dateStr || new Date().toISOString().slice(0, 10);
   const activeRuleset = getBtkirulesetForDate(activeDateStr);
   const validCifValue = requireRupiah(cifValueIdr, 'cifValueIdr');
