@@ -71,51 +71,23 @@ This repository decouples AI **reasoning** from **calculation**:
 
 ## 🏗️ System Architecture
 
-```text
-                                  [ User / Agent Query ]
-                                            │
-                                            ▼
-                        ┌──────────────────────────────────────┐
-                        │      SEMANTIC BUSINESS CONTEXT       │
-                        │ Entity, KBLI, Product, Facts, Scale  │
-                        └──────────────────┬───────────────────┘
-                                           │
-                        ┌──────────────────┴───────────────────┐
-                        ▼                                      ▼
-            ┌──────────────────────┐               ┌──────────────────────┐
-            │  KBLI BUSINESS       │               │   PRODUCT CONTEXT    │
-            │  ACTIVITY            │               │ BTKI 2022 / HS-6 /   │
-            │  CLASSIFICATION      │               │ Lartas / Landed Cost │
-            │  ➔ Business Archetype│               │                     │
-            └───────────┬──────────┘               └──────────┬───────────┘
-                        │                                     │
-                        └──────────────────┬──────────────────┘
-                                           ▼
-                ┌──────────────────────────────────────────────────────┐
-                │      39 Deterministic Node.js Math & Diff Engines    │
-                │ 28 statutory (engines/*.js + SSOT temporal rulesets) │
-                │ 8 finance (engines/*.js — pure standard math)        │
-                │ 3 strategic & product classification engines         │
-                └──────────────────┬───────────────────┬───────────────┘
-                                   │                   │
-                                   ▼                   ▼
-        ┌──────────────────────────────┐   ┌──────────────────────────────────────┐
-        │ Single Source of Truth Rules │   │ Cryptographic SHA-256 Checksums     │
-        │ (engines/rules/*.json)       │   │ (engines/rules/integrity.js +        │
-        │ — statutory & policy only    │   │  SHA256SUMS.txt)                     │
-        └──────────────┬───────────────┘   └──────────────────┬───────────────────┘
-                       │                                      │
-                       └──────────────────────────┬───────────┘
-                                                  │
-                                                  ▼
-                           ┌──────────────────────────────────────┐
-                           │  Validated Statutory Output + Math   │
-                           └──────────────────┬───────────────────┘
-                                              │
-                                              ▼
-                            ┌──────────────────────────────────────┐
-                            │ LLM Narrative Synthesis & Formatting │
-                            └──────────────────────────────────────┘
+```mermaid
+flowchart TD
+    User["User / Agent Query"] --> Context["SEMANTIC BUSINESS CONTEXT<br/>Entity, KBLI, Product, Facts, Scale"]
+    
+    Context --> KBLI["KBLI BUSINESS ACTIVITY CLASSIFICATION<br/>➔ Business Archetype"]
+    Context --> Product["PRODUCT CONTEXT<br/>BTKI 2022 / HS-6 / Lartas / Landed Cost"]
+    
+    KBLI --> Engines["40 Deterministic Node.js Math &amp; Diff Engines<br/>28 statutory (engines/*.js + SSOT temporal rulesets)<br/>8 finance (engines/*.js — pure standard math)<br/>4 strategic &amp; product classification engines"]
+    Product --> Engines
+    
+    Engines --> Rules["Single Source of Truth Rules<br/>(engines/rules/*.json)<br/>— statutory &amp; policy only"]
+    Engines --> Checksums["Cryptographic SHA-256 Checksums<br/>(engines/rules/integrity.js + SHA256SUMS.txt)"]
+    
+    Rules --> Validated["Validated Statutory Output + Math"]
+    Checksums --> Validated
+    
+    Validated --> LLM["LLM Narrative Synthesis &amp; Formatting"]
 ```
 
 ---
