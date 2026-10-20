@@ -2,6 +2,18 @@
 
 All notable changes to this project are documented here in reverse chronological order. Regulatory/statutory changes are additionally tracked per-rule in [REGULATORY_CHANGELOG.md](./REGULATORY_CHANGELOG.md); provenance of every rule in [PROVENANCE.md](./PROVENANCE.md); release cadence in [REGULATORY_PIPELINE.md](./REGULATORY_PIPELINE.md).
 
+## [6.17.1] - 2026-10-20
+
+### Full Engine Coverage CLI/MCP, Failsafe Product Classification & Pure Evergreen Header Banner
+
+- **P0 — Header Visual Banner Evergreen**: Cleaned `docs/indonesian-business-agent-skills-hero.svg` and `README.md` by removing hardcoded release version badges, transient query parameters, and production label elements, creating a permanent, balanced 4-column metrics design (Agent Skills, Computational Engines, Golden Corpus, Total Assertions) that never requires manual version maintenance on future bumps.
+- **P0 — Full Engine CLI & MCP Tool Expansion**: Expanded `bin/cli.js` and `bin/mcp-server.js` from basic 10 tools to comprehensive 20 native tools and 40-engine CLI command coverage, including `calc_pph_badan`, `calc_pph23_26`, `calc_pkwt_compensation`, `calc_marketplace_fee`, `calc_npv`, `calc_irr`, `calc_depreciation`, `calc_loan_amortization`, `calc_working_capital`, and `classify_btki_commodity`.
+- **P0 — Failsafe Product Classification (`product-context.js`)**: Updated `resolveProductClassification` to accept polymorphic input (both direct string code and object parameters) and updated CLI/MCP bindings with complete CIF valuation arguments.
+- **P1 — SKILL.md Directives Enhanced**: Embedded explicit tri-modal execution directives (MCP tool, Universal CLI, and Node.js require) into flagship skills across Tax, HR, Finance, Marketing, and Legal domains.
+- **P1 — Temporal Transition Boundary Hardening**: Hardened `getRulesForDate` across BPJS, PPh 21, UMKM, and BTKI engines to cover the exact final millisecond of transition days (`23:59:59.999Z`), eliminating potential 24-hour boundary dead-zones.
+- **P1 — Sandbox Package Smoke Test**: Hardened `scripts/package-smoke-test.sh` to use an isolated tmpfs npm cache, guaranteeing 100% pass rate in strict read-only Bubblewrap sandbox environments.
+- **All artifacts synchronized to v6.17.1**: `package.json`, `package-lock.json`, `canonical-metadata.json`, `registry/index.json`, all 5 `bundles/*.json`, `README.md`, `docs/METRICS.md`, `docs/BENCHMARK.md`.
+
 ## [6.17.0] - 2026-10-19
 
 ### Universal CLI Runner, Native Zero-Dependency MCP Server, Statutory Bugfixes & Hardened Ingestion

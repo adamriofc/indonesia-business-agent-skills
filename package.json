@@ -1,6 +1,6 @@
 {
   "name": "indonesian-business-agent-skills",
-  "version": "6.17.0",
+  "version": "6.17.1",
   "description": "Production-oriented AI domain-intelligence infrastructure for Indonesian legal, tax, HR, finance, marketing, and strategic business reasoning.",
   "scripts": {
     "test": "node tests/schema/validator.test.js && node tests/units/engines.test.js && node tests/units/new-engines.test.js && node tests/units/strategic-engines.test.js && node tests/units/strategic-management-engines.test.js && node tests/units/marketing-engines.test.js && node tests/units/context-contract.test.js && node tests/units/finance-engines.test.js && node tests/units/product-context.test.js && node tests/units/pph21-matrix.test.js && node tests/units/phk-matrix.test.js && node tests/units/cross-engine-invariants.test.js && node tests/integration/workflow.test.js && node tests/benchmarks/fixture/nlp-extraction-fixture.test.js && node tests/benchmarks/synthetic/cross-domain-synthetic.test.js && node tests/benchmarks/business-scenario-regression.test.js && node tests/benchmarks/agent-capability.test.js && node tests/security/injection.test.js && node tests/security/adversarial.test.js && node tests/security/supply-chain.test.js",
