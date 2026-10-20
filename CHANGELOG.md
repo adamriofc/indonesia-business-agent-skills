@@ -2,6 +2,17 @@
 
 All notable changes to this project are documented here in reverse chronological order. Regulatory/statutory changes are additionally tracked per-rule in [REGULATORY_CHANGELOG.md](./REGULATORY_CHANGELOG.md); provenance of every rule in [PROVENANCE.md](./PROVENANCE.md); release cadence in [REGULATORY_PIPELINE.md](./REGULATORY_PIPELINE.md).
 
+## [6.17.2] - 2026-10-20
+
+### Zero-Dependency REST API Microservice, Root SDK (`index.js`) & Verified Protocol Adapter
+
+- **P0 — Custom SDK & Root Module Interface (`index.js`)**: Added official root package entrypoint (`"main": "index.js"`) exporting all 40 deterministic engines, mathematical constants, and domain namespaces (`tax`, `hr`, `finance`, `commerce`, `marketing`, `strategy`, `legal`, `security`) for direct programmatic consumption in Node.js, TypeScript, and modern JS stacks.
+- **P0 — Zero-Dependency Native REST API Microservice (`bin/server.js`)**: Added standalone HTTP REST server built with Node.js native `http` and `URL` modules (zero npm dependencies). Features automatic CORS pre-flight, 1MB payload ceiling, structured JSON error responses, and 28+ calculation and audit endpoints (`/api/v1/calc/*`, `/api/v1/audit/*`, `/api/v1/route/*`).
+- **P0 — Universal CLI `serve` Command**: Wired `indonesian-skills serve [--port <3000>] [--host <0.0.0.0>]` into `bin/cli.js`, allowing instant one-command microservice startup via `npx indonesian-skills serve`.
+- **P0 — Compatibility Matrix Status Transition**: Promoted `Custom SDK / REST Adapters` in `README.md` from `⚪ Planned` to `✅ Verified` with comprehensive documentation and code samples.
+- **P1 — Comprehensive REST Adapter Test Suite (`tests/units/rest-adapter.test.js`)**: Added automated integration tests verifying root SDK export bindings, HTTP server lifecycle on ephemeral ports, deterministic calculation outputs over HTTP, and fail-closed 400/404 error boundaries.
+- **All artifacts synchronized to v6.17.2**: `package.json`, `package-lock.json`, `canonical-metadata.json`, `registry/index.json`, all 5 `bundles/*.json`, `README.md`, `docs/METRICS.md`, `docs/BENCHMARK.md`.
+
 ## [6.17.1] - 2026-10-20
 
 ### Full Engine Coverage CLI/MCP, Failsafe Product Classification & Pure Evergreen Header Banner

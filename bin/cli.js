@@ -84,6 +84,7 @@ function printHelp() {
       "diff regulatory": "Compare statutory rulesets side-by-side (--domain <umkm|bpjs>, --from <ruleset>, --to <ruleset>)",
       "route kbli": "Resolve 5-digit KBLI code to business archetype (--code <5-digit KBLI>)",
       "route btki": "Resolve BTKI commodity classification & import duty (--code <BTKI code>)",
+      "serve": "Start zero-dependency REST API server ([--port <3000>], [--host <0.0.0.0>])",
       "mcp": "Start native stdio MCP server for direct AI agent integration",
       "version": "Display current engine version"
     }
@@ -109,6 +110,11 @@ function run() {
 
   if (action === 'mcp') {
     require('./mcp-server');
+    return;
+  }
+
+  if (action === 'serve' || action === 'server' || action === 'rest') {
+    require('./server');
     return;
   }
 

@@ -24,13 +24,13 @@
 <!-- GENERATED:STATS -->
 | Metric | Single Source of Truth Value | Measurement Scope |
 |---|---|---|
-| **Repository Version** | `v6.17.1` | SemVer release boundary |
+| **Repository Version** | `v6.17.2` | SemVer release boundary |
 | **Canonical Plugins** | `6` | Active plugin packages (`legal-id`, `tax-id`, `hr-id`, `finance-id`, `marketing-id`, `strategic-id`) |
 | **Agent Skills** | `88` | Machine-readable `SKILL.md` capability packs |
 | **Deterministic Engines** | `40` | Pure Node.js calculation & regulatory diff engines (`engines/`) |
 | **Golden Cases** | `121` | Static corpus cases across 27 benchmark domains |
 | **Benchmark Assertions** | `434` | Deterministic assertions in `tests/benchmarks/` |
-| **Total Test Assertions** | `558+` | Deepened matrix assertions across full `npm test` suite |
+| **Total Test Assertions** | `611+` | Deepened matrix assertions across full `npm test` suite |
 | **Node.js Compatibility** | `20 / 22 / 24` | `20` (Minimum), `22` (LTS Recommended), `24` (Current Tested) |
 <!-- /GENERATED:STATS -->
 
@@ -63,7 +63,7 @@ This repository decouples AI **reasoning** from **calculation**:
 | **Codex** | Skill Shorthand (`.agents/skills/`) | 🟡 **Compatible** | Agent Skill Standard Structure (`SKILL.md`) |
 | **OpenClaw** | Skill Shorthand via `.openclaw/skills/` or MCP tool directory | 🟡 **Compatible** | Agent Skill Standard Structure (`SKILL.md`) — copy skills to OpenClaw skill path |
 | **Hermes (via MCP or tool-use)** | Tool-use / function-calling via skill YAML + engine exports | 🟡 **Compatible** | Engine outputs are pure JSON; skill `argument-hint` maps to Hermes tool parameters |
-| **Custom SDK / REST Adapters** | Protocol-Level Adapter | ⚪ **Planned** | Pure Math Engines & Decoupled JSON Rulesets |
+| **Custom SDK / REST Adapters** | Protocol-Level Adapter & Microservice | ✅ **Verified** | Pure Math Engines, Root SDK (`index.js`) & REST Server (`bin/server.js`) |
 
 > **Integration Note — OpenClaw & Hermes**: These runtimes consume skills via their own tool-directory or MCP mechanism. Copy the relevant `*/skills/*/SKILL.md` files to your runtime's skill path, and import engine functions from `engines/*.js` directly. All engines are pure Node.js with no external dependencies.
 
@@ -114,7 +114,7 @@ README.md (What / Why / Overview & Demo)
 
 ```text
 ┌─────────────────────────────────────────────────────────────────┐
-│              INDONESIAN BUSINESS AGENT SUITE v6.17.1            │
+│              INDONESIAN BUSINESS AGENT SUITE v6.17.2            │
 │         88 Skills · 6 Domains · 40 Deterministic Engines        │
 ├──────────────────────────┬──────────────────────────────────────┤
 │  FULL SUITE              │  SELECTIVE PROFILES                  │
@@ -249,6 +249,28 @@ cp -r .agents/skills/* .cursor/skills/
 
 **💬 AI Agent Prompt Guide**:
 > *"Please configure the Indonesian Business MCP Server in my MCP client settings (such as OpenWork Settings > Library or claude_desktop_config.json) with command `npx` and args `[\"-y\", \"indonesian-skills-mcp\"]`."*
+
+### 5. Custom SDK & REST API Microservice
+Directly import engines into your Node.js/TypeScript backend or run the standalone zero-dependency REST microservice:
+
+```javascript
+// Programmatic SDK Import (Node.js / TypeScript)
+const { calculatePPh21Monthly, calculatePhk, calculateBpjs } = require('indonesian-business-agent-skills');
+const pph = calculatePPh21Monthly(10000000, 'TK/0');
+```
+
+```bash
+# Start standalone REST API server (Default: http://localhost:3000)
+npx indonesian-skills serve --port 3000
+
+# Invoke via curl from any language (Python, Go, PHP, Rust, etc.)
+curl -X POST http://localhost:3000/api/v1/calc/pph21 \
+  -H "Content-Type: application/json" \
+  -d '{"grossSalary": 10000000, "ptkpStatus": "TK/0"}'
+```
+
+**💬 AI Agent Prompt Guide**:
+> *"Please start the Indonesian Business REST API microservice by running `npx indonesian-skills serve --port 3000` or import calculation engines directly via `require('indonesian-business-agent-skills')`."*
 
 ---
 

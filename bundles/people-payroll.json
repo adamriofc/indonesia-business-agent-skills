@@ -2,20 +2,20 @@
   "bundle_id": "people-payroll",
   "name": "People & Payroll Pack",
   "profile": "people",
-  "version": "6.17.1",
+  "version": "6.17.2",
   "description": "Complete Indonesian payroll compliance, severance, BPJS, THR, employment contracts, wage structure, and tax withholding — for HR managers, payroll teams, and HR-tech platforms.",
   "plugins": [
     {
       "id": "hr-id",
       "name": "HR Intelligence",
-      "version": "6.17.1",
+      "version": "6.17.2",
       "domain": "hr",
       "skills": 12
     },
     {
       "id": "tax-id",
       "name": "Tax Intelligence",
-      "version": "6.17.1",
+      "version": "6.17.2",
       "domain": "tax",
       "skills": 16
     }

@@ -2,27 +2,27 @@
   "bundle_id": "go-to-market",
   "name": "Go-to-Market Pack",
   "profile": "go-to-market",
-  "version": "6.17.1",
+  "version": "6.17.2",
   "description": "Market sizing, positioning, product classification, marketplace SEO, content creation, pricing analysis, customer insights, and GTM strategy — for startup founders, D2C brands, and ecommerce sellers.",
   "plugins": [
     {
       "id": "marketing-id",
       "name": "Marketing Intelligence",
-      "version": "6.17.1",
+      "version": "6.17.2",
       "domain": "marketing",
       "skills": 26
     },
     {
       "id": "finance-id",
       "name": "Finance Intelligence",
-      "version": "6.17.1",
+      "version": "6.17.2",
       "domain": "finance",
       "skills": 15
     },
     {
       "id": "strategic-id",
       "name": "Strategic Intelligence",
-      "version": "6.17.1",
+      "version": "6.17.2",
       "domain": "strategic",
       "skills": 10
     }

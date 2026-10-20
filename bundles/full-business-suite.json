@@ -2,7 +2,7 @@
   "bundle_id": "indonesian-business-agent-suite",
   "name": "Indonesian Business Agent Suite",
   "profile": "full-business",
-  "version": "6.17.1",
+  "version": "6.17.2",
   "description": "Full Indonesian business reasoning capability bundle for AI agents — spanning Legal, Tax, HR, Finance, Marketing, and Strategy with 88 agent skills, 40 deterministic engines, and shared auditable provenance.",
   "tagline": "One ecosystem. Six business domains. 88 agent capabilities.",
   "repository": "https://github.com/adamriofc/indonesian-business-agent-skills",
@@ -10,7 +10,7 @@
     {
       "id": "legal-id",
       "name": "Legal Intelligence",
-      "version": "6.17.1",
+      "version": "6.17.2",
       "domain": "legal",
       "skills": 9,
       "description": "Indonesian contract review, PDP compliance, KBLI/OSS navigator, trademark, NDA, SPK, legal memo, somasi, compliance risk."
@@ -18,7 +18,7 @@
     {
       "id": "tax-id",
       "name": "Tax Intelligence",
-      "version": "6.17.1",
+      "version": "6.17.2",
       "domain": "tax",
       "skills": 16,
       "description": "PPh 21 TER, PPh 21 gross-up, PPh 23/26, PPh Badan, PPn/PPnBM, UMKM final tax, transfer pricing, e-Faktur, tax audit prep, tax planning, optimization, risk analysis, cross-border, regulatory diff, regulatory impact, PSAK reporting."
@@ -26,7 +26,7 @@
     {
       "id": "hr-id",
       "name": "HR Intelligence",
-      "version": "6.17.1",
+      "version": "6.17.2",
       "domain": "hr",
       "skills": 12,
       "description": "BPJS calculator, THR, PHK severance, PHK advanced matrix, PKWT/PKWTT compliance, wage structure, surat peringatan, interview, SOP, BPJS admin, SPT tahunan."
@@ -34,7 +34,7 @@
     {
       "id": "finance-id",
       "name": "Finance Intelligence",
-      "version": "6.17.1",
+      "version": "6.17.2",
       "domain": "finance",
       "skills": 15,
       "description": "Break-even analysis, financial ratio, cash flow, capital budgeting, working capital, unit economics, financial modeling, financial statements, accounting basics, budgeting/forecasting, cost accounting, business feasibility, business scenario, decision engine, VC term sheet waterfall."
@@ -42,7 +42,7 @@
     {
       "id": "marketing-id",
       "name": "Marketing Intelligence",
-      "version": "6.17.1",
+      "version": "6.17.2",
       "domain": "marketing",
       "skills": 26,
       "description": "Market sizing, margin pricing, product classification, competitor analysis, customer segmentation, JTBD, voice of customer, positioning, go-to-market, SEO (Shopee/Tokopedia/GMB), content (TikTok, IG, YouTube, WhatsApp, LinkedIn), KOL brief, buyer negotiator, customer support, logistics claim."
@@ -50,7 +50,7 @@
     {
       "id": "strategic-id",
       "name": "Strategic Intelligence",
-      "version": "6.17.1",
+      "version": "6.17.2",
       "domain": "strategic",
       "skills": 10,
       "description": "BCG matrix, Porter five forces, Porter three tests, Ansoff matrix, VRIO analysis, value chain analysis, scenario planning, strategic planning, decision making, strategic risk analysis."
