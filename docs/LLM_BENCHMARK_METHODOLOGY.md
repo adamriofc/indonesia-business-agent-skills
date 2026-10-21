@@ -1,6 +1,6 @@
 # LLM vs. Deterministic Engine Evaluation Methodology (`LLM_BENCHMARK_METHODOLOGY.md`)
 
-This document defines the evaluation framework for comparing raw LLMs against the **Indonesian Business Agent Skills** hybrid engine architecture.
+This document defines the evaluation framework for comparing raw LLMs against the **Indonesia Business Agent Skills** hybrid engine architecture.
 
 ---
 

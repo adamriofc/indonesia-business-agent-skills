@@ -457,7 +457,7 @@ All notable changes to this project are documented here in reverse chronological
 - **4 Strategic Cross-Domain Intelligence Engines**:
   - `engines/regulatory-impact-engine.js`: Evaluates versioned statutory transitions (PP 20/2026, BPJS caps) against company operational profiles to compute business impact level, affected domains, action checklists, and statutory deadlines.
   - `engines/compliance-risk-engine.js`: Multi-Domain Compliance Health Audit (Tax, HR, Legal, Data/PDP, Commerce) computing a Compliance Health Score (0-100), domain health flags, detected violations, and a prioritized remediation roadmap.
-  - `engines/business-scenario-engine.js`: Maps business profiles across the 8 Stages of the Indonesian Business Lifecycle (Incorporation ➔ HR Onboarding ➔ Payroll/THR ➔ Contracts ➔ Tax ➔ E-Commerce ➔ Financial Reporting ➔ Exit/Restructuring).
+  - `engines/business-scenario-engine.js`: Maps business profiles across the 8 Stages of the Indonesia Business Lifecycle (Incorporation ➔ HR Onboarding ➔ Payroll/THR ➔ Contracts ➔ Tax ➔ E-Commerce ➔ Financial Reporting ➔ Exit/Restructuring).
   - `engines/decision-engine.js`: Evaluates corporate financial & operational metrics (cash runway, gross margin, Thin Cap DER 4:1 ratio under PMK 172/2023, PPh 21 gross-up tax burden) to generate deterministic, prioritized business decision recommendations and driver classifications.
 - **4 Flagship Cross-Domain Agent Skills**: `regulatory-impact` (under `tax-payroll-id`), `compliance-risk` (under `legal-id`), `business-scenario` (under `finance-id`), `decision-engine` (under `finance-id`), bringing total catalog to **71 Skills across 6 Plugins** & **27 Deterministic Engines**.
 - **20-Domain Golden Benchmark**: Expanded static golden corpus (`tests/golden/`) to **85 golden cases across 27 engines** (20 benchmark domains) at **100.00% accuracy** and stable determinism.
@@ -509,7 +509,7 @@ All notable changes to this project are documented here in reverse chronological
 
 ### Changed
 - **Repo renamed**: `indonesian-agent-skills` → `indonesia-business-agent-skills` (automatic GitHub redirect).
-- **Rebrand**: title "Indonesian Business Agent Skills", tagline *"Give AI agents a business brain for Indonesia."*; CORE (legal/tax/finance/HR) · BUSINESS (commerce) · CREATIVE (content) architecture; scope "6 business domains · 54 agent skills · 16 deterministic engines".
+- **Rebrand**: title "Indonesia Business Agent Skills", tagline *"Give AI agents a business brain for Indonesia."*; CORE (legal/tax/finance/HR) · BUSINESS (commerce) · CREATIVE (content) architecture; scope "6 business domains · 54 agent skills · 16 deterministic engines".
 - `package.json`: name `indonesia-business-agent-skills`, version `2.0.0`; the `npm test` + `test:units` chain now includes `finance-engines.test.js` (9 modules).
 - README: actual finance engine output examples (break-even, amortization, IRR) added; absolute `/tmp/...` paths replaced with `$PWD`.
 

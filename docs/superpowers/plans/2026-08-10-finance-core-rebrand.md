@@ -226,7 +226,7 @@ Every skill: body with at least Purpose/Hybrid Execution (when an engine exists)
 
 ### Task 15: Release v2.0.0 + CI verification
 
-- [ ] **Step 1:** `gh release create v2.0.0` (title "Indonesian Business Agent Skills — Finance Core & Repositioning") + upload SHA256SUMS.
+- [ ] **Step 1:** `gh release create v2.0.0` (title "Indonesia Business Agent Skills — Finance Core & Repositioning") + upload SHA256SUMS.
 - [ ] **Step 2:** Verify the downloaded asset matches the manifest; `gh run list` after push → success.
 - [ ] **Step 3:** Internal audit checklist (dimensions ≥9/10): engineering (tests green), breadth (6 domains), depth (all skills ≥1.2KB, same pattern), regulatory trust (honest register), documentation (README/BENCHMARK updated), commercialization (positioning), viral (branding + real demos).
 

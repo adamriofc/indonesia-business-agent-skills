@@ -1,4 +1,4 @@
-# Design — Finance Core + Rebrand as Indonesian Business Agent Skills (v2.0.0)
+# Design — Finance Core + Rebrand as Indonesia Business Agent Skills (v2.0.0)
 
 - **Date**: 2026-08-10
 - **Status**: Approved by the repository owner (decision: full v2.0.0 at once)
@@ -63,7 +63,7 @@ Nature: pure mathematical formulas (not regulation) → **not placed in `engines
 ## 4. Rebranding & Rename
 
 - **GitHub**: `gh repo rename indonesia-business-agent-skills` (automatic redirect) + `git remote set-url`.
-- **README**: title "Indonesian Business Agent Skills", tagline *"Give AI agents a business brain for Indonesia."*, domain subheadline; CORE (legal/tax/finance/hr) / BUSINESS (ecommerce) / CREATIVE (content) architecture visualized; marketing figures: **6 business domains · 54 agent skills · 16 deterministic engines**; absolute `/tmp/opencode/...` path fixed in the quickstart; new CI badge URL.
+- **README**: title "Indonesia Business Agent Skills", tagline *"Give AI agents a business brain for Indonesia."*, domain subheadline; CORE (legal/tax/finance/hr) / BUSINESS (ecommerce) / CREATIVE (content) architecture visualized; marketing figures: **6 business domains · 54 agent skills · 16 deterministic engines**; absolute `/tmp/opencode/...` path fixed in the quickstart; new CI badge URL.
 - `package.json` name: `indonesia-business-agent-skills`.
 - **CHANGELOG** v2.0.0; **ROADMAP** phase restructure: 1 Finance ✓, 2 Finance×Tax×HR integration, 3 Operations, 4 External benchmark, 5 SDK, 6 Ecosystem.
 - `docs/BENCHMARK.md`: add a row with real run results for the 8 finance engines.

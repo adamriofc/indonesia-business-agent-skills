@@ -132,7 +132,7 @@ function auditBusinessHealth(profile = {}) {
     recommendationsCount: recommendations.length,
     recommendations,
     calculatedAt: new Date().toISOString().slice(0, 10),
-    standardFramework: "Indonesian Business 360° Sovereign Health Oracle (UU HPP, PP 35/2021, PP 5/2021, PSAK 1)"
+    standardFramework: "Indonesia Business 360° Sovereign Health Oracle (UU HPP, PP 35/2021, PP 5/2021, PSAK 1)"
   };
 }
 

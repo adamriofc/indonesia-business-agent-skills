@@ -1,5 +1,5 @@
 /**
- * Indonesian Business Agent Skills — TypeScript Type Definitions (`index.d.ts`)
+ * Indonesia Business Agent Skills — TypeScript Type Definitions (`index.d.ts`)
  * Complete, zero-dependency type declarations for programmatic SDK usage.
  */
 

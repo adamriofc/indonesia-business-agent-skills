@@ -1,7 +1,7 @@
 /**
- * Indonesian Business Lifecycle & Scenario Engine
+ * Indonesia Business Lifecycle & Scenario Engine
  * Maps a business profile (entity type, revenue, headcount, sales channels)
- * across the 8 Stages of the Indonesian Business Lifecycle to produce an end-to-end
+ * across the 8 Stages of the Indonesia Business Lifecycle to produce an end-to-end
  * compliance, tax, legal, and operational roadmap.
  */
 

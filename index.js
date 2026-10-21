@@ -1,5 +1,5 @@
 /**
- * Indonesian Business Agent Skills — Root SDK Interface (`index.js`)
+ * Indonesia Business Agent Skills — Root SDK Interface (`index.js`)
  *
  * Universal, zero-dependency, pure Node.js SDK interface for enterprise backends,
  * AI agent frameworks, and custom applications.

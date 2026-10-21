@@ -12,7 +12,7 @@ function buildPlayground() {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Indonesian Business Agent Skills — Interactive Playground</title>
+  <title>Indonesia Business Agent Skills — Interactive Playground</title>
   <style>
     :root { --bg: #0B0F19; --card: #111827; --border: #1F2937; --text: #F8FAFC; --muted: #94A3B8; --primary: #38BDF8; }
     body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; margin: 0; padding: 20px; line-height: 1.5; }
@@ -30,7 +30,7 @@ function buildPlayground() {
 </head>
 <body>
   <div class="container">
-    <h1>🇮🇩 Indonesian Business Agent Skills Playground</h1>
+    <h1>🇮🇩 Indonesia Business Agent Skills Playground</h1>
     <p class="sub">Interactive Client-Side Engine Calculators (PPh 21, UMKM PP 20/2026, Break-Even, Loan Amortization)</p>
 
     <div class="grid">

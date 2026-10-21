@@ -1,6 +1,6 @@
 ---
 name: business-scenario
-description: "Maps a business profile across the 8 Stages of the Indonesian Business Lifecycle (Incorporation, Onboarding, Payroll, Contracts, Taxation, E-Commerce, Reporting, Exit) to produce an integrated compliance, tax, legal, and operational roadmap."
+description: "Maps a business profile across the 8 Stages of the Indonesia Business Lifecycle (Incorporation, Onboarding, Payroll, Contracts, Taxation, E-Commerce, Reporting, Exit) to produce an integrated compliance, tax, legal, and operational roadmap."
 argument-hint: <entityType> <annualRevenue> <employeeCount> <salesChannels>
 risk_level: MEDIUM
 rule_type: statutory
@@ -21,7 +21,7 @@ capability:
 
 # Indonesian Business Scenario & Lifecycle Engine
 
-Maps company operational parameters across the 8 Stages of the Indonesian Business Lifecycle to generate an integrated cross-domain compliance, tax, HR, legal, and financial roadmap.
+Maps company operational parameters across the 8 Stages of the Indonesia Business Lifecycle to generate an integrated cross-domain compliance, tax, HR, legal, and financial roadmap.
 
 ## Security & Injection Isolation
 

@@ -272,7 +272,7 @@
       "skillName": "business-scenario",
       "plugin": "finance-id",
       "domain": "finance",
-      "description": "Maps a business profile across the 8 Stages of the Indonesian Business Lifecycle (Incorporation, Onboarding, Payroll, Contracts, Taxation, E-Commerce, Reporting, Exit) to produce an integrated compliance, tax, legal, and operational roadmap.",
+      "description": "Maps a business profile across the 8 Stages of the Indonesia Business Lifecycle (Incorporation, Onboarding, Payroll, Contracts, Taxation, E-Commerce, Reporting, Exit) to produce an integrated compliance, tax, legal, and operational roadmap.",
       "risk_level": "MEDIUM",
       "rule_type": "statutory",
       "quality_tier": "expert-reviewed",

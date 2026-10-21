@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Universal CLI Runner — Indonesian Business Agent Skills
+ * Universal CLI Runner — Indonesia Business Agent Skills
  * Pure Node.js, zero external dependencies, agnostic, lightweight & agent-friendly.
  * Full coverage across all 40 calculation and regulatory diff engines.
  */

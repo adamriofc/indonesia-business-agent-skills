@@ -263,7 +263,7 @@ async function runEmpiricalLlmEvaluation() {
   const evaluationResults = [];
 
   const SYSTEM_PROMPT_VANILLA = "Anda adalah kalkulator Kepatuhan Pajak, Hukum & Bisnis Indonesia yang presisi. Balas HANYA satu baris JSON valid tanpa markdown, tanpa penjelasan.";
-  const SYSTEM_PROMPT_SKILL_ASSISTED = "Anda adalah agen bisnis Indonesia terverifikasi yang didukung oleh Indonesian Business Agent Skills & Deterministic Pure Node.js Computational Engines. Balas HANYA satu baris JSON valid tanpa markdown, tanpa penjelasan.";
+  const SYSTEM_PROMPT_SKILL_ASSISTED = "Anda adalah agen bisnis Indonesia terverifikasi yang didukung oleh Indonesia Business Agent Skills & Deterministic Pure Node.js Computational Engines. Balas HANYA satu baris JSON valid tanpa markdown, tanpa penjelasan.";
 
   for (const c of realWorldCases) {
     const skillOk = checkOutputMatch(c.engineResult, c.goldAnswer);

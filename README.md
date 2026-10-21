@@ -1,11 +1,11 @@
-# Indonesian Business Agent Skills
+# Indonesia Business Agent Skills
 
 *Give AI agents a business brain for Indonesia.*
 
-**Open-source Indonesian business intelligence for AI agents — combining regulatory-grounded skills, temporal rulesets, deterministic engines, and auditable provenance.**
+**Open-source Indonesia business intelligence for AI agents — combining regulatory-grounded skills, temporal rulesets, deterministic engines, and auditable provenance.**
 
 <p align="center">
-  <img src="docs/indonesia-business-agent-skills-hero.svg" alt="Indonesian Business Agent Skills Banner" width="100%">
+  <img src="docs/indonesia-business-agent-skills-hero.svg" alt="Indonesia Business Agent Skills Banner" width="100%">
 </p>
 
 <p align="center">
@@ -13,7 +13,7 @@
   <a href="https://github.com/adamriofc/indonesia-business-agent-skills/actions/workflows/ci-release.yml"><img src="https://github.com/adamriofc/indonesia-business-agent-skills/actions/workflows/ci-release.yml/badge.svg" alt="CI Pipeline"></a>
   <a href="https://app.openworklabs.com/"><img src="https://img.shields.io/badge/OpenCode-Compatible-brightgreen.svg" alt="OpenCode Compatibility"></a>
   <a href="engines/"><img src="https://img.shields.io/badge/Hybrid%20Engine-LLM--Safe-orange.svg" alt="LLM-Safe Hybrid Engine"></a>
-  <a href="tests/"><img src="https://img.shields.io/badge/Test%20Suite-526%2B%20Assertions-success.svg" alt="526+ Test Assertions"></a>
+  <a href="tests/"><img src="https://img.shields.io/badge/Test%20Suite-755%2B%20Assertions-success.svg" alt="755+ Test Assertions"></a>
   <a href="bundles/full-business-suite.json"><img src="https://img.shields.io/badge/Suite-88%20Skills%20%C2%B7%206%20Domains-blueviolet.svg" alt="88 Skills · 6 Domains"></a>
 </p>
 
@@ -36,9 +36,9 @@
 
 > **Evidence Boundary Note**: Independent external domain validation and enterprise production proof are still pending.
 
-**Indonesian Business Agent Skills** is an open-source domain-intelligence infrastructure designed to give AI agents an authentic Indonesian business and regulatory intelligence layer. Built for **OpenWork Desktop**, **OpenCode CLI**, **Claude Code (CLI)**, **Cursor IDE**, **Codex**, **OpenClaw**, **Hermes**, and custom agent frameworks, this repository integrates **88 Agent Skills** across **6 canonical plugins** (`legal-id`, `tax-id`, `hr-id`, `finance-id`, `marketing-id`, `strategic-id`) with **55 Deterministic Computational & Regulatory Diff Engines** (`engines/`) and single-source-of-truth temporal JSON rulesets (`engines/rules/`).
+**Indonesia Business Agent Skills** is an open-source domain-intelligence infrastructure designed to give AI agents an authentic Indonesian business and regulatory intelligence layer. Built for **OpenWork Desktop**, **OpenCode CLI**, **Claude Code (CLI)**, **Cursor IDE**, **Codex**, **OpenClaw**, **Hermes**, and custom agent frameworks, this repository integrates **88 Agent Skills** across **6 canonical plugins** (`legal-id`, `tax-id`, `hr-id`, `finance-id`, `marketing-id`, `strategic-id`) with **55 Deterministic Computational & Regulatory Diff Engines** (`engines/`) and single-source-of-truth temporal JSON rulesets (`engines/rules/`).
 
-### 💡 Why Standard LLMs Fail at Indonesian Business & Compliance Calculations
+### 💡 Why Standard LLMs Fail at Indonesia Business & Compliance Calculations
 Generic AI models (such as unassisted ChatGPT or Claude) predict words probabilistically (*token prediction*). When tasked with calculating TER PPh 21 income tax, PHK severance payouts, or corporate loan interest, standard LLMs encounter 3 critical failure modes:
 1. **Arithmetic Hallucination**: AI models guess numbers rather than computing equations, leading to incorrect tax bracket assignments and faulty severance math.
 2. **Temporal Ambiguity**: AI models fail to track statutory wage caps and rate adjustments across transition windows (such as BPJS JP wage cap adjustments in March 2025 vs March 2026).
@@ -123,7 +123,7 @@ README.md (What / Why / Overview & Demo)
 
 ```text
 ┌─────────────────────────────────────────────────────────────────┐
-│              INDONESIAN BUSINESS AGENT SUITE v6.18.0            │
+│              INDONESIA BUSINESS AGENT SUITE v6.18.0             │
 │         88 Skills · 6 Domains · 55 Deterministic Engines        │
 ├──────────────────────────┬──────────────────────────────────────┤
 │  FULL SUITE              │  SELECTIVE PROFILES                  │
@@ -203,7 +203,7 @@ npx indonesia-skills calc phk --wage 10000000 --tenure 5 --reason resignation
 ```
 
 **💬 AI Agent Prompt Guide**:
-> *"Please install the Indonesian Business Agent Skills package into my workspace by running `npx skills add adamriofc/indonesia-business-agent-skills`."*
+> *"Please install the Indonesia Business Agent Skills package into my workspace by running `npx skills add adamriofc/indonesia-business-agent-skills`."*
 
 ### 2. Claude Code Marketplace (Official Plugin Integration)
 Register the repository as a marketplace source and install individual plugins:
@@ -248,7 +248,7 @@ cp -r .agents/skills/* .cursor/skills/
 ```json
 {
   "mcpServers": {
-    "indonesian-business": {
+    "indonesia-business": {
       "command": "npx",
       "args": ["-y", "indonesia-skills-mcp"]
     }
@@ -257,7 +257,7 @@ cp -r .agents/skills/* .cursor/skills/
 ```
 
 **💬 AI Agent Prompt Guide**:
-> *"Please configure the Indonesian Business MCP Server in my MCP client settings (such as OpenWork Settings > Library or claude_desktop_config.json) with command `npx` and args `[\"-y\", \"indonesia-skills-mcp\"]`."*
+> *"Please configure the Indonesia Business MCP Server in my MCP client settings (such as OpenWork Settings > Library or claude_desktop_config.json) with command `npx` and args `[\"-y\", \"indonesia-skills-mcp\"]`."*
 
 ### 5. Custom SDK & REST API Microservice
 Directly import engines into your Node.js/TypeScript backend or run the standalone zero-dependency REST microservice to serve calculations across any tech stack (Python, PHP Laravel, Go, Java, C#, or ERP webhooks):
@@ -314,7 +314,7 @@ print("Tax Withheld:", res.json()["result"]["monthlyTaxWithheld"])
 | `/audit/pkwtt` | PKWT/PKWTT compliance, probation audit & auto-conversion triggers |
 
 **💬 AI Agent Prompt Guide**:
-> *"Please start the Indonesian Business REST API microservice by running `npx indonesia-skills serve --port 3000` or import calculation engines directly via `require('indonesia-business-agent-skills')`."*
+> *"Please start the Indonesia Business REST API microservice by running `npx indonesia-skills serve --port 3000` or import calculation engines directly via `require('indonesia-business-agent-skills')`."*
 
 ---
 
@@ -379,7 +379,7 @@ All skills and computational engines are mapped in the **Machine-Readable Regist
 * `financial-modeling`: 3-statement linkage and deterministic sensitivity tables.
 * `capital-budgeting`: NPV/IRR/payback via `engines/npv.js` & `engines/irr.js` vs simple WACC.
 * `vc-term-sheet-waterfall`: Venture capital startup exit liquidation preference waterfall (Seniority, Pari Passu, Participating with Caps).
-* `business-scenario`: Maps business profile across the 8 Stages of the Indonesian Business Lifecycle for an integrated compliance roadmap.
+* `business-scenario`: Maps business profile across the 8 Stages of the Indonesia Business Lifecycle for an integrated compliance roadmap.
 * `decision-engine`: Evaluates financial & operational metrics to generate deterministic, prioritized business decision recommendations.
 
 ### 5. `marketing-id`: Marketing, Growth & Commerce (26 Skills)
@@ -855,7 +855,7 @@ console.log(diff);
 
 ## 🧪 Comprehensive Test & Verification Suite
 
-Our test harness executes over **526+ total test assertions** across 20 automated test modules:
+Our test harness executes over **755+ total test assertions** across 29 automated test modules:
 
 ```bash
 # Run full test pipeline

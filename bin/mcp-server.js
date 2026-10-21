@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Native Zero-Dependency MCP Server for Indonesian Business Agent Skills
+ * Native Zero-Dependency MCP Server for Indonesia Business Agent Skills
  * Exposes all deterministic engines as Model Context Protocol (MCP) tools over stdio.
  * Pure Node.js 18+, zero external npm dependencies, cross-platform & lightweight.
  */

@@ -1,7 +1,7 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "Indonesian Business Agent Skills REST API",
+    "title": "Indonesia Business Agent Skills REST API",
     "version": "6.18.0",
     "description": "Production-grade, deterministic REST API microservice for Indonesian tax, labor, finance, commercial, and legal calculations. Zero external dependencies.",
     "license": {

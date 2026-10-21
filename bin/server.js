@@ -2,7 +2,7 @@
 /**
  * Zero-Dependency REST API Microservice (`bin/server.js`)
  *
- * Universal, protocol-level REST adapter for Indonesian Business Agent Skills.
+ * Universal, protocol-level REST adapter for Indonesia Business Agent Skills.
  * Built with pure Node.js native `http` module — zero external npm dependencies.
  *
  * Usage:
