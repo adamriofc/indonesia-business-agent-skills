@@ -13,6 +13,8 @@ FILES=(
   "engines/rules/marketplace.json"
   "engines/rules/umkm.json"
   "engines/rules/btki.json"
+  "engines/rules/kmk-rates.json"
+  "engines/rules/oss-rba.json"
 )
 
 cmd="${1:-verify}"

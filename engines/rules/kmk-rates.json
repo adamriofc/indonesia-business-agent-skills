@@ -1,0 +1,30 @@
+{
+  "rulesets": [
+    {
+      "rulesetId": "KMK-2026-Q1",
+      "rulesetVersion": "1.0.0",
+      "statute": "Keputusan Menteri Keuangan RI tentang Nilai Kurs Pajak",
+      "effective_from": "2026-01-01",
+      "effective_to": "Infinity",
+      "lifecycle": {
+        "status": "RELEASED",
+        "verified_at": "2026-10-20T00:00:00Z",
+        "verified_by": "Repository Maintainer — adamriofc",
+        "review_interval_months": 3
+      },
+      "rates": {
+        "USD": 16250,
+        "SGD": 12100,
+        "EUR": 17450,
+        "JPY": 105.5,
+        "AUD": 10600,
+        "CNY": 2240,
+        "GBP": 20850
+      },
+      "source": {
+        "regulation": "KMK No. 12/KM.10/2026",
+        "url": "https://fiskal.kemenkeu.go.id/informasi-publik/kurs-pajak"
+      }
+    }
+  ]
+}

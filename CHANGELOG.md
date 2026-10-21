@@ -2,6 +2,20 @@
 
 All notable changes to this project are documented here in reverse chronological order. Regulatory/statutory changes are additionally tracked per-rule in [REGULATORY_CHANGELOG.md](./REGULATORY_CHANGELOG.md); provenance of every rule in [PROVENANCE.md](./PROVENANCE.md); release cadence in [REGULATORY_PIPELINE.md](./REGULATORY_PIPELINE.md).
 
+## [6.18.0] - 2026-10-21
+
+### Apex Release: Full 6-Domain Enterprise Expansion, TypeScript Typings, OpenAPI 3.1 & Strategic Framework Extension
+
+- **P0 — Developer Experience & Strict Typings (`index.d.ts`)**: Delivered comprehensive zero-dependency TypeScript definitions across all 55 computational engines, types (`PtkpStatus`, `TerCategory`, `PhkReasonKey`, `BusinessArchetype`), interfaces, and domain namespaces for seamless autocomplete and type safety.
+- **P0 — Built-in OpenAPI 3.1 Specification (`docs/openapi.json` & `GET /api/v1/openapi.json`)**: Added formal OpenAPI 3.1 spec covering all 45+ REST endpoints for instant Postman/Swagger import and multi-language client generation (Python, Go, PHP, Rust, Java).
+- **P0 — Tax Intelligence Expansion**: Added Kurs Pajak KMK currency conversion (`engines/kmk-forex-calculator.js`), algorithmic NIK/NPWP 16-digit validation (`engines/identity-validator.js`), e-Bupot Unifikasi 21/26 & 23 CSV export generator (`engines/ebupot-exporter.js`), and cryptographic calculation receipt (`_auditReceipt`) embedded in tax outputs.
+- **P0 — Labor & Employment Compliance Expansion**: Added PP No. 35/2021 overtime engine with statutory 1/173 hourly multiplier (`engines/overtime-calculator.js`) and statutory Uang Penggantian Hak (UPH) & unused leave payout engine (`engines/uph-calculator.js`).
+- **P0 — Commercial Law & Governance Expansion**: Added quantitative Contract Risk Scorer (0-100) detecting Article 1266 waivers and liability caps (`engines/contract-risk-engine.js`), PP No. 5/2021 OSS-RBA risk & PB-UMKU navigator (`engines/oss-rba-engine.js`), and UU No. 24/2009 bilingual contract harmonizer (`engines/bilingual-contract-harmonizer.js`).
+- **P0 — Finance, Commerce & Marketing Expansion**: Added 3-statement balance sanity checker enforcing PSAK 1 balance identity (`engines/financial-statement-linker.js`), WACC with 22% corporate tax shield (`engines/wacc-calculator.js`), True Net ROAS with COD return rate deductions (`engines/roas-contribution-engine.js`), and Customs CIF & landed cost calculator (`engines/landed-cost-calculator.js`).
+- **P0 — Strategic Framework Adaptation Model**: Formalized strategic framework extension adapting Michael Porter's Three Tests to service & EdTech capacity slot archetypes (`engines/framework-applicability.js` & `engines/strategic-protocol.js`), and cross-domain competitive stress testing (`engines/strategy-stress-tester.js`).
+- **P0 — Institutional Merkle Ledger & 360° Health Oracle**: Added zero-database Merkle hash chain audit ledger (`engines/compliance-ledger.js`) and 360-degree Sovereign Business Health Oracle (`engines/business-health-oracle.js`).
+- **All artifacts synchronized to v6.18.0**: `package.json`, `package-lock.json`, `canonical-metadata.json`, `registry/index.json`, all 5 `bundles/*.json`, `README.md`, `docs/METRICS.md`, `docs/BENCHMARK.md`.
+
 ## [6.17.2] - 2026-10-20
 
 ### Zero-Dependency REST API Microservice, Root SDK (`index.js`) & Verified Protocol Adapter

@@ -1,0 +1,255 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Indonesian Business Agent Skills REST API",
+    "version": "6.18.0",
+    "description": "Production-grade, deterministic REST API microservice for Indonesian tax, labor, finance, commercial, and legal calculations. Zero external dependencies.",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    },
+    "contact": {
+      "name": "adamriofc",
+      "url": "https://github.com/adamriofc/indonesian-business-agent-skills"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Local standalone microservice instance"
+    }
+  ],
+  "paths": {
+    "/api/v1/health": {
+      "get": {
+        "summary": "Healthcheck & System Metadata",
+        "description": "Returns microservice operational status, runtime version, and endpoint count.",
+        "responses": {
+          "200": {
+            "description": "Service is healthy and operational",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "service": { "type": "string" },
+                    "version": { "type": "string" },
+                    "status": { "type": "string", "example": "UP" },
+                    "runtime": { "type": "string" },
+                    "uptimeSeconds": { "type": "number" },
+                    "availableEndpoints": { "type": "number" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/calc/pph21": {
+      "post": {
+        "summary": "Calculate PPh 21 TER Monthly Tax",
+        "description": "Computes exact employee PPh 21 monthly tax withholding under PP No. 58/2023 & PMK No. 168/2023.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["grossSalary", "ptkpStatus"],
+                "properties": {
+                  "grossSalary": { "type": "number", "example": 10000000, "description": "Gross monthly salary in IDR" },
+                  "ptkpStatus": { "type": "string", "example": "TK/0", "description": "PTKP code (TK/0..K/3)" },
+                  "hasNpwp": { "type": "boolean", "default": true, "description": "Whether employee has valid NPWP/NIK" },
+                  "dateStr": { "type": "string", "example": "2026-03-01", "description": "Effective date window" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Calculation successful" },
+          "400": { "description": "Invalid input parameters" }
+        }
+      }
+    },
+    "/api/v1/calc/pph21-december": {
+      "post": {
+        "summary": "PPh 21 December Annual Reconciliation & Overpayment Refund",
+        "description": "Evaluates full year Article 17 progressive tax and calculates employee restitution if overpaid per PMK 168/2023.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["annualGrossIncome", "ptkpStatus", "janToNovTaxWithheld"],
+                "properties": {
+                  "annualGrossIncome": { "type": "number", "example": 80000000 },
+                  "ptkpStatus": { "type": "string", "example": "TK/0" },
+                  "janToNovTaxWithheld": { "type": "number", "example": 5000000 },
+                  "monthlyJhtEmployeeDeduction": { "type": "number", "example": 100000 },
+                  "hasNpwp": { "type": "boolean", "default": true }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Reconciliation successful" },
+          "400": { "description": "Invalid input" }
+        }
+      }
+    },
+    "/api/v1/calc/phk": {
+      "post": {
+        "summary": "Calculate Statutory PHK Severance Payout",
+        "description": "Computes Uang Pesangon (UP), UPMK, UPH, and Uang Pisah per PP No. 35/2021.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["monthlyWage", "tenureYears", "reasonKey"],
+                "properties": {
+                  "monthlyWage": { "type": "number", "example": 10000000 },
+                  "tenureYears": { "type": "number", "example": 5 },
+                  "reasonKey": { "type": "string", "example": "resignation" },
+                  "remainingLeaveDays": { "type": "number", "default": 0 },
+                  "uangPisahAmount": { "type": "number", "default": 0 }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Severance calculation successful" },
+          "400": { "description": "Invalid reason or negative numbers" }
+        }
+      }
+    },
+    "/api/v1/calc/overtime": {
+      "post": {
+        "summary": "Calculate Statutory Overtime Payout (PP 35/2021)",
+        "description": "Computes exact overtime pay using statutory 1/173 hourly multiplier across workdays, weekly rest, and public holidays.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["monthlyWage", "hours"],
+                "properties": {
+                  "monthlyWage": { "type": "number", "example": 6000000 },
+                  "fixedAllowance": { "type": "number", "default": 0 },
+                  "hours": { "type": "number", "example": 4 },
+                  "dayType": { "type": "string", "enum": ["WORKDAY", "WEEKLY_REST_5_DAYS", "WEEKLY_REST_6_DAYS", "PUBLIC_HOLIDAY"], "default": "WORKDAY" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Overtime calculation successful" },
+          "400": { "description": "Invalid input" }
+        }
+      }
+    },
+    "/api/v1/calc/bpjs": {
+      "post": {
+        "summary": "Calculate BPJS Ketenagakerjaan & Kesehatan",
+        "description": "Computes employer and employee statutory contributions with official wage caps.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["monthlySalary"],
+                "properties": {
+                  "monthlySalary": { "type": "number", "example": 10000000 },
+                  "riskLevel": { "type": "string", "default": "low" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "BPJS calculation successful" }
+        }
+      }
+    },
+    "/api/v1/calc/ppn": {
+      "post": {
+        "summary": "Calculate PPN 12%, Besaran Tertentu & PPnBM",
+        "description": "Calculates standard 12% PPN, Besaran Tertentu 1.2% (logistics/travel per PMK 71/2022 & PMK 131/2024), DPP Nilai Lain, and PPnBM luxury tax.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["sellingPriceOrDpp"],
+                "properties": {
+                  "sellingPriceOrDpp": { "type": "number", "example": 100000000 },
+                  "transactionType": { "type": "string", "default": "standard" },
+                  "ppnbmRatePercent": { "type": "number", "default": 0 }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Tax calculation successful" }
+        }
+      }
+    },
+    "/api/v1/audit/contract-risk": {
+      "post": {
+        "summary": "Audit Contract Risk & Clause Traps",
+        "description": "Scans commercial agreement text and computes a Contract Risk Score (0-100) with Pasal 1266 KUHPerdata and liability cap checks.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["contractText"],
+                "properties": {
+                  "contractText": { "type": "string", "description": "Full contract agreement text" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Risk audit completed" }
+        }
+      }
+    },
+    "/api/v1/route/kbli": {
+      "post": {
+        "summary": "Resolve KBLI Code to Business Archetype",
+        "description": "Maps 5-digit KBLI 2020 codes to canonical Business Archetypes and operational focus.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["kbliCode"],
+                "properties": {
+                  "kbliCode": { "type": "string", "example": "70209" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "KBLI resolved" }
+        }
+      }
+    }
+  }
+}

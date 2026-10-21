@@ -51,6 +51,17 @@ function applyStrategicProtocol({
       applicabilityStatus = 'ADAPTABLE';
       applicabilityNote = 'Value Chain adapted from physical manufacturing logistics to Service Co-Production and Slot Delivery.';
     }
+  } else if (frameworkName === 'porter-three-tests') {
+    if (archetype === 'PRODUCT_MANUFACTURING') {
+      applicabilityStatus = 'NATIVE';
+      applicabilityNote = 'Porter Three Tests applies natively across plant scale and physical acquisition premium.';
+    } else if (archetype === 'CAPACITY_SERVICE') {
+      applicabilityStatus = 'ADAPTABLE';
+      applicabilityNote = 'Porter Three Tests adapted to EdTech & Capacity Services: platform setup efficiency vs slot/capacity utilization model.';
+    } else {
+      applicabilityStatus = 'ADAPTABLE';
+      applicabilityNote = 'Porter Three Tests adapted to intangible talent/knowledge synergies & network effects.';
+    }
   }
 
   // 3. Evidence Sufficiency Verification

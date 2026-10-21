@@ -2,33 +2,33 @@
   "bundle_id": "go-to-market",
   "name": "Go-to-Market Pack",
   "profile": "go-to-market",
-  "version": "6.17.2",
+  "version": "6.18.0",
   "description": "Market sizing, positioning, product classification, marketplace SEO, content creation, pricing analysis, customer insights, and GTM strategy — for startup founders, D2C brands, and ecommerce sellers.",
   "plugins": [
     {
       "id": "marketing-id",
       "name": "Marketing Intelligence",
-      "version": "6.17.2",
+      "version": "6.18.0",
       "domain": "marketing",
       "skills": 26
     },
     {
       "id": "finance-id",
       "name": "Finance Intelligence",
-      "version": "6.17.2",
+      "version": "6.18.0",
       "domain": "finance",
       "skills": 15
     },
     {
       "id": "strategic-id",
       "name": "Strategic Intelligence",
-      "version": "6.17.2",
+      "version": "6.18.0",
       "domain": "strategic",
       "skills": 10
     }
   ],
   "shared": {
-    "engines": 40,
+    "engines": 55,
     "rulesets": [
       "engines/rules/marketplace.json",
       "engines/rules/btki.json"
@@ -38,7 +38,7 @@
   "totals": {
     "plugins": 3,
     "skills": 51,
-    "engines": 40
+    "engines": 55
   },
   "use_cases": [
     "TAM/SAM/SOM market sizing",

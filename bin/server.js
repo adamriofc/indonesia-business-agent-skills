@@ -16,6 +16,7 @@ const path = require('path');
 const sdk = require('../index');
 const pkg = require('../package.json');
 
+const ROOT = path.join(__dirname, '..');
 const DEFAULT_PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 const DEFAULT_HOST = process.env.HOST || '0.0.0.0';
 const MAX_BODY_BYTES = 1024 * 1024; // 1MB payload ceiling
@@ -208,7 +209,91 @@ const ENDPOINT_MAP = {
     body.domain || 'umkm',
     body.fromRuleset || body.from,
     body.toRuleset || body.to
-  )
+  ),
+
+  // --- v6.18.0 Apex Expansion Endpoints ---
+  // Overtime & UPH
+  '/api/v1/calc/overtime': (body) => sdk.calculateDailyOvertime({
+    monthlyWage: Number(body.monthlyWage || body.wage || 0),
+    fixedAllowance: Number(body.fixedAllowance || body.allowance || 0),
+    hours: Number(body.hours || 1),
+    dayType: body.dayType || 'WORKDAY'
+  }),
+  '/api/v1/calc/uph': (body) => sdk.calculateUphPayout({
+    monthlyWage: Number(body.monthlyWage || body.wage || 0),
+    remainingLeaveDays: Number(body.remainingLeaveDays || body.leaveDays || 0),
+    monthlyWorkingDays: Number(body.monthlyWorkingDays || 25),
+    relocationExpense: Number(body.relocationExpense || 0)
+  }),
+
+  // Tax Foreign & Identity
+  '/api/v1/calc/kmk-forex': (body) => sdk.calculateKmkForexConversion({
+    amountForeign: Number(body.amountForeign || body.amount || 0),
+    currency: body.currency || 'USD',
+    dateStr: body.dateStr || null
+  }),
+  '/api/v1/calc/offshore-withholding': (body) => sdk.calculateOffshoreWithholding({
+    amountForeign: Number(body.amountForeign || body.amount || 0),
+    currency: body.currency || 'USD',
+    dateStr: body.dateStr || null,
+    taxType: body.taxType || 'pph26',
+    hasDgtForm: body.hasDgtForm === true,
+    treatyRatePercent: body.treatyRatePercent ? Number(body.treatyRatePercent) : null
+  }),
+  '/api/v1/audit/identity': (body) => sdk.normalizeTaxIdentity(body.identity || body.nik || body.npwp || ''),
+
+  // e-Bupot Exporters
+  '/api/v1/export/ebupot-21': (body) => sdk.exportEbupot21Csv(body.payrollRecords || [], body.options || {}),
+  '/api/v1/export/ebupot-23': (body) => sdk.exportEbupot23Csv(body.serviceRecords || [], body.options || {}),
+
+  // Legal & OSS
+  '/api/v1/audit/contract-risk': (body) => sdk.auditContractRisk(String(body.contractText || body.text || '')),
+  '/api/v1/route/oss-rba': (body) => sdk.resolveOssRisk(body.kbliCode || body.code || ''),
+  '/api/v1/audit/bilingual-contract': (body) => sdk.verifyBilingualCompliance(body.indonesianText || body.indo || '', body.englishText || body.eng || ''),
+
+  // Finance WACC & Sanity
+  '/api/v1/calc/wacc': (body) => sdk.calculateWacc({
+    equityValue: Number(body.equityValue || body.equity || 0),
+    debtValue: Number(body.debtValue || body.debt || 0),
+    costOfEquityPercent: Number(body.costOfEquityPercent || 15),
+    costOfDebtPreTaxPercent: Number(body.costOfDebtPreTaxPercent || 9),
+    corporateTaxRatePercent: Number(body.corporateTaxRatePercent !== undefined ? body.corporateTaxRatePercent : 22)
+  }),
+  '/api/v1/audit/statement-linkage': (body) => sdk.validateStatementLinkage({
+    balanceSheet: body.balanceSheet || {},
+    incomeStatement: body.incomeStatement || {},
+    cashFlowStatement: body.cashFlowStatement || {}
+  }),
+
+  // Marketing ROAS & Landed Cost
+  '/api/v1/calc/true-roas': (body) => sdk.calculateTrueNetRoas({
+    sellingPrice: Number(body.sellingPrice || body.price || 0),
+    cogs: Number(body.cogs || 0),
+    platformFeePercent: Number(body.platformFeePercent || 6.0),
+    freeShippingFeePercent: Number(body.freeShippingFeePercent || 4.0),
+    codReturnRatePercent: Number(body.codReturnRatePercent || 0),
+    adSpendPerDeliveredOrder: Number(body.adSpendPerDeliveredOrder || body.adSpend || 0),
+    shippingSubsidyPerAttempt: Number(body.shippingSubsidyPerAttempt || body.subsidy || 0)
+  }),
+  '/api/v1/calc/landed-cost': (body) => sdk.calculateLandedCost({
+    fobValueUsd: Number(body.fobValueUsd || body.fob || 0),
+    freightUsd: Number(body.freightUsd || 0),
+    insuranceUsd: Number(body.insuranceUsd || 0),
+    exchangeRateKmk: Number(body.exchangeRateKmk || 16250),
+    dutyRatePercent: Number(body.dutyRatePercent || 0),
+    hasApi: body.hasApi !== false,
+    hasNpwp: body.hasNpwp !== false,
+    unitsCount: Number(body.unitsCount || 1)
+  }),
+
+  // Strategy & Institutional
+  '/api/v1/audit/strategy-stress-test': (body) => sdk.stressTestEnterprise({
+    baseFinancials: body.baseFinancials || {},
+    strategyShocks: body.strategyShocks || {}
+  }),
+  '/api/v1/audit/business-health': (body) => sdk.auditBusinessHealth(body.profile || body),
+  '/api/v1/ledger/record': (body) => sdk.recordComplianceEntry(body.domain, body.action, body.statute, body.payload || {}),
+  '/api/v1/ledger/verify': () => sdk.verifyComplianceChain()
 };
 
 function readBody(req) {
@@ -292,6 +377,15 @@ function createServer() {
           endpoints: Object.keys(ENDPOINT_MAP).sort()
         });
         return;
+      }
+
+      if (pathname === '/api/v1/openapi.json' || pathname === '/openapi.json') {
+        const openapiPath = path.join(ROOT, 'docs', 'openapi.json');
+        if (require('fs').existsSync(openapiPath)) {
+          const spec = JSON.parse(require('fs').readFileSync(openapiPath, 'utf8'));
+          sendJson(res, 200, spec);
+          return;
+        }
       }
 
       sendJson(res, 404, {

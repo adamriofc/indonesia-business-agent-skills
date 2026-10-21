@@ -27,6 +27,13 @@ const FRAMEWORK_APPLICABILITY_MATRIX = {
     CAPACITY_SERVICE: { status: 'ADAPTABLE', recommendationLevel: 'ADAPTABLE', unitOfAnalysis: 'SERVICE_CO_PRODUCTION_CHAIN', metric: 'Capacity Slot Setup, Co-Production, Delivery' },
     MARKETPLACE_PLATFORM: { status: 'ADAPTABLE', recommendationLevel: 'ADAPTABLE', unitOfAnalysis: 'PLATFORM_NETWORK_CHAIN', metric: 'Seller Acquisition, Buyer Acquisition, Infrastructure' },
     HYBRID: { status: 'ADAPTABLE', recommendationLevel: 'ADAPTABLE', unitOfAnalysis: 'VALUE_CREATION_CHAIN', metric: 'Primary Operations & Support Drivers' }
+  },
+  'porter-three-tests': {
+    PRODUCT_MANUFACTURING: { status: 'NATIVE', recommendationLevel: 'RECOMMENDED', unitOfAnalysis: 'PHYSICAL_ASSET_AND_PLANT_LINE', metric: 'Plant Scale & Asset Acquisition Premium' },
+    PROFESSIONAL_SERVICE: { status: 'ADAPTABLE', recommendationLevel: 'ADAPTABLE', unitOfAnalysis: 'KNOWLEDGE_PRACTICE_OR_TALENT_LINE', metric: 'Intangible Knowledge Reuse & Talent Synergies' },
+    CAPACITY_SERVICE: { status: 'ADAPTABLE', recommendationLevel: 'ADAPTABLE', unitOfAnalysis: 'TECH_PLATFORM_VS_CAPACITY_SLOT', metric: 'Platform Setup Efficiency vs Slot/Capacity Utilization Model' },
+    MARKETPLACE_PLATFORM: { status: 'ADAPTABLE', recommendationLevel: 'ADAPTABLE', unitOfAnalysis: 'PLATFORM_NETWORK_INFRASTRUCTURE', metric: 'Two-Sided Network Effects Synergy' },
+    HYBRID: { status: 'ADAPTABLE', recommendationLevel: 'ADAPTABLE', unitOfAnalysis: 'INTEGRATED_BUSINESS_PORTFOLIO', metric: 'Integrated DCF Sensitivity NPV 3-Scenarios vs Cross-Selling' }
   }
 };
 

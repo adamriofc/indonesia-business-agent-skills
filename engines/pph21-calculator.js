@@ -5,11 +5,26 @@
  * Enforces cryptographic ruleset runtime integrity and fail-closed validation.
  */
 
+const crypto = require('crypto');
 const pphRulesData = require('./rules/pph21.json');
 const { verifyRulesetIntegrity } = require('./rules/integrity');
 
 // Enforce runtime integrity validation on load
 verifyRulesetIntegrity('pph21.json');
+
+function generateAuditReceipt(rulesetId, statutoryReference, trace) {
+  const timestamp = new Date().toISOString();
+  const rawString = `${rulesetId}|${statutoryReference}|${timestamp}|${trace.join(';')}`;
+  const digest = crypto.createHash('sha256').update(rawString).digest('hex');
+  return {
+    receiptId: `rcpt_${digest.slice(0, 16)}`,
+    timestamp,
+    statutoryReference,
+    rulesetId,
+    calculationTrace: trace,
+    verificationDigest: digest
+  };
+}
 
 function getRulesForDate(dateStr) {
   const activeDateStr = dateStr || '2026-03-01';
@@ -87,6 +102,13 @@ function calculatePPh21Monthly(grossSalary, ptkpStatus = 'TK/0', taxpayerIdentit
     penaltyApplied = true;
   }
 
+  const trace = [
+    `Gross Salary: Rp ${salary}`,
+    `PTKP: ${ptkpStatus.toUpperCase()} (Category ${category})`,
+    `Effective Rate: ${(appliedRate * 100).toFixed(2)}%`,
+    `Tax Withheld: Rp ${baseWithholding}`
+  ];
+
   return {
     grossSalary: salary,
     ptkpStatus: ptkpStatus.toUpperCase(),
@@ -100,7 +122,8 @@ function calculatePPh21Monthly(grossSalary, ptkpStatus = 'TK/0', taxpayerIdentit
     calculationDate: activeDateStr,
     rulesetId: pphRules.rulesetId,
     rulesetVersion: pphRules.rulesetVersion,
-    statutoryReference: pphRules.statute
+    statutoryReference: pphRules.statute,
+    _auditReceipt: generateAuditReceipt(pphRules.rulesetId, pphRules.statute, trace)
   };
 }
 
@@ -182,7 +205,14 @@ function calculatePPh21DecemberReconciliation(annualGrossIncome, ptkpStatus = 'T
     calculationDate: activeDateStr,
     rulesetId: pphRules.rulesetId,
     rulesetVersion: pphRules.rulesetVersion,
-    statutoryReference: `PMK No. 168/2023 (Masa Pajak Terakhir / Rekonsiliasi Desember) - Ruleset: ${pphRules.statute}`
+    statutoryReference: `PMK No. 168/2023 (Masa Pajak Terakhir / Rekonsiliasi Desember) - Ruleset: ${pphRules.statute}`,
+    _auditReceipt: generateAuditReceipt(pphRules.rulesetId, `PMK No. 168/2023 (Rekonsiliasi Desember) - ${pphRules.statute}`, [
+      `Annual Gross: Rp ${annualGross}`,
+      `PKP: Rp ${pkp}`,
+      `Total Annual Tax Art 17: Rp ${totalAnnualTax}`,
+      `Jan-Nov Withheld: Rp ${clampRupiah(janToNovTaxWithheld)}`,
+      `Tax Status: ${taxStatus}`
+    ])
   };
 }
 

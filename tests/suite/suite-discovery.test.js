@@ -138,9 +138,9 @@ check(`Engine count = ${metadata.engines}`, () => {
   assert.ok(engines.length >= metadata.engines,
     `Found ${engines.length} engine files, expected >= ${metadata.engines}`);
 });
-check('Shared ruleset files present (pph21, bpjs, marketplace, umkm, btki)', () => {
+check('Shared ruleset files present (pph21, bpjs, marketplace, umkm, btki, kmk-rates, oss-rba)', () => {
   const rulesDir = path.join(ROOT, 'engines', 'rules');
-  ['pph21.json', 'bpjs.json', 'marketplace.json', 'umkm.json', 'btki.json'].forEach(r => {
+  ['pph21.json', 'bpjs.json', 'marketplace.json', 'umkm.json', 'btki.json', 'kmk-rates.json', 'oss-rba.json'].forEach(r => {
     assert.ok(fs.existsSync(path.join(rulesDir, r)), `Missing ruleset: engines/rules/${r}`);
   });
 });

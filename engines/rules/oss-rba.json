@@ -1,0 +1,60 @@
+{
+  "rulesets": [
+    {
+      "rulesetId": "OSS-RBA-2021",
+      "rulesetVersion": "1.0.0",
+      "statute": "PP No. 5 Tahun 2021 tentang Penyelenggaraan Perizinan Berusaha Berbasis Risiko",
+      "effective_from": "2021-04-01",
+      "effective_to": "Infinity",
+      "lifecycle": {
+        "status": "RELEASED",
+        "verified_at": "2026-10-20T00:00:00Z",
+        "verified_by": "Repository Maintainer — adamriofc",
+        "review_interval_months": 12
+      },
+      "risk_levels": {
+        "RENDAH": {
+          "description": "Risiko Rendah",
+          "requiredLicense": "NIB (Nomor Induk Berusaha)",
+          "verificationRequired": false,
+          "operationalReadyImmediately": true
+        },
+        "MENENGAH_RENDAH": {
+          "description": "Risiko Menengah Rendah",
+          "requiredLicense": "NIB + Sertifikat Standar (Pernyataan Mandiri / Self-Declaration)",
+          "verificationRequired": false,
+          "operationalReadyImmediately": true
+        },
+        "MENENGAH_TINGGI": {
+          "description": "Risiko Menengah Tinggi",
+          "requiredLicense": "NIB + Sertifikat Standar Terverifikasi",
+          "verificationRequired": true,
+          "operationalReadyImmediately": false
+        },
+        "TINGGI": {
+          "description": "Risiko Tinggi",
+          "requiredLicense": "NIB + Izin Resmi Instansi / Kementerian Terkait",
+          "verificationRequired": true,
+          "operationalReadyImmediately": false
+        }
+      },
+      "kbli_risk_map": {
+        "70209": { "risk": "RENDAH", "sector": "Aktivitas Konsultasi Manajemen Lainnya", "pbumku": [] },
+        "62010": { "risk": "RENDAH", "sector": "Aktivitas Pemrograman Komputer", "pbumku": [] },
+        "62020": { "risk": "RENDAH", "sector": "Aktivitas Konsultasi Komputer dan Manajemen Fasilitas Komputer", "pbumku": [] },
+        "63122": { "risk": "MENENGAH_RENDAH", "sector": "Portal Web dan/atau Platform Digital dengan Tujuan Komersial", "pbumku": ["PSE Kominfo (Penyelenggara Sistem Elektronik)"] },
+        "47911": { "risk": "MENENGAH_RENDAH", "sector": "Perdagangan Eceran Melalui Media Internet (E-Commerce Retail)", "pbumku": ["PSE Kominfo"] },
+        "56101": { "risk": "MENENGAH_TINGGI", "sector": "Restoran dan Rumah Makan", "pbumku": ["Sertifikat Laik Higiene Sanitasi (SLHS) Kemenkes", "Sertifikat Halal BPJPH"] },
+        "56102": { "risk": "MENENGAH_RENDAH", "sector": "Warung Makan dan Kedai Makan", "pbumku": ["Sertifikat Halal BPJPH"] },
+        "10799": { "risk": "MENENGAH_TINGGI", "sector": "Industri Produk Makanan Lainnya", "pbumku": ["Izin Edar BPOM MD / P-IRT", "Sertifikat Halal BPJPH"] },
+        "85499": { "risk": "MENENGAH_RENDAH", "sector": "Pendidikan Lainnya Swasta (Bimbel / Pelatihan Kursus / EdTech)", "pbumku": ["Izin Operasional LKP Dinas Pendidikan"] },
+        "86101": { "risk": "TINGGI", "sector": "Aktivitas Rumah Sakit Pemerintah dan Swasta", "pbumku": ["Izin Operasional Rumah Sakit", "AMDAL / UKL-UPL"] },
+        "21012": { "risk": "TINGGI", "sector": "Industri Farmasi Bahan Obat dan Obat Jadi", "pbumku": ["CPOB (Cara Pembuatan Obat yang Baik) BPOM", "Izin Industri Farmasi Kemenkes"] }
+      },
+      "source": {
+        "regulation": "Lampiran I & II PP No. 5 Tahun 2021",
+        "url": "https://oss.go.id"
+      }
+    }
+  ]
+}

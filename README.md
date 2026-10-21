@@ -24,19 +24,19 @@
 <!-- GENERATED:STATS -->
 | Metric | Single Source of Truth Value | Measurement Scope |
 |---|---|---|
-| **Repository Version** | `v6.17.2` | SemVer release boundary |
+| **Repository Version** | `v6.18.0` | SemVer release boundary |
 | **Canonical Plugins** | `6` | Active plugin packages (`legal-id`, `tax-id`, `hr-id`, `finance-id`, `marketing-id`, `strategic-id`) |
 | **Agent Skills** | `88` | Machine-readable `SKILL.md` capability packs |
-| **Deterministic Engines** | `40` | Pure Node.js calculation & regulatory diff engines (`engines/`) |
+| **Deterministic Engines** | `55` | Pure Node.js calculation & regulatory diff engines (`engines/`) |
 | **Golden Cases** | `121` | Static corpus cases across 27 benchmark domains |
 | **Benchmark Assertions** | `434` | Deterministic assertions in `tests/benchmarks/` |
-| **Total Test Assertions** | `611+` | Deepened matrix assertions across full `npm test` suite |
+| **Total Test Assertions** | `741+` | Deepened matrix assertions across full `npm test` suite |
 | **Node.js Compatibility** | `20 / 22 / 24` | `20` (Minimum), `22` (LTS Recommended), `24` (Current Tested) |
 <!-- /GENERATED:STATS -->
 
 > **Evidence Boundary Note**: Independent external domain validation and enterprise production proof are still pending.
 
-**Indonesian Business Agent Skills** is an open-source domain-intelligence infrastructure designed to give AI agents an authentic Indonesian business and regulatory intelligence layer. Built for **OpenWork Desktop**, **OpenCode CLI**, **Claude Code (CLI)**, **Cursor IDE**, **Codex**, **OpenClaw**, **Hermes**, and custom agent frameworks, this repository integrates **88 Agent Skills** across **6 canonical plugins** (`legal-id`, `tax-id`, `hr-id`, `finance-id`, `marketing-id`, `strategic-id`) with **40 Deterministic Computational & Regulatory Diff Engines** (`engines/`) and single-source-of-truth temporal JSON rulesets (`engines/rules/`).
+**Indonesian Business Agent Skills** is an open-source domain-intelligence infrastructure designed to give AI agents an authentic Indonesian business and regulatory intelligence layer. Built for **OpenWork Desktop**, **OpenCode CLI**, **Claude Code (CLI)**, **Cursor IDE**, **Codex**, **OpenClaw**, **Hermes**, and custom agent frameworks, this repository integrates **88 Agent Skills** across **6 canonical plugins** (`legal-id`, `tax-id`, `hr-id`, `finance-id`, `marketing-id`, `strategic-id`) with **55 Deterministic Computational & Regulatory Diff Engines** (`engines/`) and single-source-of-truth temporal JSON rulesets (`engines/rules/`).
 
 ### 💡 Why Standard LLMs Fail at Indonesian Business & Compliance Calculations
 Generic AI models (such as unassisted ChatGPT or Claude) predict words probabilistically (*token prediction*). When tasked with calculating TER PPh 21 income tax, PHK severance payouts, or corporate loan interest, standard LLMs encounter 3 critical failure modes:
@@ -63,9 +63,18 @@ This repository decouples AI **reasoning** from **calculation**:
 | **Codex** | Skill Shorthand (`.agents/skills/`) | 🟡 **Compatible** | Agent Skill Standard Structure (`SKILL.md`) |
 | **OpenClaw** | Skill Shorthand via `.openclaw/skills/` or MCP tool directory | 🟡 **Compatible** | Agent Skill Standard Structure (`SKILL.md`) — copy skills to OpenClaw skill path |
 | **Hermes (via MCP or tool-use)** | Tool-use / function-calling via skill YAML + engine exports | 🟡 **Compatible** | Engine outputs are pure JSON; skill `argument-hint` maps to Hermes tool parameters |
-| **Custom SDK / REST Adapters** | Protocol-Level Adapter & Microservice | ✅ **Verified** | Pure Math Engines, Root SDK (`index.js`) & REST Server (`bin/server.js`) |
+| **Custom SDK / REST Adapters** | Protocol-Level Adapter & Microservice | ✅ **Verified** | Pure Math Engines, Root SDK (`index.js`), TypeScript Typings (`index.d.ts`), OpenAPI 3.1 & REST Server (`bin/server.js`) |
 
 > **Integration Note — OpenClaw & Hermes**: These runtimes consume skills via their own tool-directory or MCP mechanism. Copy the relevant `*/skills/*/SKILL.md` files to your runtime's skill path, and import engine functions from `engines/*.js` directly. All engines are pure Node.js with no external dependencies.
+
+### 🧠 Minimum Model Capability Requirements
+
+To ensure optimal execution fidelity without vendor lock-in, host agents should satisfy these minimum capability baselines across different task domains:
+
+| Capability Tier | Minimum Model Specification | Target Domain & Workloads |
+|---|---|---|
+| **Class A: Complex Legal & Strategic Reasoning** | • High deductive reasoning capacity<br>• Context window $\ge$ 16k tokens<br>• Frontier cloud model or $\ge$ 70B local open-weights | Commercial law (KUHPerdata, UU PDP), agreement redlines, wanprestasi detection, multi-domain compliance audit, and corporate strategy adaptation. |
+| **Class B: Structured Tool-Use & Parameter Extraction** | • Native Function Calling / Tool-Use support<br>• Strict JSON schema adherence<br>• Efficient cloud model or $\ge$ 7B–14B local model | Parameter extraction from natural language queries, Universal CLI (`indonesian-skills`), native MCP tool execution, and REST API invocation. |
 
 ---
 
@@ -78,7 +87,7 @@ flowchart TD
     Context --> KBLI["KBLI BUSINESS ACTIVITY CLASSIFICATION<br/>➔ Business Archetype"]
     Context --> Product["PRODUCT CONTEXT<br/>BTKI 2022 / HS-6 / Lartas / Landed Cost"]
     
-    KBLI --> Engines["40 Deterministic Node.js Math &amp; Diff Engines<br/>28 statutory (engines/*.js + SSOT temporal rulesets)<br/>8 finance (engines/*.js — pure standard math)<br/>4 strategic &amp; product classification engines"]
+    KBLI --> Engines["55 Deterministic Node.js Math &amp; Diff Engines<br/>28 statutory (engines/*.js + SSOT temporal rulesets)<br/>8 finance (engines/*.js — pure standard math)<br/>19 strategic, legal &amp; product engines"]
     Product --> Engines
     
     Engines --> Rules["Single Source of Truth Rules<br/>(engines/rules/*.json)<br/>— statutory &amp; policy only"]
@@ -114,19 +123,19 @@ README.md (What / Why / Overview & Demo)
 
 ```text
 ┌─────────────────────────────────────────────────────────────────┐
-│              INDONESIAN BUSINESS AGENT SUITE v6.17.2            │
-│         88 Skills · 6 Domains · 40 Deterministic Engines        │
+│              INDONESIAN BUSINESS AGENT SUITE v6.18.0            │
+│         88 Skills · 6 Domains · 55 Deterministic Engines        │
 ├──────────────────────────┬──────────────────────────────────────┤
 │  FULL SUITE              │  SELECTIVE PROFILES                  │
 │  All 6 domains           │  Finance & Strategy                  │
 │  88 skills               │  People & Payroll                    │
-│  40 engines              │  Compliance                          │
+│  55 engines              │  Compliance                          │
 │                          │  Go-to-Market                        │
 └──────────────────────────┴──────────────────────────────────────┘
 ```
 
 ### Profile A — Full Business Suite (Recommended)
-> All 6 domains · 88 skills · 40 engines
+> All 6 domains · 88 skills · 55 engines
 
 ```bash
 npx skills add adamriofc/indonesian-business-agent-skills

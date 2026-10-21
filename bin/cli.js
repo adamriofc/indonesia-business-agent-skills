@@ -82,6 +82,21 @@ function printHelp() {
       "audit compliance": "Audit multi-domain statutory compliance risk (--spt <bool>, --ump <bool>)",
       "audit regulatory-impact": "Analyze business impact of statutory transition (--domain <umkm|bpjs|phk>, --from <ruleset>, --to <ruleset>, --revenue <IDR>)",
       "diff regulatory": "Compare statutory rulesets side-by-side (--domain <umkm|bpjs>, --from <ruleset>, --to <ruleset>)",
+      "calc overtime": "Calculate statutory overtime pay (--wage <IDR>, --hours <N>, [--day-type <WORKDAY|WEEKLY_REST_5_DAYS|WEEKLY_REST_6_DAYS|PUBLIC_HOLIDAY>])",
+      "calc uph": "Calculate Uang Penggantian Hak & unused leave (--wage <IDR>, --leave-days <N>, [--working-days <25>])",
+      "calc kmk-forex": "Convert foreign currency to IDR via official KMK tax rate (--amount <N>, --currency <USD|SGD|EUR|JPY>, [--date <YYYY-MM-DD>])",
+      "calc offshore-withholding": "Calculate PPh 26 & PPN JLN on forex invoices (--amount <N>, --currency <USD>, [--has-dgt <bool>])",
+      "calc wacc": "Calculate WACC with 22% Corporate Tax Shield (--equity <IDR>, --debt <IDR>, --cost-equity <%>, --cost-debt <%>, [--tax-rate <%>])",
+      "calc true-roas": "Calculate True Net ROAS & COD return economics (--price <IDR>, --cogs <IDR>, [--return-rate <%>], [--ad-spend <IDR>])",
+      "calc landed-cost": "Calculate Customs CIF, Bea Masuk, PPN 12% & PPh 22 Impor (--fob <USD>, [--freight <USD>], [--duty <%>], [--has-api <bool>])",
+      "audit contract-risk": "Audit contract risk score 0-100 & clause traps (--text <string> or --file <path>)",
+      "audit identity": "Validate and normalize NIK/NPWP 16-digit identity (--id <string>)",
+      "audit statement-linkage": "Verify 3-statement balance & retained earnings sanity (--file <financials.json>)",
+      "audit business-health": "Run 360-degree sovereign corporate health audit (--file <profile.json>)",
+      "audit strategy-stress-test": "Simulate Five Forces competitive strategic shocks (--file <stress-params.json>)",
+      "route oss-rba": "Resolve 5-digit KBLI code to OSS-RBA Risk Classification & PB-UMKU (--code <5-digit KBLI>)",
+      "ledger record": "Append compliance action to local Merkle audit chain (--domain <string>, --action <string>, --statute <string>, [--data <json>])",
+      "ledger verify": "Cryptographically verify compliance Merkle chain integrity",
       "route kbli": "Resolve 5-digit KBLI code to business archetype (--code <5-digit KBLI>)",
       "route btki": "Resolve BTKI commodity classification & import duty (--code <BTKI code>)",
       "serve": "Start zero-dependency REST API server ([--port <3000>], [--host <0.0.0.0>])",
@@ -290,6 +305,70 @@ function run() {
           churnRate: Number(flags['churn-rate'] || flags.churn || 0.05),
           cac: Number(flags.cac || 0)
         });
+      } else if (subAction === 'overtime') {
+        const { calculateDailyOvertime } = require(path.join(ENGINES, 'overtime-calculator'));
+        result = calculateDailyOvertime({
+          monthlyWage: Number(flags.wage || flags.salary || 0),
+          fixedAllowance: Number(flags.allowance || 0),
+          hours: Number(flags.hours || 1),
+          dayType: flags['day-type'] || flags.type || 'WORKDAY'
+        });
+      } else if (subAction === 'uph') {
+        const { calculateUphPayout } = require(path.join(ENGINES, 'uph-calculator'));
+        result = calculateUphPayout({
+          monthlyWage: Number(flags.wage || flags.salary || 0),
+          remainingLeaveDays: Number(flags['leave-days'] || flags.leave || 0),
+          monthlyWorkingDays: Number(flags['working-days'] || 25),
+          relocationExpense: Number(flags.relocation || 0)
+        });
+      } else if (subAction === 'kmk-forex') {
+        const { calculateKmkForexConversion } = require(path.join(ENGINES, 'kmk-forex-calculator'));
+        result = calculateKmkForexConversion({
+          amountForeign: Number(flags.amount || 0),
+          currency: flags.currency || 'USD',
+          dateStr: flags.date || null
+        });
+      } else if (subAction === 'offshore-withholding') {
+        const { calculateOffshoreWithholding } = require(path.join(ENGINES, 'kmk-forex-calculator'));
+        result = calculateOffshoreWithholding({
+          amountForeign: Number(flags.amount || 0),
+          currency: flags.currency || 'USD',
+          dateStr: flags.date || null,
+          hasDgtForm: flags['has-dgt'] !== undefined ? flags['has-dgt'] !== 'false' : false,
+          treatyRatePercent: flags['treaty-rate'] ? Number(flags['treaty-rate']) : null
+        });
+      } else if (subAction === 'wacc') {
+        const { calculateWacc } = require(path.join(ENGINES, 'wacc-calculator'));
+        result = calculateWacc({
+          equityValue: Number(flags.equity || 0),
+          debtValue: Number(flags.debt || 0),
+          costOfEquityPercent: Number(flags['cost-equity'] || 15),
+          costOfDebtPreTaxPercent: Number(flags['cost-debt'] || 9),
+          corporateTaxRatePercent: Number(flags['tax-rate'] !== undefined ? flags['tax-rate'] : 22)
+        });
+      } else if (subAction === 'true-roas') {
+        const { calculateTrueNetRoas } = require(path.join(ENGINES, 'roas-contribution-engine'));
+        result = calculateTrueNetRoas({
+          sellingPrice: Number(flags.price || flags.selling || 0),
+          cogs: Number(flags.cogs || 0),
+          platformFeePercent: Number(flags['platform-fee'] || 6.0),
+          freeShippingFeePercent: Number(flags['free-shipping-fee'] || 4.0),
+          codReturnRatePercent: Number(flags['return-rate'] || flags.cod || 0),
+          adSpendPerDeliveredOrder: Number(flags['ad-spend'] || flags.ads || 0),
+          shippingSubsidyPerAttempt: Number(flags.subsidy || 0)
+        });
+      } else if (subAction === 'landed-cost') {
+        const { calculateLandedCost } = require(path.join(ENGINES, 'landed-cost-calculator'));
+        result = calculateLandedCost({
+          fobValueUsd: Number(flags.fob || 0),
+          freightUsd: Number(flags.freight || 0),
+          insuranceUsd: Number(flags.insurance || 0),
+          exchangeRateKmk: Number(flags.rate || flags.kmk || 16250),
+          dutyRatePercent: Number(flags.duty || 0),
+          hasApi: flags['has-api'] !== 'false',
+          hasNpwp: flags['has-npwp'] !== 'false',
+          unitsCount: Number(flags.units || 1)
+        });
       } else {
         throw new Error(`Unknown calc target '${subAction}'. Run 'indonesian-skills help' for available commands.`);
       }
@@ -304,6 +383,37 @@ function run() {
           jobType: flags.job || 'permanent',
           totalTenureMonths: Number(flags.tenure || 0)
         });
+      } else if (subAction === 'contract-risk') {
+        const { auditContractRisk } = require(path.join(ENGINES, 'contract-risk-engine'));
+        let text = flags.text || '';
+        if (flags.file && require('fs').existsSync(flags.file)) {
+          text = require('fs').readFileSync(flags.file, 'utf8');
+        }
+        result = auditContractRisk(text);
+      } else if (subAction === 'identity') {
+        const { normalizeTaxIdentity } = require(path.join(ENGINES, 'identity-validator'));
+        result = normalizeTaxIdentity(flags.id || flags.nik || flags.npwp);
+      } else if (subAction === 'statement-linkage') {
+        const { validateStatementLinkage } = require(path.join(ENGINES, 'financial-statement-linker'));
+        let profile = {};
+        if (flags.file && require('fs').existsSync(flags.file)) {
+          profile = JSON.parse(require('fs').readFileSync(flags.file, 'utf8'));
+        }
+        result = validateStatementLinkage(profile);
+      } else if (subAction === 'business-health') {
+        const { auditBusinessHealth } = require(path.join(ENGINES, 'business-health-oracle'));
+        let profile = {};
+        if (flags.file && require('fs').existsSync(flags.file)) {
+          profile = JSON.parse(require('fs').readFileSync(flags.file, 'utf8'));
+        }
+        result = auditBusinessHealth(profile);
+      } else if (subAction === 'strategy-stress-test') {
+        const { stressTestEnterprise } = require(path.join(ENGINES, 'strategy-stress-tester'));
+        let params = {};
+        if (flags.file && require('fs').existsSync(flags.file)) {
+          params = JSON.parse(require('fs').readFileSync(flags.file, 'utf8'));
+        }
+        result = stressTestEnterprise(params);
       } else if (subAction === 'thincap' || subAction === 'thin-capitalization') {
         const { auditTransferPricingThinCap } = require(path.join(ENGINES, 'transfer-pricing-engine'));
         result = auditTransferPricingThinCap({
@@ -348,8 +458,22 @@ function run() {
         const code = String(flags.code || flags.btki || '');
         const cif = Number(flags.cif || flags['cif-value'] || 0);
         result = resolveProductClassification({ targetHsCode: code, cifValueIdr: cif });
+      } else if (subAction === 'oss-rba' || subAction === 'oss') {
+        const { resolveOssRisk } = require(path.join(ENGINES, 'oss-rba-engine'));
+        const code = String(flags.code || flags.kbli || '');
+        result = resolveOssRisk(code);
       } else {
         throw new Error(`Unknown route target '${subAction}'. Run 'indonesian-skills help' for available commands.`);
+      }
+    } else if (action === 'ledger') {
+      const { recordComplianceEntry, verifyComplianceChain } = require(path.join(ENGINES, 'compliance-ledger'));
+      if (subAction === 'record') {
+        const payloadData = flags.data ? JSON.parse(flags.data) : {};
+        result = recordComplianceEntry(flags.domain || 'compliance', flags.action || 'record', flags.statute || '', payloadData);
+      } else if (subAction === 'verify') {
+        result = verifyComplianceChain();
+      } else {
+        throw new Error(`Unknown ledger command '${subAction}'. Available: record, verify.`);
       }
     } else {
       throw new Error(`Unknown command '${action}'. Run 'indonesian-skills help' for available commands.`);

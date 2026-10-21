@@ -41,7 +41,19 @@ const engines = {
   thincap: () => require(path.join(ENGINES, 'transfer-pricing-engine')),
   regulatoryDiff: () => require(path.join(ENGINES, 'regulatory-diff')),
   regulatoryImpact: () => require(path.join(ENGINES, 'regulatory-impact-engine')),
-  productContext: () => require(path.join(ENGINES, 'product-context'))
+  productContext: () => require(path.join(ENGINES, 'product-context')),
+  overtime: () => require(path.join(ENGINES, 'overtime-calculator')),
+  uph: () => require(path.join(ENGINES, 'uph-calculator')),
+  kmkForex: () => require(path.join(ENGINES, 'kmk-forex-calculator')),
+  identityValidator: () => require(path.join(ENGINES, 'identity-validator')),
+  contractRisk: () => require(path.join(ENGINES, 'contract-risk-engine')),
+  ossRba: () => require(path.join(ENGINES, 'oss-rba-engine')),
+  financialLinker: () => require(path.join(ENGINES, 'financial-statement-linker')),
+  wacc: () => require(path.join(ENGINES, 'wacc-calculator')),
+  roas: () => require(path.join(ENGINES, 'roas-contribution-engine')),
+  landedCost: () => require(path.join(ENGINES, 'landed-cost-calculator')),
+  strategyStress: () => require(path.join(ENGINES, 'strategy-stress-tester')),
+  businessHealth: () => require(path.join(ENGINES, 'business-health-oracle'))
 };
 
 const TOOLS = [
@@ -325,9 +337,143 @@ const TOOLS = [
     inputSchema: {
       type: "object",
       properties: {
-        btkiCode: { type: "string", description: "8-digit BTKI code (e.g. 0901.21.10, 8471.30.20, 8517.13.00)" }
+        btkiCode: { type: "string", description: "8-digit BTKI code (e.g. 0901.21.10, 8471.30.20, 8517.13.00)" },
+        cifValueIdr: { type: "number", default: 0, description: "CIF value in IDR" }
       },
       required: ["btkiCode"]
+    }
+  },
+  {
+    name: "calc_overtime",
+    description: "Calculate statutory overtime pay using 1/173 hourly multiplier across workdays, weekly rest, and public holidays (PP 35/2021).",
+    inputSchema: {
+      type: "object",
+      properties: {
+        monthlyWage: { type: "number", description: "Monthly wage in IDR" },
+        fixedAllowance: { type: "number", default: 0, description: "Monthly fixed allowance in IDR" },
+        hours: { type: "number", description: "Overtime duration in hours" },
+        dayType: { type: "string", default: "WORKDAY", description: "WORKDAY, WEEKLY_REST_5_DAYS, WEEKLY_REST_6_DAYS, PUBLIC_HOLIDAY" }
+      },
+      required: ["monthlyWage", "hours"]
+    }
+  },
+  {
+    name: "calc_uph",
+    description: "Calculate statutory Uang Penggantian Hak (UPH) for unused annual leave upon termination (PP 35/2021 Pasal 40).",
+    inputSchema: {
+      type: "object",
+      properties: {
+        monthlyWage: { type: "number", description: "Monthly wage in IDR" },
+        remainingLeaveDays: { type: "number", description: "Remaining unused paid annual leave days" },
+        monthlyWorkingDays: { type: "number", default: 25, description: "Working days per month (standard: 25)" }
+      },
+      required: ["monthlyWage", "remainingLeaveDays"]
+    }
+  },
+  {
+    name: "calc_kmk_forex",
+    description: "Convert foreign currency amount to IDR using official Ministry of Finance (KMK) tax exchange rate.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        amountForeign: { type: "number", description: "Amount in foreign currency" },
+        currency: { type: "string", default: "USD", description: "USD, SGD, EUR, JPY, AUD, CNY, GBP" },
+        dateStr: { type: "string", description: "Effective transaction date" }
+      },
+      required: ["amountForeign", "currency"]
+    }
+  },
+  {
+    name: "calc_wacc",
+    description: "Calculate Weighted Average Cost of Capital (WACC) with 22% Indonesian corporate tax shield.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        equityValue: { type: "number", description: "Total equity value in IDR" },
+        debtValue: { type: "number", description: "Total debt value in IDR" },
+        costOfEquityPercent: { type: "number", description: "Cost of equity percentage (e.g. 15 for 15%)" },
+        costOfDebtPreTaxPercent: { type: "number", description: "Pre-tax cost of debt percentage (e.g. 9 for 9%)" }
+      },
+      required: ["equityValue", "debtValue", "costOfEquityPercent", "costOfDebtPreTaxPercent"]
+    }
+  },
+  {
+    name: "calc_true_roas",
+    description: "Calculate True Net ROAS & contribution margin accounting for COD return rate, marketplace fee, and shipping losses.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        sellingPrice: { type: "number", description: "Selling price in IDR" },
+        cogs: { type: "number", description: "Cost of Goods Sold in IDR" },
+        platformFeePercent: { type: "number", default: 6.0, description: "Marketplace admin fee percentage" },
+        freeShippingFeePercent: { type: "number", default: 4.0, description: "Free shipping extra fee percentage" },
+        codReturnRatePercent: { type: "number", default: 0, description: "COD return rate percentage (e.g. 15 for 15%)" },
+        adSpendPerDeliveredOrder: { type: "number", default: 0, description: "Ad spend per delivered order in IDR" }
+      },
+      required: ["sellingPrice", "cogs"]
+    }
+  },
+  {
+    name: "calc_landed_cost",
+    description: "Calculate Customs CIF valuation, Bea Masuk, PPN 12%, and PPh 22 Impor (API vs Non-API).",
+    inputSchema: {
+      type: "object",
+      properties: {
+        fobValueUsd: { type: "number", description: "FOB value in USD" },
+        freightUsd: { type: "number", default: 0, description: "Freight in USD" },
+        insuranceUsd: { type: "number", default: 0, description: "Insurance in USD" },
+        exchangeRateKmk: { type: "number", default: 16250, description: "KMK exchange rate" },
+        dutyRatePercent: { type: "number", default: 0, description: "Import duty rate percentage" },
+        hasApi: { type: "boolean", default: true, description: "Whether importer has API" }
+      },
+      required: ["fobValueUsd"]
+    }
+  },
+  {
+    name: "audit_contract_risk",
+    description: "Audit commercial agreement text for legal risks, Article 1266 KUHPerdata waivers, liability caps, and excessive penalties.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        contractText: { type: "string", description: "Contract agreement text to analyze" }
+      },
+      required: ["contractText"]
+    }
+  },
+  {
+    name: "audit_identity",
+    description: "Validate and normalize Indonesian NIK (16-digit) and NPWP (15/16-digit Coretax standard).",
+    inputSchema: {
+      type: "object",
+      properties: {
+        identity: { type: "string", description: "15 or 16 digit NIK or NPWP string" }
+      },
+      required: ["identity"]
+    }
+  },
+  {
+    name: "audit_business_health",
+    description: "Run 360-degree sovereign corporate health audit across tax, labor, legal, financial, and commercial pillars.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        tax: { type: "object", description: "Tax compliance facts (hasAnnualSpt, isNpwpValid, etc.)" },
+        hr: { type: "object", description: "HR facts (meetsMinimumWage, hasBpjsRegistration, etc.)" },
+        legal: { type: "object", description: "Legal facts (hasNibOss, contractRiskScore, etc.)" },
+        finance: { type: "object", description: "Financial facts (cashRunwayMonths, debtToEquityRatio, etc.)" },
+        commerce: { type: "object", description: "Commerce facts (isContributionMarginPositive, etc.)" }
+      }
+    }
+  },
+  {
+    name: "route_oss_rba",
+    description: "Map 5-digit KBLI 2020 code to official OSS-RBA Risk Classification and PB-UMKU permits (PP 5/2021).",
+    inputSchema: {
+      type: "object",
+      properties: {
+        kbliCode: { type: "string", description: "5-digit KBLI code (e.g. 70209, 56101)" }
+      },
+      required: ["kbliCode"]
     }
   }
 ];
@@ -450,6 +596,59 @@ function handleToolCall(name, args) {
     case "classify_btki_commodity": {
       const fn = engines.productContext().resolveProductClassification;
       return fn({ targetHsCode: args.btkiCode, cifValueIdr: args.cifValueIdr || 0 });
+    }
+    case "calc_overtime": {
+      const fn = engines.overtime().calculateDailyOvertime;
+      return fn({
+        monthlyWage: args.monthlyWage,
+        fixedAllowance: args.fixedAllowance || 0,
+        hours: args.hours,
+        dayType: args.dayType || 'WORKDAY'
+      });
+    }
+    case "calc_uph": {
+      const fn = engines.uph().calculateUphPayout;
+      return fn({
+        monthlyWage: args.monthlyWage,
+        remainingLeaveDays: args.remainingLeaveDays,
+        monthlyWorkingDays: args.monthlyWorkingDays || 25
+      });
+    }
+    case "calc_kmk_forex": {
+      const fn = engines.kmkForex().calculateKmkForexConversion;
+      return fn({
+        amountForeign: args.amountForeign,
+        currency: args.currency || 'USD',
+        dateStr: args.dateStr || null
+      });
+    }
+    case "calc_wacc": {
+      const fn = engines.wacc().calculateWacc;
+      return fn(args);
+    }
+    case "calc_true_roas": {
+      const fn = engines.roas().calculateTrueNetRoas;
+      return fn(args);
+    }
+    case "calc_landed_cost": {
+      const fn = engines.landedCost().calculateLandedCost;
+      return fn(args);
+    }
+    case "audit_contract_risk": {
+      const fn = engines.contractRisk().auditContractRisk;
+      return fn(args.contractText);
+    }
+    case "audit_identity": {
+      const fn = engines.identityValidator().normalizeTaxIdentity;
+      return fn(args.identity);
+    }
+    case "audit_business_health": {
+      const fn = engines.businessHealth().auditBusinessHealth;
+      return fn(args);
+    }
+    case "route_oss_rba": {
+      const fn = engines.ossRba().resolveOssRisk;
+      return fn(args.kbliCode);
     }
     default:
       throw new Error(`Unknown tool '${name}'`);
