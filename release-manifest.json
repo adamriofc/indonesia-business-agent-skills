@@ -2,19 +2,19 @@
   "manifestVersion": "1.2.0",
   "provenancePolicy": "The git tag is the authoritative immutable release boundary. This manifest documents release lineage (version, source, metrics) but does NOT attempt to self-reference its own commit hash — such self-referential SHA attestation is cryptographically impossible in Git. Integrity is established by: (1) immutable git tag, (2) SHA256SUMS.txt for rulesets, (3) canonical-metadata.json, (4) npm test golden corpus.",
   "repository": "https://github.com/adamriofc/indonesia-business-agent-skills",
-  "releaseVersion": "v6.18.0",
-  "releaseTag": "v6.18.0",
-  "releaseSourceCommitHash": "2aef592",
-  "releaseSourceDescription": "Feature commit for v6.18.0: universal CLI runner, native MCP bridge, statutory bugfixes & security hardening",
-  "generatedAt": "2026-10-21T16:36:55.065Z",
+  "releaseVersion": "v6.19.0",
+  "releaseTag": "v6.19.0",
+  "releaseSourceCommitHash": "fc396cc",
+  "releaseSourceDescription": "Feature commit for v6.19.0: universal CLI runner, native MCP bridge, statutory bugfixes & security hardening",
+  "generatedAt": "2026-10-21T19:28:45.191Z",
   "metrics": {
     "plugins": 6,
-    "skills": 88,
-    "engines": 55,
+    "skills": 90,
+    "engines": 57,
     "goldenCases": 121,
     "benchmarkDomains": 27,
     "benchmarkAssertions": 434,
-    "totalTestAssertions": 755
+    "totalTestAssertions": 818
   },
   "integrityHashes": {
     "sha256sumsFileHash": "35db01670a6a3f2d08c9c3d15c6e7721b8afa064e45e240d67642d1fa543503c",
