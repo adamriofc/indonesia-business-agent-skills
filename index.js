@@ -4,12 +4,12 @@
  * Universal, zero-dependency, pure Node.js SDK interface for enterprise backends,
  * AI agent frameworks, and custom applications.
  *
- * Provides direct access to 55 deterministic computational and regulatory diff engines:
+ * Provides direct access to 57 deterministic computational and regulatory diff engines:
  *   - Tax: PPh 21 TER, December Reconciliation, Gross-Up, PPh Badan 31E, PPh 23/26, PPN 12%, UMKM 0.5%, Kurs Pajak KMK, NIK/NPWP 16-Digit, e-Bupot CSV Exporter
  *   - HR: BPJS Ketenagakerjaan & Kesehatan, PHK Severance (PP 35/2021), PKWT Compensation, PKWTT Compliance, Overtime (1/173), UPH Sisa Cuti, THR
  *   - Finance: Break-Even, Loan Amortization, Depreciation (SL/DDB/SYD), NPV, IRR, 14 Financial Ratios, Working Capital, 3-Statement Linker, WACC with Tax Shield
  *   - Commerce & Marketing: Marketplace Fee (Shopee/Tokopedia/TikTok), BTKI 2022 Product Classification, True Net ROAS & COD Retur, Customs Landed Cost
- *   - Strategy & Legal: KBLI 2020 Context Routing, OSS-RBA PP 5/2021, Contract Risk Scorer (0-100), Bilingual Contract Harmonizer (UU 24/2009), Porter Three Tests (Capacity & Digital Service Model), Enterprise Strategy Stress-Tester
+ *   - Strategy & Legal: KBLI 2020 Context Routing, OSS-RBA PP 5/2021, Contract Risk Scorer (0-100), Bilingual Contract Harmonizer (UU 24/2009), Porter Three Tests (Capacity & Digital Service Model), Enterprise Strategy Stress-Tester, Quantitative SWOT/TOWS Matrix, Balanced Scorecard (Kaplan & Norton / KMK 467/2014)
  *   - Institutional & Security: Local Merkle Compliance Ledger, 360° Business Health Oracle, Prompt Injection Closed Delimiter Sanitization
  *
  * Usage:
@@ -76,6 +76,8 @@ const decisionAnalysis = require(path.join(ENGINES, 'decision-analysis-engine'))
 const frameworkApplicability = require(path.join(ENGINES, 'framework-applicability'));
 const strategicProtocol = require(path.join(ENGINES, 'strategic-protocol'));
 const strategyStressTester = require(path.join(ENGINES, 'strategy-stress-tester'));
+const quantitativeSwot = require(path.join(ENGINES, 'quantitative-swot-engine'));
+const balancedScorecard = require(path.join(ENGINES, 'balanced-scorecard-engine'));
 const contractRisk = require(path.join(ENGINES, 'contract-risk-engine'));
 const ossRba = require(path.join(ENGINES, 'oss-rba-engine'));
 const bilingualHarmonizer = require(path.join(ENGINES, 'bilingual-contract-harmonizer'));
@@ -160,6 +162,8 @@ module.exports = {
   checkFrameworkApplicability: frameworkApplicability.checkFrameworkApplicability,
   applyStrategicProtocol: strategicProtocol.applyStrategicProtocol,
   stressTestEnterprise: strategyStressTester.stressTestEnterprise,
+  evaluateQuantitativeSwot: quantitativeSwot.evaluateQuantitativeSwot,
+  evaluateBalancedScorecard: balancedScorecard.evaluateBalancedScorecard,
   auditContractRisk: contractRisk.auditContractRisk,
   resolveOssRisk: ossRba.resolveOssRisk,
   verifyBilingualCompliance: bilingualHarmonizer.verifyBilingualCompliance,
@@ -232,7 +236,9 @@ module.exports = {
     decisionAnalysis,
     frameworkApplicability,
     strategicProtocol,
-    strategyStressTester
+    strategyStressTester,
+    quantitativeSwot,
+    balancedScorecard
   },
   legal: {
     compliance,

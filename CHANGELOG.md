@@ -2,6 +2,18 @@
 
 All notable changes to this project are documented here in reverse chronological order. Regulatory/statutory changes are additionally tracked per-rule in [REGULATORY_CHANGELOG.md](./REGULATORY_CHANGELOG.md); provenance of every rule in [PROVENANCE.md](./PROVENANCE.md); release cadence in [REGULATORY_PIPELINE.md](./REGULATORY_PIPELINE.md).
 
+## [6.19.0] - 2026-10-22
+
+### Apex Strategic Expansion: Quantitative SWOT/TOWS Matrix & Balanced Scorecard (BSC)
+
+- **P0 — Quantitative SWOT & TOWS Matrix Calculation Engine (`engines/quantitative-swot-engine.js`)**: Implemented deterministic Internal Factor Evaluation (IFE) and External Factor Evaluation (EFE) matrix weighting with strict invariant enforcement ($\sum W_{internal} \equiv 1.0, \sum W_{external} \equiv 1.0$), strategic vector coordinates ($\Delta X, \Delta Y$), mathematical quadrant mapping (Aggressive, Diversification, Turnaround, Defensive), and TOWS cross-impact interaction ranking per Fred R. David and IE Matrix methodology.
+- **P0 — Deterministic Balanced Scorecard (BSC) Engine (`engines/balanced-scorecard-engine.js`)**: Implemented multi-perspective scorecard calculation with dual sector models (Private Commercial vs Public/Government/BUMN per KMK No. 467/KMK.01/2014 & KMK No. 590/KMK.01/2016), Min/Max polarity mapping, statutory 120% cap ratio enforcement, and Strategy Map causal broken-link anomaly detection.
+- **P0 — 2 New Agent Skills**: Delivered `strategic-id/skills/quantitative-swot/SKILL.md` and `strategic-id/skills/balanced-scorecard/SKILL.md`, expanding the total skill library from 88 to 90 skills, each protected with closed prompt injection delimiter boundaries.
+- **P0 — 4-State Framework Applicability & Strategic Protocol**: Integrated `quantitative-swot` and `balanced-scorecard` into `engines/framework-applicability.js` and `engines/strategic-protocol.js`, binding them to KBLI 2020 5-digit codes and the 5 canonical business archetypes.
+- **P0 — Root SDK & TypeScript Parity (`index.js` & `index.d.ts`)**: Exported `evaluateQuantitativeSwot` and `evaluateBalancedScorecard` on root SDK and `strategy` namespace, alongside comprehensive TypeScript declarations and interfaces.
+- **P0 — Multi-Interface Uniformity (MCP, CLI & REST)**: Expanded MCP Server from 30 to 32 tools (`calc_quantitative_swot`, `calc_balanced_scorecard`), CLI from 40 to 42 commands (`calc swot`, `calc bsc`), and REST server from 45 to 47 endpoints (`/api/v1/strategy/quantitative-swot`, `/api/v1/strategy/balanced-scorecard`) with updated OpenAPI 3.1 definitions.
+- **All artifacts synchronized to v6.19.0**: `package.json`, `package-lock.json`, `canonical-metadata.json`, `registry/index.json`, `registry/capabilities.json`, all 5 `bundles/*.json`, `README.md`, `docs/METRICS.md`, `docs/BENCHMARK.md`.
+
 ## [6.18.0] - 2026-10-21
 
 ### Apex Release: Full 6-Domain Enterprise Expansion, TypeScript Typings, OpenAPI 3.1 & Strategic Framework Extension

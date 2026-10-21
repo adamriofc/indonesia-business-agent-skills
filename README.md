@@ -24,19 +24,19 @@
 <!-- GENERATED:STATS -->
 | Metric | Single Source of Truth Value | Measurement Scope |
 |---|---|---|
-| **Repository Version** | `v6.18.0` | SemVer release boundary |
+| **Repository Version** | `v6.19.0` | SemVer release boundary |
 | **Canonical Plugins** | `6` | Active plugin packages (`legal-id`, `tax-id`, `hr-id`, `finance-id`, `marketing-id`, `strategic-id`) |
-| **Agent Skills** | `88` | Machine-readable `SKILL.md` capability packs |
-| **Deterministic Engines** | `55` | Pure Node.js calculation & regulatory diff engines (`engines/`) |
+| **Agent Skills** | `90` | Machine-readable `SKILL.md` capability packs |
+| **Deterministic Engines** | `57` | Pure Node.js calculation & regulatory diff engines (`engines/`) |
 | **Golden Cases** | `121` | Static corpus cases across 27 benchmark domains |
 | **Benchmark Assertions** | `434` | Deterministic assertions in `tests/benchmarks/` |
-| **Total Test Assertions** | `755+` | Deepened matrix assertions across full `npm test` suite |
+| **Total Test Assertions** | `818+` | Deepened matrix assertions across full `npm test` suite |
 | **Node.js Compatibility** | `20 / 22 / 24` | `20` (Minimum), `22` (LTS Recommended), `24` (Current Tested) |
 <!-- /GENERATED:STATS -->
 
 > **Evidence Boundary Note**: Independent external domain validation and enterprise production proof are still pending.
 
-**Indonesia Business Agent Skills** is an open-source domain-intelligence infrastructure designed to give AI agents an authentic Indonesian business and regulatory intelligence layer. Built for **OpenWork Desktop**, **OpenCode CLI**, **Claude Code (CLI)**, **Cursor IDE**, **Codex**, **OpenClaw**, **Hermes**, and custom agent frameworks, this repository integrates **88 Agent Skills** across **6 canonical plugins** (`legal-id`, `tax-id`, `hr-id`, `finance-id`, `marketing-id`, `strategic-id`) with **55 Deterministic Computational & Regulatory Diff Engines** (`engines/`) and single-source-of-truth temporal JSON rulesets (`engines/rules/`).
+**Indonesia Business Agent Skills** is an open-source domain-intelligence infrastructure designed to give AI agents an authentic Indonesian business and regulatory intelligence layer. Built for **OpenWork Desktop**, **OpenCode CLI**, **Claude Code (CLI)**, **Cursor IDE**, **Codex**, **OpenClaw**, **Hermes**, and custom agent frameworks, this repository integrates **90 Agent Skills** across **6 canonical plugins** (`legal-id`, `tax-id`, `hr-id`, `finance-id`, `marketing-id`, `strategic-id`) with **57 Deterministic Computational & Regulatory Diff Engines** (`engines/`) and single-source-of-truth temporal JSON rulesets (`engines/rules/`).
 
 ### 💡 Why Standard LLMs Fail at Indonesia Business & Compliance Calculations
 Generic AI models (such as unassisted ChatGPT or Claude) predict words probabilistically (*token prediction*). When tasked with calculating TER PPh 21 income tax, PHK severance payouts, or corporate loan interest, standard LLMs encounter 3 critical failure modes:
@@ -144,7 +144,7 @@ npx skills add adamriofc/indonesia-business-agent-skills
 **Use case**: Business owners, consultants, enterprise AI agents, general-purpose assistants.
 
 ### Profile B — Finance & Strategy Pack
-> `finance-id` + `strategic-id` · 25 skills
+> `finance-id` + `strategic-id` · 27 skills
 
 ```bash
 npx skills add adamriofc/indonesia-business-agent-skills --domains finance-id,strategic-id
@@ -171,7 +171,7 @@ npx skills add adamriofc/indonesia-business-agent-skills --domains legal-id,tax-
 **Use case**: Legal teams, compliance officers, enterprise governance, PDP/OSS/HAKI audit.
 
 ### Profile E — Go-to-Market Pack
-> `marketing-id` + `finance-id` + `strategic-id` · 52 skills
+> `marketing-id` + `finance-id` + `strategic-id` · 53 skills
 
 ```bash
 npx skills add adamriofc/indonesia-business-agent-skills --domains marketing-id,finance-id,strategic-id
@@ -411,7 +411,7 @@ All skills and computational engines are mapped in the **Machine-Readable Regist
 * `go-to-market`: Formulates structured Go-To-Market (GTM) launch roadmaps, channels, pricing, and acquisition KPIs.
 
 
-### 6. `strategic-id`: Strategic Management & Corporate Strategy (10 Skills)
+### 6. `strategic-id`: Strategic Management & Corporate Strategy (12 Skills)
 * `porter-three-tests`: Evaluates diversification and M&A strategies using Porter's 3 Tests (Attractiveness, Cost of Entry, Better-Off).
 * `porter-five-forces`: Analyzes industry structural attractiveness across Supplier, Buyer, Substitutes, Entrants, and Rivalry.
 * `bcg-matrix`: Portfolio matrix evaluation (Star, Cash Cow, Question Mark, Dog) with deterministic engine scoring.
@@ -422,6 +422,8 @@ All skills and computational engines are mapped in the **Machine-Readable Regist
 * `decision-making`: Executive decision-making framework powered by Multi-Criteria Decision Analysis (MCDA) weighted scoring.
 * `scenario-planning`: Evaluates macro/micro What-If scenarios using deterministic sensitivity simulation math.
 * `strategic-risk-analysis`: Computes corporate strategic risk scores (Likelihood x Impact x Velocity) to generate risk heatmaps.
+* `quantitative-swot`: Evaluates internal capabilities (IFE) and external environment (EFE) via Quantitative SWOT and TOWS Matrix to compute strategic vector coordinates (ΔX, ΔY), posture quadrant, and cross-impact ranking.
+* `balanced-scorecard`: Evaluates multi-perspective corporate performance via Balanced Scorecard (BSC) with Min/Max polarity, KMK statutory 120% cap rules, and causal broken-link detection.
 
 ---
 

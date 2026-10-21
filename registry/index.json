@@ -1,14 +1,14 @@
 {
-  "version": "6.18.0",
-  "generated_at": "2026-10-20T17:00:00.000Z",
+  "version": "6.19.0",
+  "generated_at": "2026-10-22T00:00:00.000Z",
   "repository": "https://github.com/adamriofc/indonesia-business-agent-skills",
   "total_plugins": 6,
-  "total_skills": 88,
-  "total_engines": 55,
+  "total_skills": 90,
+  "total_engines": 57,
   "quality_tiers": {
     "tested": 18,
     "source-verified": 31,
-    "expert-reviewed": 38
+    "expert-reviewed": 40
   },
   "skills": [
     {
@@ -7283,6 +7283,177 @@
         }
       },
       "canonical_id": "strategic.strategic-risk-analysis"
+    },
+    {
+      "id": "quantitative-swot",
+      "name": "quantitative-swot",
+      "plugin": "strategic-id",
+      "domain": "strategic",
+      "type": "evaluation",
+      "quality_tier": "expert-reviewed",
+      "risk_level": "MEDIUM",
+      "rule_type": "professional-standard",
+      "engine": "engines/quantitative-swot-engine.js",
+      "capability": {
+        "purpose": [
+          "framework_evaluation",
+          "strategic_positioning",
+          "tows_matrix"
+        ],
+        "not_for": [
+          "unverified_market_speculation",
+          "subjective_consulting_opinion"
+        ],
+        "requires": [
+          {
+            "name": "internalFactors",
+            "type": "object",
+            "required": true
+          },
+          {
+            "name": "externalFactors",
+            "type": "object",
+            "required": true
+          }
+        ],
+        "produces": [
+          {
+            "name": "ifeScore",
+            "type": "number"
+          },
+          {
+            "name": "efeScore",
+            "type": "number"
+          },
+          {
+            "name": "deltaX",
+            "type": "number"
+          },
+          {
+            "name": "deltaY",
+            "type": "number"
+          },
+          {
+            "name": "quadrant",
+            "type": "enum"
+          },
+          {
+            "name": "strategicPosture",
+            "type": "enum"
+          },
+          {
+            "name": "towsRanking",
+            "type": "object"
+          }
+        ],
+        "consumes": [
+          "context.businessArchetype"
+        ],
+        "deterministic": true,
+        "risk": {
+          "level": "medium",
+          "human_review_required": false
+        },
+        "cross_domain_relevance": {
+          "finance": {
+            "relevance": "high",
+            "outputs": ["deltaX", "deltaY"]
+          },
+          "marketing": {
+            "relevance": "high",
+            "outputs": ["quadrant", "towsRanking"]
+          },
+          "hr": {
+            "relevance": "medium",
+            "outputs": ["ifeScore"]
+          },
+          "tax": {
+            "relevance": "low",
+            "outputs": []
+          }
+        }
+      },
+      "canonical_id": "strategic.quantitative-swot"
+    },
+    {
+      "id": "balanced-scorecard",
+      "name": "balanced-scorecard",
+      "plugin": "strategic-id",
+      "domain": "strategic",
+      "type": "evaluation",
+      "quality_tier": "expert-reviewed",
+      "risk_level": "HIGH",
+      "rule_type": "statutory-regulatory",
+      "engine": "engines/balanced-scorecard-engine.js",
+      "capability": {
+        "purpose": [
+          "performance_management",
+          "strategy_map",
+          "governance_audit"
+        ],
+        "not_for": [
+          "unverified_kpi_fabrication",
+          "discretionary_performance_inflation"
+        ],
+        "requires": [
+          {
+            "name": "sector",
+            "type": "enum",
+            "required": true
+          },
+          {
+            "name": "perspectives",
+            "type": "array",
+            "required": true
+          }
+        ],
+        "produces": [
+          {
+            "name": "compositeBscScore",
+            "type": "number"
+          },
+          {
+            "name": "compositeStatus",
+            "type": "enum"
+          },
+          {
+            "name": "perspectiveScores",
+            "type": "array"
+          },
+          {
+            "name": "strategyMapDiagnostics",
+            "type": "object"
+          }
+        ],
+        "consumes": [
+          "context.businessArchetype",
+          "finance.netProfit"
+        ],
+        "deterministic": true,
+        "risk": {
+          "level": "high",
+          "human_review_required": false
+        },
+        "cross_domain_relevance": {
+          "finance": {
+            "relevance": "high",
+            "outputs": ["compositeBscScore", "perspectiveScores"]
+          },
+          "hr": {
+            "relevance": "high",
+            "outputs": ["perspectiveScores", "strategyMapDiagnostics"]
+          },
+          "marketing": {
+            "relevance": "high",
+            "outputs": ["perspectiveScores"]
+          },
+          "legal": {
+            "relevance": "medium",
+            "outputs": ["strategyMapDiagnostics"]
+          }
+        }
+      },
+      "canonical_id": "strategic.balanced-scorecard"
     },
     {
       "id": "market-sizing",

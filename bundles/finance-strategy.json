@@ -2,32 +2,32 @@
   "bundle_id": "finance-strategy",
   "name": "Finance & Strategy Pack",
   "profile": "finance-strategy",
-  "version": "6.18.0",
+  "version": "6.19.0",
   "description": "Investment analysis, financial modeling, business feasibility, capital budgeting, strategic frameworks, scenario planning — for consultants, investors, and business strategists.",
   "plugins": [
     {
       "id": "finance-id",
       "name": "Finance Intelligence",
-      "version": "6.18.0",
+      "version": "6.19.0",
       "domain": "finance",
       "skills": 15
     },
     {
       "id": "strategic-id",
       "name": "Strategic Intelligence",
-      "version": "6.18.0",
+      "version": "6.19.0",
       "domain": "strategic",
-      "skills": 10
+      "skills": 12
     }
   ],
   "shared": {
-    "engines": 55,
+    "engines": 57,
     "capabilityCatalog": "registry/capabilities.json"
   },
   "totals": {
     "plugins": 2,
-    "skills": 25,
-    "engines": 55
+    "skills": 27,
+    "engines": 57
   },
   "use_cases": [
     "Investment feasibility & NPV/IRR modeling",

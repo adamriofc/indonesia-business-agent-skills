@@ -33,9 +33,13 @@ function runTypeScriptTypingsTests() {
   assert.ok(content.includes('export function calculateDailyOvertime'), "Missing calculateDailyOvertime function export");
   assert.ok(content.includes('export function auditContractRisk'), "Missing auditContractRisk function export");
   assert.ok(content.includes('export function auditBusinessHealth'), "Missing auditBusinessHealth function export");
+  assert.ok(content.includes('export function evaluateQuantitativeSwot'), "Missing evaluateQuantitativeSwot function export");
+  assert.ok(content.includes('export function evaluateBalancedScorecard'), "Missing evaluateBalancedScorecard function export");
 
   // Verify runtime-types parity with index.js exports
   const sdk = require('../../index');
+  assert.strictEqual(typeof sdk.evaluateQuantitativeSwot, 'function', "sdk.evaluateQuantitativeSwot must be exported as a function");
+  assert.strictEqual(typeof sdk.evaluateBalancedScorecard, 'function', "sdk.evaluateBalancedScorecard must be exported as a function");
   assert.strictEqual(typeof sdk.calculateOvertime, 'function', "sdk.calculateOvertime must be exported as a function");
   assert.strictEqual(typeof sdk.calculateDailyOvertime, 'function', "sdk.calculateDailyOvertime must be exported as a function");
   assert.strictEqual(sdk.calculateOvertime, sdk.calculateDailyOvertime, "sdk.calculateOvertime must be an alias for calculateDailyOvertime");

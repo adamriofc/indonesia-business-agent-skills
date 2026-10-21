@@ -62,6 +62,22 @@ function applyStrategicProtocol({
       applicabilityStatus = 'ADAPTABLE';
       applicabilityNote = 'Porter Three Tests adapted to intangible talent/knowledge synergies & network effects.';
     }
+  } else if (frameworkName === 'quantitative-swot') {
+    if (archetype === 'PRODUCT_MANUFACTURING') {
+      applicabilityStatus = 'NATIVE';
+      applicabilityNote = 'Quantitative SWOT applies natively using plant utilization and commodity exposure.';
+    } else {
+      applicabilityStatus = 'ADAPTABLE';
+      applicabilityNote = 'Quantitative SWOT adapted to archetype-specific internal capabilities and external market dynamics.';
+    }
+  } else if (frameworkName === 'balanced-scorecard') {
+    if (archetype === 'PRODUCT_MANUFACTURING') {
+      applicabilityStatus = 'NATIVE';
+      applicabilityNote = 'Balanced Scorecard applies natively across manufacturing operations, OEE, and financial linkage.';
+    } else {
+      applicabilityStatus = 'ADAPTABLE';
+      applicabilityNote = 'Balanced Scorecard adapted across multi-perspective KPIs tailored to business archetype.';
+    }
   }
 
   // 3. Evidence Sufficiency Verification

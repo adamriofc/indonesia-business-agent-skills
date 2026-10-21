@@ -287,6 +287,8 @@ const ENDPOINT_MAP = {
   }),
 
   // Strategy & Institutional
+  '/api/v1/strategy/quantitative-swot': (body) => sdk.evaluateQuantitativeSwot(body),
+  '/api/v1/strategy/balanced-scorecard': (body) => sdk.evaluateBalancedScorecard(body),
   '/api/v1/audit/strategy-stress-test': (body) => sdk.stressTestEnterprise({
     baseFinancials: body.baseFinancials || {},
     strategyShocks: body.strategyShocks || {}

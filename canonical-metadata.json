@@ -1,18 +1,18 @@
 {
   "schemaVersion": "1.0.0",
-  "version": "6.18.0",
+  "version": "6.19.0",
   "plugins": 6,
-  "skills": 88,
-  "engines": 55,
+  "skills": 90,
+  "engines": 57,
   "goldenCases": 121,
   "benchmarkDomains": 27,
   "benchmarkAssertions": 434,
-  "totalTestAssertions": 755,
+  "totalTestAssertions": 818,
   "nodeSupport": {
     "minimumSupported": "20",
     "ltsRecommended": "22",
     "currentTested": "24"
   },
-  "generatedAt": "2026-10-21T16:34:55.744Z",
+  "generatedAt": "2026-10-21T19:25:51.795Z",
   "generator": "scripts/generate-metadata.js"
 }

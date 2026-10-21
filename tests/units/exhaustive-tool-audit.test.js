@@ -8,7 +8,7 @@ const ROOT = path.join(__dirname, '../..');
 const ENGINES = path.join(ROOT, 'engines');
 
 async function testAllMcpTools() {
-  console.log("🤖 [1/3] EXHAUSTIVE AUDIT: Testing all 30 MCP Tools in bin/mcp-server.js...");
+  console.log("🤖 [1/3] EXHAUSTIVE AUDIT: Testing all 32 MCP Tools in bin/mcp-server.js...");
 
   const serverProc = spawn('node', [path.join(ROOT, 'bin/mcp-server.js')], {
     stdio: ['pipe', 'pipe', 'pipe']
@@ -56,7 +56,40 @@ async function testAllMcpTools() {
     { name: "audit_contract_risk", args: { contractText: "Perjanjian Kerjasama batasan tanggung jawab maksimal sebesar nilai kontrak" } },
     { name: "audit_identity", args: { identity: "3171011508900001" } },
     { name: "audit_business_health", args: { tax: { hasAnnualSpt: true }, hr: { paysUmp: true } } },
-    { name: "route_oss_rba", args: { kbliCode: "70209" } }
+    { name: "route_oss_rba", args: { kbliCode: "70209" } },
+    {
+      name: "calc_quantitative_swot",
+      args: {
+        internal: {
+          strengths: [{ factor: "Inovasi", weight: 0.6, rating: 4 }],
+          weaknesses: [{ factor: "Biaya", weight: 0.4, rating: 2 }]
+        },
+        external: {
+          opportunities: [{ factor: "Pasar", weight: 0.6, rating: 4 }],
+          threats: [{ factor: "Pesaing", weight: 0.4, rating: 2 }]
+        }
+      }
+    },
+    {
+      name: "calc_balanced_scorecard",
+      args: {
+        sector: "PRIVATE_COMMERCIAL",
+        perspectives: [
+          {
+            id: "financial",
+            name: "Finansial",
+            weight: 0.5,
+            kpis: [{ code: "F1", name: "Profit", weight: 1.0, target: 100, actual: 110, polarity: "MAXIMIZE" }]
+          },
+          {
+            id: "customer",
+            name: "Customer",
+            weight: 0.5,
+            kpis: [{ code: "C1", name: "CSAT", weight: 1.0, target: 80, actual: 85, polarity: "MAXIMIZE" }]
+          }
+        ]
+      }
+    }
   ];
 
   for (let i = 0; i < testCalls.length; i++) {
@@ -80,7 +113,7 @@ async function testAllMcpTools() {
 
   const listRes = responses.find(r => r.id === 'list');
   assert.ok(listRes && listRes.result && listRes.result.tools, "tools/list failed");
-  assert.strictEqual(listRes.result.tools.length, 30, `Expected 30 tools, got ${listRes.result.tools.length}`);
+  assert.strictEqual(listRes.result.tools.length, 32, `Expected 32 tools, got ${listRes.result.tools.length}`);
 
   let successCount = 0;
   for (let i = 0; i < testCalls.length; i++) {
@@ -93,7 +126,7 @@ async function testAllMcpTools() {
     successCount++;
   }
 
-  console.log(`  ✓ All ${successCount}/30 MCP tools executed and returned valid deterministic data!`);
+  console.log(`  ✓ All ${successCount}/32 MCP tools executed and returned valid deterministic data!`);
 }
 
 function testAllCliCommands() {
@@ -127,6 +160,8 @@ function testAllCliCommands() {
     "calc wacc --equity 600000000 --debt 400000000 --cost-equity 15 --cost-debt 9",
     "calc true-roas --price 100000 --cogs 40000 --ad-spend 15000",
     "calc landed-cost --fob 10000 --duty 10",
+    "calc swot",
+    "calc bsc",
     "audit pkwtt --wage 6000000 --probation 2 --contract pkwtt",
     "audit thincap --debt 2000000000 --equity 1000000000 --interest 200000000",
     "audit compliance --annual-spt true --pays-ump true",
@@ -159,7 +194,7 @@ function testAllCliCommands() {
 }
 
 async function testAllRestEndpoints() {
-  console.log("\n🌐 [3/3] EXHAUSTIVE AUDIT: Testing all 45 REST Endpoints in bin/server.js...");
+  console.log("\n🌐 [3/3] EXHAUSTIVE AUDIT: Testing all 47 REST Endpoints in bin/server.js...");
 
   const { startServer, ENDPOINT_MAP } = require(path.join(ROOT, 'bin/server.js'));
   const server = await startServer({ port: 0, host: '127.0.0.1' });
@@ -226,7 +261,7 @@ async function testAllRestEndpoints() {
 
 async function main() {
   console.log("===================================================================");
-  console.log("🛡️  EXHAUSTIVE REAL-WORLD AUDIT SUITE FOR ALL TOOLS (v6.18.0)");
+  console.log("🛡️  EXHAUSTIVE REAL-WORLD AUDIT SUITE FOR ALL TOOLS (v6.19.0)");
   console.log("===================================================================\n");
 
   await testAllMcpTools();

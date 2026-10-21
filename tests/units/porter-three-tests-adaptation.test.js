@@ -36,6 +36,38 @@ function runPorterThreeTestsAdaptationTests() {
   assert.strictEqual(protocolRes.applicability.status, 'ADAPTABLE');
   assert.ok(protocolRes.applicability.applicabilityNote.includes('capacity utilization model'));
 
+  // 4. Quantitative SWOT Applicability & Protocol Verification
+  const swotMfg = checkFrameworkApplicability({
+    frameworkName: 'quantitative-swot',
+    kbliCode: '10710'
+  });
+  assert.strictEqual(swotMfg.businessArchetype, 'PRODUCT_MANUFACTURING');
+  assert.strictEqual(swotMfg.applicabilityStatus, 'NATIVE');
+  assert.strictEqual(swotMfg.unitOfAnalysis, 'PHYSICAL_PRODUCT_LINE');
+
+  const swotServiceProto = applyStrategicProtocol({
+    frameworkName: 'quantitative-swot',
+    kbliCode: '70209',
+    activityName: 'Konsultasi Manajemen'
+  });
+  assert.strictEqual(swotServiceProto.applicability.status, 'ADAPTABLE');
+
+  // 5. Balanced Scorecard Applicability & Protocol Verification
+  const bscMfg = checkFrameworkApplicability({
+    frameworkName: 'balanced-scorecard',
+    kbliCode: '10710'
+  });
+  assert.strictEqual(bscMfg.businessArchetype, 'PRODUCT_MANUFACTURING');
+  assert.strictEqual(bscMfg.applicabilityStatus, 'NATIVE');
+  assert.strictEqual(bscMfg.unitOfAnalysis, 'MANUFACTURING_OPERATIONS_SCORECARD');
+
+  const bscServiceProto = applyStrategicProtocol({
+    frameworkName: 'balanced-scorecard',
+    kbliCode: '70209',
+    activityName: 'Konsultasi Manajemen'
+  });
+  assert.strictEqual(bscServiceProto.applicability.status, 'ADAPTABLE');
+
   console.log("✅ Porter's Three Tests Adaptation Tests PASSED 100%!");
 }
 

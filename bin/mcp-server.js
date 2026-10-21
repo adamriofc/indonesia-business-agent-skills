@@ -53,7 +53,9 @@ const engines = {
   roas: () => require(path.join(ENGINES, 'roas-contribution-engine')),
   landedCost: () => require(path.join(ENGINES, 'landed-cost-calculator')),
   strategyStress: () => require(path.join(ENGINES, 'strategy-stress-tester')),
-  businessHealth: () => require(path.join(ENGINES, 'business-health-oracle'))
+  businessHealth: () => require(path.join(ENGINES, 'business-health-oracle')),
+  quantitativeSwot: () => require(path.join(ENGINES, 'quantitative-swot-engine')),
+  balancedScorecard: () => require(path.join(ENGINES, 'balanced-scorecard-engine'))
 };
 
 const TOOLS = [
@@ -475,6 +477,119 @@ const TOOLS = [
       },
       required: ["kbliCode"]
     }
+  },
+  {
+    name: "calc_quantitative_swot",
+    description: "Evaluate internal (IFE) and external (EFE) strategic position, strategic vector (ΔX, ΔY), posture quadrant, and TOWS cross-impact ranking.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        internal: {
+          type: "object",
+          description: "Internal factors with strengths and weaknesses arrays (weight sum must equal 1.0, ratings 1.0-4.0)",
+          properties: {
+            strengths: {
+              type: "array",
+              items: {
+                type: "object",
+                properties: {
+                  factor: { type: "string" },
+                  weight: { type: "number" },
+                  rating: { type: "number" }
+                },
+                required: ["factor", "weight", "rating"]
+              }
+            },
+            weaknesses: {
+              type: "array",
+              items: {
+                type: "object",
+                properties: {
+                  factor: { type: "string" },
+                  weight: { type: "number" },
+                  rating: { type: "number" }
+                },
+                required: ["factor", "weight", "rating"]
+              }
+            }
+          },
+          required: ["strengths", "weaknesses"]
+        },
+        external: {
+          type: "object",
+          description: "External factors with opportunities and threats arrays (weight sum must equal 1.0, ratings 1.0-4.0)",
+          properties: {
+            opportunities: {
+              type: "array",
+              items: {
+                type: "object",
+                properties: {
+                  factor: { type: "string" },
+                  weight: { type: "number" },
+                  rating: { type: "number" }
+                },
+                required: ["factor", "weight", "rating"]
+              }
+            },
+            threats: {
+              type: "array",
+              items: {
+                type: "object",
+                properties: {
+                  factor: { type: "string" },
+                  weight: { type: "number" },
+                  rating: { type: "number" }
+                },
+                required: ["factor", "weight", "rating"]
+              }
+            }
+          },
+          required: ["opportunities", "threats"]
+        }
+      },
+      required: ["internal", "external"]
+    }
+  },
+  {
+    name: "calc_balanced_scorecard",
+    description: "Evaluate Balanced Scorecard (BSC) multi-perspective performance with Min/Max polarity, statutory 120% cap ratio (KMK 467/2014), and strategy map causal broken link detection.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        sector: { type: "string", enum: ["PRIVATE_COMMERCIAL", "PUBLIC_GOVERNMENT_BUMN"], default: "PRIVATE_COMMERCIAL" },
+        capRatio: { type: "number", default: 120.0, description: "Cap ratio percent ceiling (default 120.0 per KMK 467/2014)" },
+        perspectives: {
+          type: "array",
+          description: "Array of perspectives with weights (summing to 1.0) and KPIs",
+          items: {
+            type: "object",
+            properties: {
+              id: { type: "string" },
+              name: { type: "string" },
+              weight: { type: "number" },
+              kpis: {
+                type: "array",
+                items: {
+                  type: "object",
+                  properties: {
+                    code: { type: "string" },
+                    name: { type: "string" },
+                    weight: { type: "number" },
+                    target: { type: "number" },
+                    actual: { type: "number" },
+                    polarity: { type: "string", enum: ["MAXIMIZE", "MINIMIZE"], default: "MAXIMIZE" },
+                    unit: { type: "string" }
+                  },
+                  required: ["code", "weight", "target", "actual"]
+                }
+              }
+            },
+            required: ["name", "weight", "kpis"]
+          }
+        }
+      },
+      required: ["perspectives"]
+    }
   }
 ];
 
@@ -649,6 +764,14 @@ function handleToolCall(name, args) {
     case "route_oss_rba": {
       const fn = engines.ossRba().resolveOssRisk;
       return fn(args.kbliCode);
+    }
+    case "calc_quantitative_swot": {
+      const fn = engines.quantitativeSwot().evaluateQuantitativeSwot;
+      return fn(args);
+    }
+    case "calc_balanced_scorecard": {
+      const fn = engines.balancedScorecard().evaluateBalancedScorecard;
+      return fn(args);
     }
     default:
       throw new Error(`Unknown tool '${name}'`);

@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Indonesia Business Agent Skills REST API",
-    "version": "6.18.0",
+    "version": "6.19.0",
     "description": "Production-grade, deterministic REST API microservice for Indonesian tax, labor, finance, commercial, and legal calculations. Zero external dependencies.",
     "license": {
       "name": "MIT",
@@ -248,6 +248,57 @@
         },
         "responses": {
           "200": { "description": "KBLI resolved" }
+        }
+      }
+    },
+    "/api/v1/strategy/quantitative-swot": {
+      "post": {
+        "summary": "Quantitative SWOT & TOWS Matrix Evaluation",
+        "description": "Evaluates internal (IFE) and external (EFE) strategic position, vector coordinates (ΔX, ΔY), posture quadrant, and TOWS cross-impact ranking.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["internal", "external"],
+                "properties": {
+                  "internal": { "type": "object" },
+                  "external": { "type": "object" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Quantitative SWOT evaluation successful" },
+          "400": { "description": "Invalid input parameters" }
+        }
+      }
+    },
+    "/api/v1/strategy/balanced-scorecard": {
+      "post": {
+        "summary": "Balanced Scorecard Evaluation & Strategy Map Broken Link Audit",
+        "description": "Evaluates multi-perspective corporate performance with Min/Max polarity, statutory 120% cap ratio (KMK 467/2014), and causal broken-link detection.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["perspectives"],
+                "properties": {
+                  "sector": { "type": "string", "enum": ["PRIVATE_COMMERCIAL", "PUBLIC_GOVERNMENT_BUMN"], "default": "PRIVATE_COMMERCIAL" },
+                  "capRatio": { "type": "number", "default": 120.0 },
+                  "perspectives": { "type": "array" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Balanced Scorecard evaluation successful" },
+          "400": { "description": "Invalid input parameters" }
         }
       }
     }

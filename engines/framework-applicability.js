@@ -34,6 +34,20 @@ const FRAMEWORK_APPLICABILITY_MATRIX = {
     CAPACITY_SERVICE: { status: 'ADAPTABLE', recommendationLevel: 'ADAPTABLE', unitOfAnalysis: 'TECH_PLATFORM_VS_CAPACITY_SLOT', metric: 'Platform Setup Efficiency vs Slot/Capacity Utilization Model' },
     MARKETPLACE_PLATFORM: { status: 'ADAPTABLE', recommendationLevel: 'ADAPTABLE', unitOfAnalysis: 'PLATFORM_NETWORK_INFRASTRUCTURE', metric: 'Two-Sided Network Effects Synergy' },
     HYBRID: { status: 'ADAPTABLE', recommendationLevel: 'ADAPTABLE', unitOfAnalysis: 'INTEGRATED_BUSINESS_PORTFOLIO', metric: 'Integrated DCF Sensitivity NPV 3-Scenarios vs Cross-Selling' }
+  },
+  'quantitative-swot': {
+    PRODUCT_MANUFACTURING: { status: 'NATIVE', recommendationLevel: 'RECOMMENDED', unitOfAnalysis: 'PHYSICAL_PRODUCT_LINE', metric: 'Plant Utilization & Input Commodity Exposure' },
+    PROFESSIONAL_SERVICE: { status: 'ADAPTABLE', recommendationLevel: 'ADAPTABLE', unitOfAnalysis: 'SERVICE_LINE_PRACTICE_AREA', metric: 'Talent Retention & Corporate Service Expenditure' },
+    CAPACITY_SERVICE: { status: 'ADAPTABLE', recommendationLevel: 'ADAPTABLE', unitOfAnalysis: 'CAPACITY_SLOT_OR_PLATFORM', metric: 'Platform Scalability vs Slot Occupancy' },
+    MARKETPLACE_PLATFORM: { status: 'ADAPTABLE', recommendationLevel: 'ADAPTABLE', unitOfAnalysis: 'DIGITAL_NETWORK_CHANNEL', metric: 'Buyer-Seller Liquidity & Payment Infrastructure' },
+    HYBRID: { status: 'ADAPTABLE', recommendationLevel: 'ADAPTABLE', unitOfAnalysis: 'STRATEGIC_BUSINESS_UNIT', metric: 'Cross-Unit Synergy & Diversified Risk' }
+  },
+  'balanced-scorecard': {
+    PRODUCT_MANUFACTURING: { status: 'NATIVE', recommendationLevel: 'RECOMMENDED', unitOfAnalysis: 'MANUFACTURING_OPERATIONS_SCORECARD', metric: 'OEE, Scrap Rate, Lead Time & Working Capital' },
+    PROFESSIONAL_SERVICE: { status: 'ADAPTABLE', recommendationLevel: 'ADAPTABLE', unitOfAnalysis: 'PRACTICE_HEALTH_SCORECARD', metric: 'Billable Utilization, Project Margin & Knowledge Reuse' },
+    CAPACITY_SERVICE: { status: 'ADAPTABLE', recommendationLevel: 'ADAPTABLE', unitOfAnalysis: 'CAPACITY_YIELD_SCORECARD', metric: 'RevPAU, Platform Uptime & Slot Turnover' },
+    MARKETPLACE_PLATFORM: { status: 'ADAPTABLE', recommendationLevel: 'ADAPTABLE', unitOfAnalysis: 'ECOSYSTEM_HEALTH_SCORECARD', metric: 'GMV Take Rate, Merchant Retention & Order Dispute Latency' },
+    HYBRID: { status: 'ADAPTABLE', recommendationLevel: 'ADAPTABLE', unitOfAnalysis: 'CORPORATE_ENTERPRISE_SCORECARD', metric: 'Consolidated EBITDA, Strategy Map Linkage & Portfolio Health' }
   }
 };
 

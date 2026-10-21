@@ -1,11 +1,12 @@
 {
   "schemaVersion": "1.0.0",
-  "generatedAt": "2026-08-14T23:23:18.210Z",
+  "generatedAt": "2026-10-21T19:22:53.933Z",
   "repository": "https://github.com/adamriofc/indonesia-business-agent-skills",
-  "total_capabilities": 88,
+  "total_capabilities": 90,
   "capabilities": [
     {
       "id": "accounting-basics",
+      "canonical_id": "finance.accounting-basics",
       "skillName": "accounting-basics",
       "plugin": "finance-id",
       "domain": "finance",
@@ -53,11 +54,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "finance.accounting-basics"
+      }
     },
     {
       "id": "break-even-analysis",
+      "canonical_id": "finance.break-even-analysis",
       "skillName": "break-even-analysis",
       "plugin": "finance-id",
       "domain": "finance",
@@ -128,11 +129,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "finance.break-even-analysis"
+      }
     },
     {
       "id": "budgeting-forecasting",
+      "canonical_id": "finance.budgeting-forecasting",
       "skillName": "budgeting-forecasting",
       "plugin": "finance-id",
       "domain": "finance",
@@ -194,11 +195,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "finance.budgeting-forecasting"
+      }
     },
     {
       "id": "business-feasibility",
+      "canonical_id": "finance.business-feasibility",
       "skillName": "business-feasibility",
       "plugin": "finance-id",
       "domain": "finance",
@@ -264,11 +265,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "finance.business-feasibility"
+      }
     },
     {
       "id": "business-scenario",
+      "canonical_id": "finance.business-scenario",
       "skillName": "business-scenario",
       "plugin": "finance-id",
       "domain": "finance",
@@ -335,11 +336,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "finance.business-scenario"
+      }
     },
     {
       "id": "capital-budgeting",
+      "canonical_id": "finance.capital-budgeting",
       "skillName": "capital-budgeting",
       "plugin": "finance-id",
       "domain": "finance",
@@ -401,11 +402,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "finance.capital-budgeting"
+      }
     },
     {
       "id": "cash-flow-analysis",
+      "canonical_id": "finance.cash-flow-analysis",
       "skillName": "cash-flow-analysis",
       "plugin": "finance-id",
       "domain": "finance",
@@ -467,11 +468,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "finance.cash-flow-analysis"
+      }
     },
     {
       "id": "cost-accounting",
+      "canonical_id": "finance.cost-accounting",
       "skillName": "cost-accounting",
       "plugin": "finance-id",
       "domain": "finance",
@@ -533,11 +534,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "finance.cost-accounting"
+      }
     },
     {
       "id": "decision-engine",
+      "canonical_id": "finance.decision-engine",
       "skillName": "decision-engine",
       "plugin": "finance-id",
       "domain": "finance",
@@ -614,11 +615,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "finance.decision-engine"
+      }
     },
     {
       "id": "financial-modeling",
+      "canonical_id": "finance.financial-modeling",
       "skillName": "financial-modeling",
       "plugin": "finance-id",
       "domain": "finance",
@@ -675,11 +676,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "finance.financial-modeling"
+      }
     },
     {
       "id": "financial-ratio-analysis",
+      "canonical_id": "finance.financial-ratio-analysis",
       "skillName": "financial-ratio-analysis",
       "plugin": "finance-id",
       "domain": "finance",
@@ -740,11 +741,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "finance.financial-ratio-analysis"
+      }
     },
     {
       "id": "financial-statements",
+      "canonical_id": "finance.financial-statements",
       "skillName": "financial-statements",
       "plugin": "finance-id",
       "domain": "finance",
@@ -801,11 +802,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "finance.financial-statements"
+      }
     },
     {
       "id": "unit-economics",
+      "canonical_id": "finance.unit-economics",
       "skillName": "unit-economics",
       "plugin": "finance-id",
       "domain": "finance",
@@ -871,11 +872,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "finance.unit-economics"
+      }
     },
     {
       "id": "vc-term-sheet-waterfall",
+      "canonical_id": "finance.vc-term-sheet-waterfall",
       "skillName": "vc-term-sheet-waterfall",
       "plugin": "finance-id",
       "domain": "finance",
@@ -937,11 +938,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "finance.vc-term-sheet-waterfall"
+      }
     },
     {
       "id": "working-capital",
+      "canonical_id": "finance.working-capital",
       "skillName": "working-capital",
       "plugin": "finance-id",
       "domain": "finance",
@@ -1008,11 +1009,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "finance.working-capital"
+      }
     },
     {
       "id": "bpjs-calculator",
+      "canonical_id": "hr.bpjs-calculator",
       "skillName": "bpjs-calculator",
       "plugin": "hr-id",
       "domain": "hr",
@@ -1068,11 +1069,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "hr.bpjs-calculator"
+      }
     },
     {
       "id": "bpjs-tenagakerja-admin",
+      "canonical_id": "hr.bpjs-tenagakerja-admin",
       "skillName": "bpjs-tenagakerja-admin",
       "plugin": "hr-id",
       "domain": "hr",
@@ -1120,11 +1121,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "hr.bpjs-tenagakerja-admin"
+      }
     },
     {
       "id": "interview-id",
+      "canonical_id": "hr.interview-id",
       "skillName": "interview-id",
       "plugin": "hr-id",
       "domain": "hr",
@@ -1177,11 +1178,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "hr.interview-id"
+      }
     },
     {
       "id": "phk-advanced-matrix",
+      "canonical_id": "hr.phk-advanced-matrix",
       "skillName": "phk-advanced-matrix",
       "plugin": "hr-id",
       "domain": "hr",
@@ -1252,11 +1253,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "hr.phk-advanced-matrix"
+      }
     },
     {
       "id": "phk-calculator",
+      "canonical_id": "hr.phk-calculator",
       "skillName": "phk-calculator",
       "plugin": "hr-id",
       "domain": "hr",
@@ -1323,11 +1324,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "hr.phk-calculator"
+      }
     },
     {
       "id": "pkwt-pkwtt-checker",
+      "canonical_id": "hr.pkwt-pkwtt-checker",
       "skillName": "pkwt-pkwtt-checker",
       "plugin": "hr-id",
       "domain": "hr",
@@ -1384,11 +1385,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "hr.pkwt-pkwtt-checker"
+      }
     },
     {
       "id": "pkwtt-checker",
+      "canonical_id": "hr.pkwtt-checker",
       "skillName": "pkwtt-checker",
       "plugin": "hr-id",
       "domain": "hr",
@@ -1465,11 +1466,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "hr.pkwtt-checker"
+      }
     },
     {
       "id": "sop-perusahaan",
+      "canonical_id": "hr.sop-perusahaan",
       "skillName": "sop-perusahaan",
       "plugin": "hr-id",
       "domain": "hr",
@@ -1522,11 +1523,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "hr.sop-perusahaan"
+      }
     },
     {
       "id": "spt-tahunan-guide",
+      "canonical_id": "hr.spt-tahunan-guide",
       "skillName": "spt-tahunan-guide",
       "plugin": "hr-id",
       "domain": "hr",
@@ -1579,11 +1580,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "hr.spt-tahunan-guide"
+      }
     },
     {
       "id": "struktur-skala-upah",
+      "canonical_id": "hr.struktur-skala-upah",
       "skillName": "struktur-skala-upah",
       "plugin": "hr-id",
       "domain": "hr",
@@ -1636,11 +1637,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "hr.struktur-skala-upah"
+      }
     },
     {
       "id": "surat-peringatan",
+      "canonical_id": "hr.surat-peringatan",
       "skillName": "surat-peringatan",
       "plugin": "hr-id",
       "domain": "hr",
@@ -1698,11 +1699,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "hr.surat-peringatan"
+      }
     },
     {
       "id": "thr-calculator",
+      "canonical_id": "hr.thr-calculator",
       "skillName": "thr-calculator",
       "plugin": "hr-id",
       "domain": "hr",
@@ -1760,11 +1761,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "hr.thr-calculator"
+      }
     },
     {
       "id": "compliance-risk",
+      "canonical_id": "legal.compliance-risk",
       "skillName": "compliance-risk",
       "plugin": "legal-id",
       "domain": "legal",
@@ -1816,11 +1817,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "legal.compliance-risk"
+      }
     },
     {
       "id": "contract-reviewer",
+      "canonical_id": "legal.contract-reviewer",
       "skillName": "contract-reviewer",
       "plugin": "legal-id",
       "domain": "legal",
@@ -1872,11 +1873,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "legal.contract-reviewer"
+      }
     },
     {
       "id": "haki-trademark-check",
+      "canonical_id": "legal.haki-trademark-check",
       "skillName": "haki-trademark-check",
       "plugin": "legal-id",
       "domain": "legal",
@@ -1933,11 +1934,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "legal.haki-trademark-check"
+      }
     },
     {
       "id": "legal-memo-id",
+      "canonical_id": "legal.legal-memo-id",
       "skillName": "legal-memo-id",
       "plugin": "legal-id",
       "domain": "legal",
@@ -1990,11 +1991,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "legal.legal-memo-id"
+      }
     },
     {
       "id": "nda-indonesia",
+      "canonical_id": "legal.nda-indonesia",
       "skillName": "nda-indonesia",
       "plugin": "legal-id",
       "domain": "legal",
@@ -2052,11 +2053,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "legal.nda-indonesia"
+      }
     },
     {
       "id": "oss-kbli-navigator",
+      "canonical_id": "legal.oss-kbli-navigator",
       "skillName": "oss-kbli-navigator",
       "plugin": "legal-id",
       "domain": "legal",
@@ -2108,11 +2109,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "legal.oss-kbli-navigator"
+      }
     },
     {
       "id": "pdp-compliance",
+      "canonical_id": "legal.pdp-compliance",
       "skillName": "pdp-compliance",
       "plugin": "legal-id",
       "domain": "legal",
@@ -2164,11 +2165,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "legal.pdp-compliance"
+      }
     },
     {
       "id": "somasi-draft-id",
+      "canonical_id": "legal.somasi-draft-id",
       "skillName": "somasi-draft-id",
       "plugin": "legal-id",
       "domain": "legal",
@@ -2231,11 +2232,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "legal.somasi-draft-id"
+      }
     },
     {
       "id": "spk-generator",
+      "canonical_id": "legal.spk-generator",
       "skillName": "spk-generator",
       "plugin": "legal-id",
       "domain": "legal",
@@ -2293,11 +2294,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "legal.spk-generator"
+      }
     },
     {
       "id": "analisis-kompetitor-marketplace",
+      "canonical_id": "marketing.analisis-kompetitor-marketplace",
       "skillName": "analisis-kompetitor-marketplace",
       "plugin": "marketing-id",
       "domain": "marketing",
@@ -2345,11 +2346,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "marketing.analisis-kompetitor-marketplace"
+      }
     },
     {
       "id": "buyer-negotiator",
+      "canonical_id": "marketing.buyer-negotiator",
       "skillName": "buyer-negotiator",
       "plugin": "marketing-id",
       "domain": "marketing",
@@ -2407,11 +2408,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "marketing.buyer-negotiator"
+      }
     },
     {
       "id": "cs-komplain-handler",
+      "canonical_id": "marketing.cs-komplain-handler",
       "skillName": "cs-komplain-handler",
       "plugin": "marketing-id",
       "domain": "marketing",
@@ -2464,11 +2465,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "marketing.cs-komplain-handler"
+      }
     },
     {
       "id": "customer-segmentation",
+      "canonical_id": "marketing.customer-segmentation",
       "skillName": "customer-segmentation",
       "plugin": "marketing-id",
       "domain": "marketing",
@@ -2516,11 +2517,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "marketing.customer-segmentation"
+      }
     },
     {
       "id": "deskripsi-produk-seo",
+      "canonical_id": "marketing.deskripsi-produk-seo",
       "skillName": "deskripsi-produk-seo",
       "plugin": "marketing-id",
       "domain": "marketing",
@@ -2578,11 +2579,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "marketing.deskripsi-produk-seo"
+      }
     },
     {
       "id": "gmb-local-seo",
+      "canonical_id": "marketing.gmb-local-seo",
       "skillName": "gmb-local-seo",
       "plugin": "marketing-id",
       "domain": "marketing",
@@ -2640,11 +2641,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "marketing.gmb-local-seo"
+      }
     },
     {
       "id": "go-to-market",
+      "canonical_id": "marketing.go-to-market",
       "skillName": "go-to-market",
       "plugin": "marketing-id",
       "domain": "marketing",
@@ -2706,11 +2707,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "marketing.go-to-market"
+      }
     },
     {
       "id": "instagram-reels-carousel",
+      "canonical_id": "marketing.instagram-reels-carousel",
       "skillName": "instagram-reels-carousel",
       "plugin": "marketing-id",
       "domain": "marketing",
@@ -2768,11 +2769,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "marketing.instagram-reels-carousel"
+      }
     },
     {
       "id": "jobs-to-be-done",
+      "canonical_id": "marketing.jobs-to-be-done",
       "skillName": "jobs-to-be-done",
       "plugin": "marketing-id",
       "domain": "marketing",
@@ -2824,11 +2825,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "marketing.jobs-to-be-done"
+      }
     },
     {
       "id": "klaim-logistik-retur",
+      "canonical_id": "marketing.klaim-logistik-retur",
       "skillName": "klaim-logistik-retur",
       "plugin": "marketing-id",
       "domain": "marketing",
@@ -2886,11 +2887,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "marketing.klaim-logistik-retur"
+      }
     },
     {
       "id": "kol-brief-contract",
+      "canonical_id": "marketing.kol-brief-contract",
       "skillName": "kol-brief-contract",
       "plugin": "marketing-id",
       "domain": "marketing",
@@ -2948,11 +2949,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "marketing.kol-brief-contract"
+      }
     },
     {
       "id": "linkedin-x-thread-id",
+      "canonical_id": "marketing.linkedin-x-thread-id",
       "skillName": "linkedin-x-thread-id",
       "plugin": "marketing-id",
       "domain": "marketing",
@@ -3005,11 +3006,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "marketing.linkedin-x-thread-id"
+      }
     },
     {
       "id": "lokalisasi-slang-indonesia",
+      "canonical_id": "marketing.lokalisasi-slang-indonesia",
       "skillName": "lokalisasi-slang-indonesia",
       "plugin": "marketing-id",
       "domain": "marketing",
@@ -3062,11 +3063,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "marketing.lokalisasi-slang-indonesia"
+      }
     },
     {
       "id": "margin-pricing-calculator",
+      "canonical_id": "marketing.margin-pricing-calculator",
       "skillName": "margin-pricing-calculator",
       "plugin": "marketing-id",
       "domain": "marketing",
@@ -3138,11 +3139,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "marketing.margin-pricing-calculator"
+      }
     },
     {
       "id": "market-sizing",
+      "canonical_id": "marketing.market-sizing",
       "skillName": "market-sizing",
       "plugin": "marketing-id",
       "domain": "marketing",
@@ -3204,11 +3205,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "marketing.market-sizing"
+      }
     },
     {
       "id": "positioning-analysis",
+      "canonical_id": "marketing.positioning-analysis",
       "skillName": "positioning-analysis",
       "plugin": "marketing-id",
       "domain": "marketing",
@@ -3266,11 +3267,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "marketing.positioning-analysis"
+      }
     },
     {
       "id": "press-release-id",
+      "canonical_id": "marketing.press-release-id",
       "skillName": "press-release-id",
       "plugin": "marketing-id",
       "domain": "marketing",
@@ -3323,11 +3324,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "marketing.press-release-id"
+      }
     },
     {
       "id": "product-classification",
+      "canonical_id": "marketing.product-classification",
       "skillName": "product-classification",
       "plugin": "marketing-id",
       "domain": "marketing",
@@ -3383,11 +3384,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "marketing.product-classification"
+      }
     },
     {
       "id": "script-reels-tiktok",
+      "canonical_id": "marketing.script-reels-tiktok",
       "skillName": "script-reels-tiktok",
       "plugin": "marketing-id",
       "domain": "marketing",
@@ -3440,11 +3441,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "marketing.script-reels-tiktok"
+      }
     },
     {
       "id": "shopee-live-script",
+      "canonical_id": "marketing.shopee-live-script",
       "skillName": "shopee-live-script",
       "plugin": "marketing-id",
       "domain": "marketing",
@@ -3502,11 +3503,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "marketing.shopee-live-script"
+      }
     },
     {
       "id": "shopee-video-creator",
+      "canonical_id": "marketing.shopee-video-creator",
       "skillName": "shopee-video-creator",
       "plugin": "marketing-id",
       "domain": "marketing",
@@ -3559,11 +3560,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "marketing.shopee-video-creator"
+      }
     },
     {
       "id": "tiktok-shop-affiliate",
+      "canonical_id": "marketing.tiktok-shop-affiliate",
       "skillName": "tiktok-shop-affiliate",
       "plugin": "marketing-id",
       "domain": "marketing",
@@ -3621,11 +3622,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "marketing.tiktok-shop-affiliate"
+      }
     },
     {
       "id": "tokopedia-seo-optimizer",
+      "canonical_id": "marketing.tokopedia-seo-optimizer",
       "skillName": "tokopedia-seo-optimizer",
       "plugin": "marketing-id",
       "domain": "marketing",
@@ -3688,11 +3689,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "marketing.tokopedia-seo-optimizer"
+      }
     },
     {
       "id": "voice-of-customer",
+      "canonical_id": "marketing.voice-of-customer",
       "skillName": "voice-of-customer",
       "plugin": "marketing-id",
       "domain": "marketing",
@@ -3744,11 +3745,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "marketing.voice-of-customer"
+      }
     },
     {
       "id": "whatsapp-broadcast",
+      "canonical_id": "marketing.whatsapp-broadcast",
       "skillName": "whatsapp-broadcast",
       "plugin": "marketing-id",
       "domain": "marketing",
@@ -3806,11 +3807,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "marketing.whatsapp-broadcast"
+      }
     },
     {
       "id": "youtube-shorts-script",
+      "canonical_id": "marketing.youtube-shorts-script",
       "skillName": "youtube-shorts-script",
       "plugin": "marketing-id",
       "domain": "marketing",
@@ -3863,11 +3864,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "marketing.youtube-shorts-script"
+      }
     },
     {
       "id": "ansoff-matrix",
+      "canonical_id": "strategic.ansoff-matrix",
       "skillName": "ansoff-matrix",
       "plugin": "strategic-id",
       "domain": "strategic",
@@ -3920,11 +3921,73 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "strategic.ansoff-matrix"
+      }
+    },
+    {
+      "id": "balanced-scorecard",
+      "canonical_id": "strategic.balanced-scorecard",
+      "skillName": "balanced-scorecard",
+      "plugin": "strategic-id",
+      "domain": "strategic",
+      "description": "Evaluates multi-perspective corporate performance via Balanced Scorecard (BSC) with Min/Max polarity, KMK statutory 120% cap rules, and causal broken-link detection.",
+      "risk_level": "HIGH",
+      "rule_type": "statutory-regulatory",
+      "quality_tier": "expert-reviewed",
+      "capability": {
+        "purpose": [
+          "performance_management",
+          "strategy_map",
+          "governance_audit"
+        ],
+        "not_for": [
+          "unverified_kpi_fabrication",
+          "discretionary_performance_inflation"
+        ],
+        "requires": [
+          {
+            "name": "sector",
+            "type": "enum",
+            "required": true
+          },
+          {
+            "name": "perspectives",
+            "type": "array",
+            "required": true
+          }
+        ],
+        "produces": [
+          {
+            "name": "compositeBscScore",
+            "type": "number"
+          },
+          {
+            "name": "compositeStatus",
+            "type": "enum"
+          },
+          {
+            "name": "perspectiveScores",
+            "type": "array"
+          },
+          {
+            "name": "strategyMapDiagnostics",
+            "type": "object"
+          }
+        ],
+        "consumes": [
+          "context.businessArchetype",
+          "finance.netProfit"
+        ],
+        "deterministic": true,
+        "risk": {
+          "level": "HIGH",
+          "human_review_required": false
+        },
+        "cross_domain_relevance": {}
+      }
     },
     {
       "id": "bcg-matrix",
+      "canonical_id": "strategic.bcg-matrix",
       "skillName": "bcg-matrix",
       "plugin": "strategic-id",
       "domain": "strategic",
@@ -3982,11 +4045,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "strategic.bcg-matrix"
+      }
     },
     {
       "id": "decision-making",
+      "canonical_id": "strategic.decision-making",
       "skillName": "decision-making",
       "plugin": "strategic-id",
       "domain": "strategic",
@@ -4034,11 +4097,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "strategic.decision-making"
+      }
     },
     {
       "id": "porter-five-forces",
+      "canonical_id": "strategic.porter-five-forces",
       "skillName": "porter-five-forces",
       "plugin": "strategic-id",
       "domain": "strategic",
@@ -4086,11 +4149,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "strategic.porter-five-forces"
+      }
     },
     {
       "id": "porter-three-tests",
+      "canonical_id": "strategic.porter-three-tests",
       "skillName": "porter-three-tests",
       "plugin": "strategic-id",
       "domain": "strategic",
@@ -4157,11 +4220,84 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "strategic.porter-three-tests"
+      }
+    },
+    {
+      "id": "quantitative-swot",
+      "canonical_id": "strategic.quantitative-swot",
+      "skillName": "quantitative-swot",
+      "plugin": "strategic-id",
+      "domain": "strategic",
+      "description": "Evaluates internal capabilities (IFE) and external environment (EFE) via Quantitative SWOT and TOWS Matrix to compute strategic vector coordinates (ΔX, ΔY), posture quadrant, and cross-impact ranking.",
+      "risk_level": "MEDIUM",
+      "rule_type": "professional-standard",
+      "quality_tier": "expert-reviewed",
+      "capability": {
+        "purpose": [
+          "framework_evaluation",
+          "strategic_positioning",
+          "tows_matrix"
+        ],
+        "not_for": [
+          "unverified_market_speculation",
+          "subjective_consulting_opinion"
+        ],
+        "requires": [
+          {
+            "name": "internalFactors",
+            "type": "object",
+            "required": true
+          },
+          {
+            "name": "externalFactors",
+            "type": "object",
+            "required": true
+          }
+        ],
+        "produces": [
+          {
+            "name": "ifeScore",
+            "type": "number"
+          },
+          {
+            "name": "efeScore",
+            "type": "number"
+          },
+          {
+            "name": "deltaX",
+            "type": "number"
+          },
+          {
+            "name": "deltaY",
+            "type": "number"
+          },
+          {
+            "name": "quadrant",
+            "type": "enum"
+          },
+          {
+            "name": "strategicPosture",
+            "type": "enum"
+          },
+          {
+            "name": "towsRanking",
+            "type": "object"
+          }
+        ],
+        "consumes": [
+          "context.businessArchetype"
+        ],
+        "deterministic": true,
+        "risk": {
+          "level": "MEDIUM",
+          "human_review_required": false
+        },
+        "cross_domain_relevance": {}
+      }
     },
     {
       "id": "scenario-planning",
+      "canonical_id": "strategic.scenario-planning",
       "skillName": "scenario-planning",
       "plugin": "strategic-id",
       "domain": "strategic",
@@ -4233,11 +4369,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "strategic.scenario-planning"
+      }
     },
     {
       "id": "strategic-planning",
+      "canonical_id": "strategic.strategic-planning",
       "skillName": "strategic-planning",
       "plugin": "strategic-id",
       "domain": "strategic",
@@ -4285,11 +4421,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "strategic.strategic-planning"
+      }
     },
     {
       "id": "strategic-risk-analysis",
+      "canonical_id": "strategic.strategic-risk-analysis",
       "skillName": "strategic-risk-analysis",
       "plugin": "strategic-id",
       "domain": "strategic",
@@ -4341,11 +4477,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "strategic.strategic-risk-analysis"
+      }
     },
     {
       "id": "value-chain-analysis",
+      "canonical_id": "strategic.value-chain-analysis",
       "skillName": "value-chain-analysis",
       "plugin": "strategic-id",
       "domain": "strategic",
@@ -4402,11 +4538,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "strategic.value-chain-analysis"
+      }
     },
     {
       "id": "vrio-analysis",
+      "canonical_id": "strategic.vrio-analysis",
       "skillName": "vrio-analysis",
       "plugin": "strategic-id",
       "domain": "strategic",
@@ -4454,11 +4590,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "strategic.vrio-analysis"
+      }
     },
     {
       "id": "efaktur-helper",
+      "canonical_id": "tax.efaktur-helper",
       "skillName": "efaktur-helper",
       "plugin": "tax-id",
       "domain": "tax",
@@ -4510,11 +4646,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "tax.efaktur-helper"
+      }
     },
     {
       "id": "laporan-keuangan-psak",
+      "canonical_id": "tax.laporan-keuangan-psak",
       "skillName": "laporan-keuangan-psak",
       "plugin": "tax-id",
       "domain": "tax",
@@ -4571,11 +4707,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "tax.laporan-keuangan-psak"
+      }
     },
     {
       "id": "pph-badan-calculator",
+      "canonical_id": "tax.pph-badan-calculator",
       "skillName": "pph-badan-calculator",
       "plugin": "tax-id",
       "domain": "tax",
@@ -4642,11 +4778,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "tax.pph-badan-calculator"
+      }
     },
     {
       "id": "pph-final-umkm",
+      "canonical_id": "tax.pph-final-umkm",
       "skillName": "pph-final-umkm",
       "plugin": "tax-id",
       "domain": "tax",
@@ -4708,11 +4844,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "tax.pph-final-umkm"
+      }
     },
     {
       "id": "pph21-calculator",
+      "canonical_id": "tax.pph21-calculator",
       "skillName": "pph21-calculator",
       "plugin": "tax-id",
       "domain": "tax",
@@ -4784,11 +4920,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "tax.pph21-calculator"
+      }
     },
     {
       "id": "pph21-grossup",
+      "canonical_id": "tax.pph21-grossup",
       "skillName": "pph21-grossup",
       "plugin": "tax-id",
       "domain": "tax",
@@ -4855,11 +4991,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "tax.pph21-grossup"
+      }
     },
     {
       "id": "pph23-26-calculator",
+      "canonical_id": "tax.pph23-26-calculator",
       "skillName": "pph23-26-calculator",
       "plugin": "tax-id",
       "domain": "tax",
@@ -4926,11 +5062,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "tax.pph23-26-calculator"
+      }
     },
     {
       "id": "ppn-ppnbm-advanced",
+      "canonical_id": "tax.ppn-ppnbm-advanced",
       "skillName": "ppn-ppnbm-advanced",
       "plugin": "tax-id",
       "domain": "tax",
@@ -4992,11 +5128,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "tax.ppn-ppnbm-advanced"
+      }
     },
     {
       "id": "regulatory-diff",
+      "canonical_id": "tax.regulatory-diff",
       "skillName": "regulatory-diff",
       "plugin": "tax-id",
       "domain": "tax",
@@ -5054,11 +5190,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "tax.regulatory-diff"
+      }
     },
     {
       "id": "regulatory-impact",
+      "canonical_id": "tax.regulatory-impact",
       "skillName": "regulatory-impact",
       "plugin": "tax-id",
       "domain": "tax",
@@ -5120,11 +5256,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "tax.regulatory-impact"
+      }
     },
     {
       "id": "tax-audit-preparation",
+      "canonical_id": "tax.tax-audit-preparation",
       "skillName": "tax-audit-preparation",
       "plugin": "tax-id",
       "domain": "tax",
@@ -5176,11 +5312,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "tax.tax-audit-preparation"
+      }
     },
     {
       "id": "tax-cross-border",
+      "canonical_id": "tax.tax-cross-border",
       "skillName": "tax-cross-border",
       "plugin": "tax-id",
       "domain": "tax",
@@ -5242,11 +5378,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "tax.tax-cross-border"
+      }
     },
     {
       "id": "tax-optimization",
+      "canonical_id": "tax.tax-optimization",
       "skillName": "tax-optimization",
       "plugin": "tax-id",
       "domain": "tax",
@@ -5294,11 +5430,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "tax.tax-optimization"
+      }
     },
     {
       "id": "tax-planning",
+      "canonical_id": "tax.tax-planning",
       "skillName": "tax-planning",
       "plugin": "tax-id",
       "domain": "tax",
@@ -5346,11 +5482,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "tax.tax-planning"
+      }
     },
     {
       "id": "tax-risk-analysis",
+      "canonical_id": "tax.tax-risk-analysis",
       "skillName": "tax-risk-analysis",
       "plugin": "tax-id",
       "domain": "tax",
@@ -5402,11 +5538,11 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "tax.tax-risk-analysis"
+      }
     },
     {
       "id": "transfer-pricing-audit",
+      "canonical_id": "tax.transfer-pricing-audit",
       "skillName": "transfer-pricing-audit",
       "plugin": "tax-id",
       "domain": "tax",
@@ -5477,8 +5613,7 @@
           "human_review_required": false
         },
         "cross_domain_relevance": {}
-      },
-      "canonical_id": "tax.transfer-pricing-audit"
+      }
     }
   ]
 }

@@ -111,6 +111,7 @@ function generateCapabilityCatalog() {
 
       const capabilityEntry = {
         id: fm.name || skillFolder,
+        canonical_id: (registryEntry && registryEntry.canonical_id) || `${domainName}.${fm.name || skillFolder}`,
         skillName: fm.name || skillFolder,
         plugin: pluginName,
         domain: domainName,

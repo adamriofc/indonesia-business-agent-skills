@@ -89,6 +89,8 @@ function printHelp() {
       "calc wacc": "Calculate WACC with 22% Corporate Tax Shield (--equity <IDR>, --debt <IDR>, --cost-equity <%>, --cost-debt <%>, [--tax-rate <%>])",
       "calc true-roas": "Calculate True Net ROAS & COD return economics (--price <IDR>, --cogs <IDR>, [--return-rate <%>], [--ad-spend <IDR>])",
       "calc landed-cost": "Calculate Customs CIF, Bea Masuk, PPN 12% & PPh 22 Impor (--fob <USD>, [--freight <USD>], [--duty <%>], [--has-api <bool>])",
+      "calc swot": "Quantitative SWOT/TOWS Matrix calculation (--file <swot.json> or --data <json>)",
+      "calc bsc": "Balanced Scorecard evaluation & strategy map audit (--file <bsc.json> or --data <json>, [--sector <private|public>], [--cap <%>])",
       "audit contract-risk": "Audit contract risk score 0-100 & clause traps (--text <string> or --file <path>)",
       "audit identity": "Validate and normalize NIK/NPWP 16-digit identity (--id <string>)",
       "audit statement-linkage": "Verify 3-statement balance & retained earnings sanity (--file <financials.json>)",
@@ -369,6 +371,54 @@ function run() {
           hasNpwp: flags['has-npwp'] !== 'false',
           unitsCount: Number(flags.units || 1)
         });
+      } else if (subAction === 'swot' || subAction === 'quantitative-swot') {
+        const { evaluateQuantitativeSwot } = require(path.join(ENGINES, 'quantitative-swot-engine'));
+        let inputData = {};
+        if (flags.file && require('fs').existsSync(flags.file)) {
+          inputData = JSON.parse(require('fs').readFileSync(flags.file, 'utf8'));
+        } else if (flags.data) {
+          inputData = typeof flags.data === 'string' ? JSON.parse(flags.data) : flags.data;
+        } else {
+          inputData = {
+            internal: {
+              strengths: [{ factor: "Inovasi Produk", weight: 0.6, rating: 4 }],
+              weaknesses: [{ factor: "Biaya Operasional", weight: 0.4, rating: 2 }]
+            },
+            external: {
+              opportunities: [{ factor: "Ekspansi Pasar", weight: 0.6, rating: 4 }],
+              threats: [{ factor: "Kompetitor Baru", weight: 0.4, rating: 2 }]
+            }
+          };
+        }
+        result = evaluateQuantitativeSwot(inputData);
+      } else if (subAction === 'bsc' || subAction === 'balanced-scorecard') {
+        const { evaluateBalancedScorecard } = require(path.join(ENGINES, 'balanced-scorecard-engine'));
+        let inputData = {};
+        if (flags.file && require('fs').existsSync(flags.file)) {
+          inputData = JSON.parse(require('fs').readFileSync(flags.file, 'utf8'));
+        } else if (flags.data) {
+          inputData = typeof flags.data === 'string' ? JSON.parse(flags.data) : flags.data;
+        } else {
+          inputData = {
+            sector: flags.sector === 'public' ? 'PUBLIC_GOVERNMENT_BUMN' : 'PRIVATE_COMMERCIAL',
+            capRatio: flags.cap ? Number(flags.cap) : 120.0,
+            perspectives: [
+              {
+                id: "financial",
+                name: "Finansial",
+                weight: 0.5,
+                kpis: [{ code: "FIN-01", name: "Revenue Growth", weight: 1.0, target: 100, actual: 110, polarity: "MAXIMIZE" }]
+              },
+              {
+                id: "customer",
+                name: "Customer",
+                weight: 0.5,
+                kpis: [{ code: "CUST-01", name: "CSAT", weight: 1.0, target: 80, actual: 85, polarity: "MAXIMIZE" }]
+              }
+            ]
+          };
+        }
+        result = evaluateBalancedScorecard(inputData);
       } else {
         throw new Error(`Unknown calc target '${subAction}'. Run 'indonesia-skills help' for available commands.`);
       }

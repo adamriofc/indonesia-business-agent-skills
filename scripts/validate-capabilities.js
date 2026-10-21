@@ -29,8 +29,8 @@ function validateCapabilities() {
 
   const catalog = JSON.parse(fs.readFileSync(catalogPath, 'utf8'));
 
-  if (catalog.total_capabilities !== 88) {
-    console.error(`❌ Capability Catalog Mismatch: catalog claims ${catalog.total_capabilities} capabilities, expected 88.`);
+  if (catalog.total_capabilities !== 90) {
+    console.error(`❌ Capability Catalog Mismatch: catalog claims ${catalog.total_capabilities} capabilities, expected 90.`);
     errors++;
   }
 

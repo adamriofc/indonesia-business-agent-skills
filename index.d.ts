@@ -345,6 +345,8 @@ export function auditContractRisk(contractText: string): ContractRiskResult;
 export function verifyBilingualCompliance(indonesianText: string, englishText: string): any;
 export function stressTestEnterprise(params: { baseFinancials?: any; strategyShocks?: any }): any;
 export function auditComplianceRisk(profile: any): any;
+export function evaluateQuantitativeSwot(input: any): any;
+export function evaluateBalancedScorecard(input: any): any;
 
 // Institutional & Security Functions
 export function auditBusinessHealth(context: any): BusinessHealthResult;
