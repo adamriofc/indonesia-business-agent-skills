@@ -1,6 +1,6 @@
 # Universal Agent Skill & Interoperability Protocol (`SKILL_PROTOCOL.md`)
 
-This document defines the architectural specification and interoperability standards for `indonesian-business-agent-skills`.
+This document defines the architectural specification and interoperability standards for `indonesia-business-agent-skills`.
 
 ---
 
@@ -22,11 +22,11 @@ Supported across OpenWork Desktop, OpenCode CLI, Claude Code, Cursor IDE, Codex,
 
 ```bash
 # Install all 88 skills across 6 canonical plugins
-npx skills add adamriofc/indonesian-business-agent-skills
+npx skills add adamriofc/indonesia-business-agent-skills
 
 # Install specific domain plugins
-npx skills add adamriofc/indonesian-business-agent-skills --plugin tax-id
-npx skills add adamriofc/indonesian-business-agent-skills --plugin strategic-id
+npx skills add adamriofc/indonesia-business-agent-skills --plugin tax-id
+npx skills add adamriofc/indonesia-business-agent-skills --plugin strategic-id
 ```
 
 ### Claude Code Marketplace Manifest (`.claude-plugin/marketplace.json`)
@@ -56,9 +56,9 @@ Allows native one-click plugin discovery and installation within Claude Code:
 Computational engines require **zero third-party dependencies** and execute deterministically on Node.js 20+:
 
 ```javascript
-const { calculatePPh21Monthly } = require('indonesian-business-agent-skills/engines/pph21-calculator');
-const { calculatePhk } = require('indonesian-business-agent-skills/engines/phk-calculator');
-const { analyzeRegulatoryImpact } = require('indonesian-business-agent-skills/engines/regulatory-impact-engine');
+const { calculatePPh21Monthly } = require('indonesia-business-agent-skills/engines/pph21-calculator');
+const { calculatePhk } = require('indonesia-business-agent-skills/engines/phk-calculator');
+const { analyzeRegulatoryImpact } = require('indonesia-business-agent-skills/engines/regulatory-impact-engine');
 
 // PPh 21 TER Tax Calculation
 const taxResult = calculatePPh21Monthly(10000000, 'TK/0', true, '2026-03-01');

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/claude-plugin-marketplace.json",
-  "name": "indonesian-business-agent-skills",
+  "name": "indonesia-business-agent-skills",
   "description": "Production-oriented compliance, tax, legal, and operational domain-intelligence infrastructure for AI agents operating in the Indonesian business ecosystem.",
   "owner": {
     "name": "adamriofc"

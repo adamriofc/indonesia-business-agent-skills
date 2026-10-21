@@ -1,6 +1,6 @@
 # Optional External Integrations Architecture (`integrations/README.md`)
 
-This directory defines the optional integration models for connecting `indonesian-business-agent-skills` to external live APIs, databases, and enterprise platforms.
+This directory defines the optional integration models for connecting `indonesia-business-agent-skills` to external live APIs, databases, and enterprise platforms.
 
 ---
 

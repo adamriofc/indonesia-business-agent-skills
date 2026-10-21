@@ -1,9 +1,9 @@
 # Scope of Truth & Metadata Metrics (`docs/METRICS.md`)
 
-Official measurement definitions and exact metrics for `indonesian-business-agent-skills`.
+Official measurement definitions and exact metrics for `indonesia-business-agent-skills`.
 
 > **Single Source of Truth File**: [`canonical-metadata.json`](../canonical-metadata.json)  
-> **Last Generated**: 2026-10-21T15:06:28.371Z  
+> **Last Generated**: 2026-10-21T16:21:47.060Z  
 > **Generator Command**: `npm run generate:metadata`
 
 ---

@@ -13,9 +13,9 @@
  *   - Institutional & Security: Local Merkle Compliance Ledger, 360° Business Health Oracle, Prompt Injection Closed Delimiter Sanitization
  *
  * Usage:
- *   const { calculatePPh21Monthly, calculatePhk, calculateBpjs, auditContractRisk, auditBusinessHealth } = require('indonesian-business-agent-skills');
+ *   const { calculatePPh21Monthly, calculatePhk, calculateBpjs, auditContractRisk, auditBusinessHealth } = require('indonesia-business-agent-skills');
  *   // Or via domain namespaces:
- *   const { tax, hr, finance, commerce, strategy, legal, institutional, security } = require('indonesian-business-agent-skills');
+ *   const { tax, hr, finance, commerce, strategy, legal, institutional, security } = require('indonesia-business-agent-skills');
  */
 
 const path = require('path');

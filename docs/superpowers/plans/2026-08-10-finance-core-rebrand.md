@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Add the finance-id plugin (12 skills) + 8 deterministic finance engines + golden corpus + tests + benchmark, rename the repository to `indonesian-business-agent-skills`, rebrand README/PROVENANCE/CHANGELOG/ROADMAP, release v2.0.0.
+**Goal:** Add the finance-id plugin (12 skills) + 8 deterministic finance engines + golden corpus + tests + benchmark, rename the repository to `indonesia-business-agent-skills`, rebrand README/PROVENANCE/CHANGELOG/ROADMAP, release v2.0.0.
 
 **Architecture:** Finance engines = pure Node functions (no ruleset; standard mathematical formulas); the finance-id plugin follows the existing plugin pattern; consistent `camelCase` signatures. Golden values computed by hand; test tolerance: float ±0.01, Rupiah ±1 (or per case).
 
@@ -202,8 +202,8 @@ Every skill: body with at least Purpose/Hybrid Execution (when an engine exists)
 
 **Files:** Modify `README.md`, `package.json`, `CHANGELOG.md`, `ROADMAP.md`, `docs/BENCHMARK.md`
 
-- [ ] **Step 1:** `package.json` name → `indonesian-business-agent-skills`, version `2.0.0`.
-- [ ] **Step 2:** README: title + tagline *"Give AI agents a business brain for Indonesia."*; subheadline "Legal, tax, finance, HR, e-commerce, and content — grounded in Indonesian rules, workflows, and deterministic engines."; CORE (Legal/Tax/Finance/HR) / BUSINESS (Commerce) / CREATIVE (Content) architecture diagram; the "6 business domains · 54 agent skills · 16 deterministic engines" figures; replace all old repo URLs → `indonesian-business-agent-skills`; fix the absolute `/tmp/opencode/indonesian-agent-skills` path in the Cursor section → `$PWD`; add the Finance block to the plugin inventory.
+- [ ] **Step 1:** `package.json` name → `indonesia-business-agent-skills`, version `2.0.0`.
+- [ ] **Step 2:** README: title + tagline *"Give AI agents a business brain for Indonesia."*; subheadline "Legal, tax, finance, HR, e-commerce, and content — grounded in Indonesian rules, workflows, and deterministic engines."; CORE (Legal/Tax/Finance/HR) / BUSINESS (Commerce) / CREATIVE (Content) architecture diagram; the "6 business domains · 54 agent skills · 16 deterministic engines" figures; replace all old repo URLs → `indonesia-business-agent-skills`; fix the absolute `/tmp/opencode/indonesian-agent-skills` path in the Cursor section → `$PWD`; add the Finance block to the plugin inventory.
 - [ ] **Step 3:** CHANGELOG v2.0.0 (new, on top) — finance core, 12 skills, 8 engines, rename, rebrand, finance benchmark.
 - [ ] **Step 4:** ROADMAP — "Shipped (v2.0.0)": Finance Core ✓, rename ✓; In Progress: Finance×Tax×HR integration, Operations (Phase 3), LLM baseline; Planned: SDK, Ecosystem.
 - [ ] **Step 5:** BENCHMARK.md — add the finance table (figures from Task 9's actual run), update the date/Node header.
@@ -213,9 +213,9 @@ Every skill: body with at least Purpose/Hybrid Execution (when an engine exists)
 
 **Files:** none repo-side; gh/git operations
 
-- [ ] **Step 1:** `gh repo rename indonesian-business-agent-skills --repo adamriofc/indonesian-agent-skills --yes` (automatic redirect).
-- [ ] **Step 2:** `git remote set-url origin https://github.com/adamriofc/indonesian-business-agent-skills.git`; re-verify with `git remote -v`.
-- [ ] **Step 3:** `curl -I https://github.com/adamriofc/indonesian-business-agent-skills` → 200; `curl -sI https://github.com/adamriofc/indonesian-agent-skills` → 301 (redirect).
+- [ ] **Step 1:** `gh repo rename indonesia-business-agent-skills --repo adamriofc/indonesian-agent-skills --yes` (automatic redirect).
+- [ ] **Step 2:** `git remote set-url origin https://github.com/adamriofc/indonesia-business-agent-skills.git`; re-verify with `git remote -v`.
+- [ ] **Step 3:** `curl -I https://github.com/adamriofc/indonesia-business-agent-skills` → 200; `curl -sI https://github.com/adamriofc/indonesian-agent-skills` → 301 (redirect).
 
 ### Task 14: Full verify + commit + push
 

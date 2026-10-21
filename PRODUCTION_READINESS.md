@@ -1,6 +1,6 @@
 # Production Readiness Model & Operational Governance (`PRODUCTION_READINESS.md`)
 
-Operational governance, readiness levels, human-review boundaries, and deterministic fallback policies for `indonesian-business-agent-skills`.
+Operational governance, readiness levels, human-review boundaries, and deterministic fallback policies for `indonesia-business-agent-skills`.
 
 ---
 

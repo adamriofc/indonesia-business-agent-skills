@@ -1,4 +1,4 @@
-# Benchmark Report — `indonesian-business-agent-skills`
+# Benchmark Report — `indonesia-business-agent-skills`
 
 Official methodology and measurement results. **Rule: no number is ever written without having been measured.** This document contains figures from actual, reproducible runs; any new execution updates the benchmark artifact stored at [`docs/benchmark-results/latest.json`](./benchmark-results/latest.json).
 

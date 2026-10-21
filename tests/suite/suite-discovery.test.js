@@ -2,7 +2,7 @@
 /**
  * Suite Discovery & Installation Integrity Test (`tests/suite/suite-discovery.test.js`)
  *
- * Verifies that the full Indonesian Business Agent Suite can be discovered
+ * Verifies that the full Indonesia Business Agent Suite can be discovered
  * correctly as a unified ecosystem:
  *  - All 6 plugins discoverable with correct skill counts
  *  - 88 total skills across the suite (no missing, no duplicate IDs)
@@ -242,13 +242,13 @@ check('Full-suite installation command present in full-business-suite.json', () 
   const install = fullBundle.installation;
   assert.ok(install, 'full-business-suite.json missing installation block');
   assert.ok(install.oneCommand, 'missing installation.oneCommand');
-  assert.ok(install.oneCommand.includes('indonesian-business-agent-skills'),
+  assert.ok(install.oneCommand.includes('indonesia-business-agent-skills'),
     `oneCommand must reference the suite repo: ${install.oneCommand}`);
-  assert.ok(install.opencode.includes('indonesian-business-agent-skills'),
+  assert.ok(install.opencode.includes('indonesia-business-agent-skills'),
     `opencode command must reference the suite repo: ${install.opencode}`);
 });
 check('Suite repository constant referenced by all installation modes', () => {
-  const SUITE_REPO = 'adamriofc/indonesian-business-agent-skills';
+  const SUITE_REPO = 'adamriofc/indonesia-business-agent-skills';
   const install = fullBundle.installation;
   [install.oneCommand, install.opencode, install.git].forEach(cmd => {
     assert.ok(cmd.includes(SUITE_REPO), `Install command missing ${SUITE_REPO}: ${cmd}`);

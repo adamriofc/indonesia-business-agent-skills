@@ -49,7 +49,7 @@ async function probeUrl(targetUrl) {
       const req = https.get(targetUrl, {
         timeout: 5000,
         headers: {
-          'User-Agent': 'IndonesianBusinessSkills-RegulatoryPipeline/6.17.0 (+https://github.com/adamriofc/indonesian-business-agent-skills)'
+          'User-Agent': 'IndonesianBusinessSkills-RegulatoryPipeline/6.17.0 (+https://github.com/adamriofc/indonesia-business-agent-skills)'
         }
       }, (res) => {
         resolve({

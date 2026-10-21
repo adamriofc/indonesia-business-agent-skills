@@ -1,6 +1,6 @@
 # Regulatory Update Pipeline (`REGULATORY_PIPELINE.md`)
 
-This document defines the exact, operational procedure for detecting, validating, encoding, and releasing regulatory changes into `indonesian-business-agent-skills`.
+This document defines the exact, operational procedure for detecting, validating, encoding, and releasing regulatory changes into `indonesia-business-agent-skills`.
 
 A rule is only promoted to `RELEASED` after it passes every stage below.
 

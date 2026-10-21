@@ -1,5 +1,5 @@
 {
-  "name": "indonesian-business-agent-skills",
+  "name": "indonesia-business-agent-skills",
   "version": "6.18.0",
   "description": "Production-oriented AI domain-intelligence infrastructure for Indonesian legal, tax, HR, finance, marketing, and strategic business reasoning.",
   "main": "index.js",
@@ -25,6 +25,8 @@
   "author": "adamriofc",
   "license": "MIT",
   "bin": {
+    "indonesia-skills": "bin/cli.js",
+    "indonesia-skills-mcp": "bin/mcp-server.js",
     "indonesian-skills": "bin/cli.js",
     "indonesian-skills-mcp": "bin/mcp-server.js"
   },

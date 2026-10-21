@@ -80,8 +80,8 @@ The `[END PAYLOAD]` marker MUST be present after the user content. Anything outs
 ## Hybrid Execution Model
 Do not perform mathematical computations using the probabilistic LLM. Instead, delegate execution:
 * **Via MCP Tool**: Call `calc_phk_severance` with `{ monthlyWage, tenureYears, reasonKey, remainingLeaveDays, uangPisahAmount }`.
-* **Via Universal CLI**: Run `npx indonesian-skills calc phk --wage <IDR> --tenure <years> --reason <code|alias> [--leave-days <N>] [--uang-pisah <IDR>]`.
-* **Via Node.js Engine**: `const { calculatePhk } = require('indonesian-business-agent-skills/engines/phk-calculator');`
+* **Via Universal CLI**: Run `npx indonesia-skills calc phk --wage <IDR> --tenure <years> --reason <code|alias> [--leave-days <N>] [--uang-pisah <IDR>]`.
+* **Via Node.js Engine**: `const { calculatePhk } = require('indonesia-business-agent-skills/engines/phk-calculator');`
 
 ## Trust Envelope (Confidence Contract)
 Every engine output must be wrapped in a structured envelope declaring production trust attributes:

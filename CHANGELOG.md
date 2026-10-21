@@ -22,7 +22,7 @@ All notable changes to this project are documented here in reverse chronological
 
 - **P0 — Custom SDK & Root Module Interface (`index.js`)**: Added official root package entrypoint (`"main": "index.js"`) exporting all 40 deterministic engines, mathematical constants, and domain namespaces (`tax`, `hr`, `finance`, `commerce`, `marketing`, `strategy`, `legal`, `security`) for direct programmatic consumption in Node.js, TypeScript, and modern JS stacks.
 - **P0 — Zero-Dependency Native REST API Microservice (`bin/server.js`)**: Added standalone HTTP REST server built with Node.js native `http` and `URL` modules (zero npm dependencies). Features automatic CORS pre-flight, 1MB payload ceiling, structured JSON error responses, and 28+ calculation and audit endpoints (`/api/v1/calc/*`, `/api/v1/audit/*`, `/api/v1/route/*`).
-- **P0 — Universal CLI `serve` Command**: Wired `indonesian-skills serve [--port <3000>] [--host <0.0.0.0>]` into `bin/cli.js`, allowing instant one-command microservice startup via `npx indonesian-skills serve`.
+- **P0 — Universal CLI `serve` Command**: Wired `indonesia-skills serve [--port <3000>] [--host <0.0.0.0>]` into `bin/cli.js`, allowing instant one-command microservice startup via `npx indonesia-skills serve`.
 - **P0 — Compatibility Matrix Status Transition**: Promoted `Custom SDK / REST Adapters` in `README.md` from `⚪ Planned` to `✅ Verified` with comprehensive documentation and code samples.
 - **P1 — Comprehensive REST Adapter Test Suite (`tests/units/rest-adapter.test.js`)**: Added automated integration tests verifying root SDK export bindings, HTTP server lifecycle on ephemeral ports, deterministic calculation outputs over HTTP, and fail-closed 400/404 error boundaries.
 - **All artifacts synchronized to v6.17.2**: `package.json`, `package-lock.json`, `canonical-metadata.json`, `registry/index.json`, all 5 `bundles/*.json`, `README.md`, `docs/METRICS.md`, `docs/BENCHMARK.md`.
@@ -31,7 +31,7 @@ All notable changes to this project are documented here in reverse chronological
 
 ### Full Engine Coverage CLI/MCP, Failsafe Product Classification & Pure Evergreen Header Banner
 
-- **P0 — Header Visual Banner Evergreen**: Cleaned `docs/indonesian-business-agent-skills-hero.svg` and `README.md` by removing hardcoded release version badges, transient query parameters, and production label elements, creating a permanent, balanced 4-column metrics design (Agent Skills, Computational Engines, Golden Corpus, Total Assertions) that never requires manual version maintenance on future bumps.
+- **P0 — Header Visual Banner Evergreen**: Cleaned `docs/indonesia-business-agent-skills-hero.svg` and `README.md` by removing hardcoded release version badges, transient query parameters, and production label elements, creating a permanent, balanced 4-column metrics design (Agent Skills, Computational Engines, Golden Corpus, Total Assertions) that never requires manual version maintenance on future bumps.
 - **P0 — Full Engine CLI & MCP Tool Expansion**: Expanded `bin/cli.js` and `bin/mcp-server.js` from basic 10 tools to comprehensive 20 native tools and 40-engine CLI command coverage, including `calc_pph_badan`, `calc_pph23_26`, `calc_pkwt_compensation`, `calc_marketplace_fee`, `calc_npv`, `calc_irr`, `calc_depreciation`, `calc_loan_amortization`, `calc_working_capital`, and `classify_btki_commodity`.
 - **P0 — Failsafe Product Classification (`product-context.js`)**: Updated `resolveProductClassification` to accept polymorphic input (both direct string code and object parameters) and updated CLI/MCP bindings with complete CIF valuation arguments.
 - **P1 — SKILL.md Directives Enhanced**: Embedded explicit tri-modal execution directives (MCP tool, Universal CLI, and Node.js require) into flagship skills across Tax, HR, Finance, Marketing, and Legal domains.
@@ -43,7 +43,7 @@ All notable changes to this project are documented here in reverse chronological
 
 ### Universal CLI Runner, Native Zero-Dependency MCP Server, Statutory Bugfixes & Hardened Ingestion
 
-- **P0 — Universal CLI Runner (`bin/cli.js`)**: Added standalone agnostic CLI runner supporting commands like `indonesian-skills calc pph21`, `calc phk`, `calc thr`, `calc bpjs`, `calc umkm`, `calc ppn`, `calc breakeven`, `audit pkwtt`, and `route kbli`. Registered under `"bin"` in `package.json` for seamless `npx indonesian-skills` execution with zero external npm dependencies.
+- **P0 — Universal CLI Runner (`bin/cli.js`)**: Added standalone agnostic CLI runner supporting commands like `indonesia-skills calc pph21`, `calc phk`, `calc thr`, `calc bpjs`, `calc umkm`, `calc ppn`, `calc breakeven`, `audit pkwtt`, and `route kbli`. Registered under `"bin"` in `package.json` for seamless `npx indonesia-skills` execution with zero external npm dependencies.
 - **P0 — Native Zero-Dependency MCP Server (`bin/mcp-server.js`)**: Added full Model Context Protocol (MCP) server over stdio, providing 10 native tools (`calc_pph21_monthly`, `calc_pph21_december_recon`, `calc_phk_severance`, `calc_thr_payout`, `calc_bpjs_contributions`, `calc_umkm_final_tax`, `calc_ppn_ppnbm`, `audit_pkwtt_compliance`, `analyze_break_even`, `route_kbli_context`) for direct invocation in OpenWork, Claude Code, and Cursor without bash scripting friction.
 - **P0 — PPh 21 December Overpayment (Lebih Bayar) Restitution**: Fixed `engines/pph21-calculator.js` where `Math.max(0, ...)` erased employee tax overpayment. Engine now fully computes and reports `isOverpaid`, `overpaymentRefundAmount`, `taxStatus: LEBIH_BAYAR`, and statutory employer restitution directive under PMK No. 168/2023 Pasal 14 ayat (2).
 - **P0 — PHK Reason Resolution & Fail-Closed Guard**: Fixed `engines/phk-calculator.js` to normalize NL reason aliases (e.g. `resign`, `mengundurkan diri` -> `resignation`) and fail-closed with `INVALID_INPUT` on unrecognized reasons, preventing voluntary resignations from erroneously defaulting to 50M IDR efficiency severance. Added `uangPisah` and UPH tracking under PP No. 35/2021 Pasal 50.
@@ -81,7 +81,7 @@ All notable changes to this project are documented here in reverse chronological
 - **P0 — Suite Validator Hardened (Check 11)**: `scripts/validate-suite.js` now verifies internal arithmetic consistency for every bundle (`sum(plugin.skills) == totals.skills`) — previously it only compared declared totals against canonical metadata.
 - **P1 — Profile-to-Registry Membership (Check 12)**: Suite validator now validates each bundle profile's per-plugin declared skill counts AND the union skill count against the actual `registry/index.json` counts — catching stale/mismatched profile metadata.
 - **P1 — Suite Discovery Test Expanded**: `tests/suite/suite-discovery.test.js` grew from 34 to 40 assertions, adding bundle arithmetic, per-plugin registry count alignment, exact full-suite skill membership, and installation-command smoke verification.
-- **P1 — Installation Claim Alignment**: `bundles/full-business-suite.json` npm command corrected from `npm install @adamriofc/indonesian-business-agent-skills` (package not published under scoped name) to `npm install adamriofc/indonesian-business-agent-skills (Git-based; npm registry publish pending)`.
+- **P1 — Installation Claim Alignment**: `bundles/full-business-suite.json` npm command corrected from `npm install @adamriofc/indonesia-business-agent-skills` (package not published under scoped name) to `npm install adamriofc/indonesia-business-agent-skills (Git-based; npm registry publish pending)`.
 - **P1 — Stale Release-Gate Wording**: `README.md` documentation tree updated from "13-check release gate" to "18-check release gate".
 - **P2 — KBLI Terminology**: `README.md` architecture diagram updated from "KBLI 2020 ROUTER" to "KBLI Business Activity Classification" — consistent with the Agent-owned orchestration boundary.
 - **P0 — Release Boundary v6.16.1**: New tag with correct release manifest (v6.16.1 → final commit), CI checkout fix (`fetch-depth: 0` + `fetch-tags: true`), and exact tag↔manifest provenance. Supersedes v6.16.0 whose tag carried a stale v6.15.0 manifest.
@@ -93,7 +93,7 @@ All notable changes to this project are documented here in reverse chronological
 
 ## [6.16.0] - 2026-08-15
 
-### Indonesian Business Agent Suite — Distribution Layer & Suite Integrity
+### Indonesia Business Agent Suite — Distribution Layer & Suite Integrity
 
 - **Suite/Bundle Distribution Architecture**: Added `bundles/` directory with 5 curated installation profiles: `full-business-suite.json` (all 6 domains, 88 skills), `finance-strategy.json`, `people-payroll.json`, `compliance.json`, `go-to-market.json`. Suite is a **distribution layer only** — no orchestration logic, no reasoning, no LLM calls. Agent owns all orchestration.
 - **Lockstep Versioning**: All 5 bundle manifests versioned in lockstep with repository (`v6.16.0`). Plugin versions within bundles match repository version. No independent plugin versioning complexity.
@@ -101,7 +101,7 @@ All notable changes to this project are documented here in reverse chronological
 - **Suite Discovery Test (`tests/suite/suite-discovery.test.js`)**: 34-assertion test verifying all 6 plugins discoverable, 88 skills present (no duplicate IDs), capability catalog covers all 6 domains, all 88 capabilities have `canonical_id` in `domain.skill-id` format with no collisions, engines + rulesets present, bundle manifests consistent with registry.
 - **Namespaced Canonical IDs (`canonical_id` field)**: Added `canonical_id` in `domain.skill-id` format to all 88 entries in `registry/capabilities.json` and `registry/index.json` for globally unique machine-readable identification across the unified catalog.
 - **18-Check Release Gate**: Upgraded `scripts/validate-release.js` from 17-check to 18-check pipeline; added Check 18 (`npm run validate:suite`) as a blocking gate in CI and local validation.
-- **README Suite UX Section**: Added "Indonesian Business Agent Suite — Installation Profiles" section with 5 profile choices, architecture diagram, and agent-boundary note. Updated test assertion badge to `526+`.
+- **README Suite UX Section**: Added "Indonesia Business Agent Suite — Installation Profiles" section with 5 profile choices, architecture diagram, and agent-boundary note. Updated test assertion badge to `526+`.
 - **`package.json` scripts**: Added `validate:suite` and `test:suite` scripts; added `bundles/` and `schemas/` to `files` array for npm distribution.
 
 
@@ -508,9 +508,9 @@ All notable changes to this project are documented here in reverse chronological
 - **PROVENANCE.md**: new `STANDARD_REFERENCE` Access Path + section 6 Finance & Accounting Standard Register (PSAK 1/16/23, SAK EMKM; IAI — 404 for automated clients, verified manually).
 
 ### Changed
-- **Repo renamed**: `indonesian-agent-skills` → `indonesian-business-agent-skills` (automatic GitHub redirect).
+- **Repo renamed**: `indonesian-agent-skills` → `indonesia-business-agent-skills` (automatic GitHub redirect).
 - **Rebrand**: title "Indonesian Business Agent Skills", tagline *"Give AI agents a business brain for Indonesia."*; CORE (legal/tax/finance/HR) · BUSINESS (commerce) · CREATIVE (content) architecture; scope "6 business domains · 54 agent skills · 16 deterministic engines".
-- `package.json`: name `indonesian-business-agent-skills`, version `2.0.0`; the `npm test` + `test:units` chain now includes `finance-engines.test.js` (9 modules).
+- `package.json`: name `indonesia-business-agent-skills`, version `2.0.0`; the `npm test` + `test:units` chain now includes `finance-engines.test.js` (9 modules).
 - README: actual finance engine output examples (break-even, amortization, IRR) added; absolute `/tmp/...` paths replaced with `$PWD`.
 
 ### Fixed

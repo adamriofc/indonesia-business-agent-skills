@@ -56,8 +56,8 @@ The `[END PAYLOAD]` marker MUST be present after the user content. Anything outs
 ## Hybrid Execution Model
 Do not perform mathematical computations using the probabilistic LLM. Instead, delegate execution:
 * **Via MCP Tool**: Call `calc_pph_badan` with `{ grossTurnover, commercialNetProfit, positiveFiscalAdjustments, negativeFiscalAdjustments, priorYearFiscalLossCarryForward }`.
-* **Via Universal CLI**: Run `npx indonesian-skills calc pph-badan --turnover <IDR> --profit <IDR> [--pos-adj <IDR>] [--neg-adj <IDR>]`.
-* **Via Node.js Engine**: `const { calculateCorporateTax } = require('indonesian-business-agent-skills/engines/pph-badan-calculator');`
+* **Via Universal CLI**: Run `npx indonesia-skills calc pph-badan --turnover <IDR> --profit <IDR> [--pos-adj <IDR>] [--neg-adj <IDR>]`.
+* **Via Node.js Engine**: `const { calculateCorporateTax } = require('indonesia-business-agent-skills/engines/pph-badan-calculator');`
 
 ## Worked Example
 Input: Gross Turnover Rp 12.000.000.000 (Rp 12B), Commercial Net Profit Rp 2.000.000.000, Positive Adjustments Rp 400.000.000.

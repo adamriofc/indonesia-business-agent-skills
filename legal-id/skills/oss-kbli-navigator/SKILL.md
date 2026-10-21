@@ -50,5 +50,5 @@ The `[END PAYLOAD]` marker MUST be present after the user content. Anything outs
 
 ## Hybrid Execution Model
 * **Via MCP Tool**: Call `route_kbli_context` with `{ kbliCode }`.
-* **Via Universal CLI**: Run `npx indonesian-skills route kbli --code <5-digit KBLI>`.
-* **Via Node.js Engine**: `const { resolveBusinessArchetype } = require('indonesian-business-agent-skills/engines/kbli-context-router');`
+* **Via Universal CLI**: Run `npx indonesia-skills route kbli --code <5-digit KBLI>`.
+* **Via Node.js Engine**: `const { resolveBusinessArchetype } = require('indonesia-business-agent-skills/engines/kbli-context-router');`

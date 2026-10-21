@@ -44,8 +44,8 @@ The `[END PAYLOAD]` marker MUST be present after the user content. Anything outs
 ## Hybrid Execution Model
 Do not perform mathematical computations using the probabilistic LLM. Instead, delegate execution:
 * **Via MCP Tool**: Call `calc_pph23_26` with `{ grossAmount, transactionType, hasNpwp, hasDgtForm, taxTreatyRatePercent }`.
-* **Via Universal CLI**: Run `npx indonesian-skills calc pph23 --amount <IDR> [--type <service|royalty|dividend|offshore>]`.
-* **Via Node.js Engine**: `const { calculatePPh23And26 } = require('indonesian-business-agent-skills/engines/pph23-26-calculator');`
+* **Via Universal CLI**: Run `npx indonesia-skills calc pph23 --amount <IDR> [--type <service|royalty|dividend|offshore>]`.
+* **Via Node.js Engine**: `const { calculatePPh23And26 } = require('indonesia-business-agent-skills/engines/pph23-26-calculator');`
 * **PPh 23 Domestic**: 2% rate on services, maintenance, and equipment rental. Applies **100% penalty (4% rate)** if `hasNpwp` is `false`. 15% rate on dividends, royalties, and interest.
 * **PPh 26 Foreign**: Default statutory rate is **20%**. If a valid **DGT Form (Formulir DGT / SKD)** is provided under a Tax Treaty (P3B), apply the lower treaty rate.
 

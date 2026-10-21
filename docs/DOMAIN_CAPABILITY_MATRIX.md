@@ -1,6 +1,6 @@
 # Domain Capability & Cross-Domain Validation Matrix
 
-This document defines the intended capability boundary of `indonesian-business-agent-skills`.
+This document defines the intended capability boundary of `indonesia-business-agent-skills`.
 
 The repository is **not a tax/legal toolkit with supporting domains**. It is a six-domain business reasoning substrate for AI agents. Tax and legal are only two lenses; the same Semantic Business Context can be consumed independently by HR, Finance, Marketing, and Strategic reasoning.
 

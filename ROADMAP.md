@@ -45,7 +45,7 @@ The roadmap intentionally does **not** add new top-level business plugins such a
 The repository's early releases are retained as history, not as the current roadmap. Major milestones include:
 
 - **v1.x** — foundational hybrid LLM + deterministic engine architecture, provenance, security, CI, and initial plugins.
-- **v2.x** — finance domain, rebrand to `indonesian-business-agent-skills`, and expanded provenance/benchmarking.
+- **v2.x** — finance domain, rebrand to `indonesia-business-agent-skills`, and expanded provenance/benchmarking.
 - **v6.5.x** — release gate, canonical metadata, and documentation SSOT.
 - **v6.6.x** — empirical LLM evaluation harness, ablation study, blind rubric, and statistics.
 - **v6.7.x** — production-readiness model and operational governance stabilization checkpoint.

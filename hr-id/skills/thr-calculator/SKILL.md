@@ -48,8 +48,8 @@ The `[END PAYLOAD]` marker MUST be present after the user content. Anything outs
 
 ## Hybrid Execution Model
 * **Via MCP Tool**: Call `calc_thr_payout` with `{ monthlyBaseSalary, fixedAllowance, tenureMonths }`.
-* **Via Universal CLI**: Run `npx indonesian-skills calc thr --wage <IDR> [--allowance <IDR>] --tenure <months>`.
-* **Via Node.js Engine**: `const { calculateThr } = require('indonesian-business-agent-skills/engines/thr-calculator');`
+* **Via Universal CLI**: Run `npx indonesia-skills calc thr --wage <IDR> [--allowance <IDR>] --tenure <months>`.
+* **Via Node.js Engine**: `const { calculateThr } = require('indonesia-business-agent-skills/engines/thr-calculator');`
 
 ## Trust Envelope (Confidence Contract)
 Every engine output must be wrapped in a structured envelope declaring production trust attributes:

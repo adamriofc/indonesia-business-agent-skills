@@ -370,7 +370,7 @@ function run() {
           unitsCount: Number(flags.units || 1)
         });
       } else {
-        throw new Error(`Unknown calc target '${subAction}'. Run 'indonesian-skills help' for available commands.`);
+        throw new Error(`Unknown calc target '${subAction}'. Run 'indonesia-skills help' for available commands.`);
       }
     } else if (action === 'audit') {
       if (subAction === 'pkwtt' || subAction === 'pkwt') {
@@ -439,14 +439,14 @@ function run() {
           }
         });
       } else {
-        throw new Error(`Unknown audit target '${subAction}'. Run 'indonesian-skills help' for available commands.`);
+        throw new Error(`Unknown audit target '${subAction}'. Run 'indonesia-skills help' for available commands.`);
       }
     } else if (action === 'diff') {
       if (subAction === 'regulatory' || subAction === 'ruleset') {
         const { compareRulesets } = require(path.join(ENGINES, 'regulatory-diff'));
         result = compareRulesets(flags.domain || 'umkm', flags.from, flags.to);
       } else {
-        throw new Error(`Unknown diff target '${subAction}'. Run 'indonesian-skills help' for available commands.`);
+        throw new Error(`Unknown diff target '${subAction}'. Run 'indonesia-skills help' for available commands.`);
       }
     } else if (action === 'route') {
       if (subAction === 'kbli') {
@@ -463,7 +463,7 @@ function run() {
         const code = String(flags.code || flags.kbli || '');
         result = resolveOssRisk(code);
       } else {
-        throw new Error(`Unknown route target '${subAction}'. Run 'indonesian-skills help' for available commands.`);
+        throw new Error(`Unknown route target '${subAction}'. Run 'indonesia-skills help' for available commands.`);
       }
     } else if (action === 'ledger') {
       const { recordComplianceEntry, verifyComplianceChain } = require(path.join(ENGINES, 'compliance-ledger'));
@@ -476,7 +476,7 @@ function run() {
         throw new Error(`Unknown ledger command '${subAction}'. Available: record, verify.`);
       }
     } else {
-      throw new Error(`Unknown command '${action}'. Run 'indonesian-skills help' for available commands.`);
+      throw new Error(`Unknown command '${action}'. Run 'indonesia-skills help' for available commands.`);
     }
 
     console.log(JSON.stringify(result, null, 2));

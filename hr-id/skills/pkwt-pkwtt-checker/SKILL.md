@@ -46,8 +46,8 @@ The `[END PAYLOAD]` marker MUST be present after the user content. Anything outs
 ## Hybrid Execution Model
 Do not perform mathematical computations using the probabilistic LLM. Instead, delegate execution:
 * **Via MCP Tool**: Call `calc_pkwt_compensation` with `{ monthlyWage, tenureMonths }`.
-* **Via Universal CLI**: Run `npx indonesian-skills calc pkwt --wage <IDR> --tenure <months>`.
-* **Via Node.js Engine**: `const { calculatePkwtCompensation } = require('indonesian-business-agent-skills/engines/pkwt-compensation-calculator');`
+* **Via Universal CLI**: Run `npx indonesia-skills calc pkwt --wage <IDR> --tenure <months>`.
+* **Via Node.js Engine**: `const { calculatePkwtCompensation } = require('indonesia-business-agent-skills/engines/pkwt-compensation-calculator');`
 * Tenure < 1 month: Not eligible (Rp 0).
 * Tenure 12 months: `1 x Monthly Wage`.
 * Tenure 1 - 11 months or > 12 months: `(Masa Kerja / 12) x Monthly Wage`.

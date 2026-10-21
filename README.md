@@ -5,12 +5,12 @@
 **Open-source Indonesian business intelligence for AI agents — combining regulatory-grounded skills, temporal rulesets, deterministic engines, and auditable provenance.**
 
 <p align="center">
-  <img src="docs/indonesian-business-agent-skills-hero.svg" alt="Indonesian Business Agent Skills Banner" width="100%">
+  <img src="docs/indonesia-business-agent-skills-hero.svg" alt="Indonesian Business Agent Skills Banner" width="100%">
 </p>
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT"></a>
-  <a href="https://github.com/adamriofc/indonesian-business-agent-skills/actions/workflows/ci-release.yml"><img src="https://github.com/adamriofc/indonesian-business-agent-skills/actions/workflows/ci-release.yml/badge.svg" alt="CI Pipeline"></a>
+  <a href="https://github.com/adamriofc/indonesia-business-agent-skills/actions/workflows/ci-release.yml"><img src="https://github.com/adamriofc/indonesia-business-agent-skills/actions/workflows/ci-release.yml/badge.svg" alt="CI Pipeline"></a>
   <a href="https://app.openworklabs.com/"><img src="https://img.shields.io/badge/OpenCode-Compatible-brightgreen.svg" alt="OpenCode Compatibility"></a>
   <a href="engines/"><img src="https://img.shields.io/badge/Hybrid%20Engine-LLM--Safe-orange.svg" alt="LLM-Safe Hybrid Engine"></a>
   <a href="tests/"><img src="https://img.shields.io/badge/Test%20Suite-526%2B%20Assertions-success.svg" alt="526+ Test Assertions"></a>
@@ -74,7 +74,7 @@ To ensure optimal execution fidelity without vendor lock-in, host agents should 
 | Capability Tier | Minimum Model Specification | Target Domain & Workloads |
 |---|---|---|
 | **Class A: Complex Legal & Strategic Reasoning** | • High deductive reasoning capacity<br>• Context window $\ge$ 16k tokens<br>• Frontier cloud model or $\ge$ 70B local open-weights | Commercial law (KUHPerdata, UU PDP), agreement redlines, wanprestasi detection, multi-domain compliance audit, and corporate strategy adaptation. |
-| **Class B: Structured Tool-Use & Parameter Extraction** | • Native Function Calling / Tool-Use support<br>• Strict JSON schema adherence<br>• Efficient cloud model or $\ge$ 7B–14B local model | Parameter extraction from natural language queries, Universal CLI (`indonesian-skills`), native MCP tool execution, and REST API invocation. |
+| **Class B: Structured Tool-Use & Parameter Extraction** | • Native Function Calling / Tool-Use support<br>• Strict JSON schema adherence<br>• Efficient cloud model or $\ge$ 7B–14B local model | Parameter extraction from natural language queries, Universal CLI (`indonesia-skills`), native MCP tool execution, and REST API invocation. |
 
 ---
 
@@ -117,7 +117,7 @@ README.md (What / Why / Overview & Demo)
 
 ---
 
-## 🏢 Indonesian Business Agent Suite — Installation Profiles
+## 🏢 Indonesia Business Agent Suite — Installation Profiles
 
 **One ecosystem. Six business domains. Choose your installation profile.**
 
@@ -138,7 +138,7 @@ README.md (What / Why / Overview & Demo)
 > All 6 domains · 88 skills · 55 engines
 
 ```bash
-npx skills add adamriofc/indonesian-business-agent-skills
+npx skills add adamriofc/indonesia-business-agent-skills
 ```
 
 **Use case**: Business owners, consultants, enterprise AI agents, general-purpose assistants.
@@ -147,7 +147,7 @@ npx skills add adamriofc/indonesian-business-agent-skills
 > `finance-id` + `strategic-id` · 25 skills
 
 ```bash
-npx skills add adamriofc/indonesian-business-agent-skills --domains finance-id,strategic-id
+npx skills add adamriofc/indonesia-business-agent-skills --domains finance-id,strategic-id
 ```
 
 **Use case**: Investment analysis, NPV/IRR modeling, BCG/Porter/VRIO frameworks, scenario planning.
@@ -156,7 +156,7 @@ npx skills add adamriofc/indonesian-business-agent-skills --domains finance-id,s
 > `hr-id` + `tax-id` · 28 skills
 
 ```bash
-npx skills add adamriofc/indonesian-business-agent-skills --domains hr-id,tax-id
+npx skills add adamriofc/indonesia-business-agent-skills --domains hr-id,tax-id
 ```
 
 **Use case**: HR managers, payroll teams, HR-tech platforms. PPh 21 TER, BPJS, PHK severance, THR.
@@ -165,7 +165,7 @@ npx skills add adamriofc/indonesian-business-agent-skills --domains hr-id,tax-id
 > `legal-id` + `tax-id` + `hr-id` · 37 skills
 
 ```bash
-npx skills add adamriofc/indonesian-business-agent-skills --domains legal-id,tax-id,hr-id
+npx skills add adamriofc/indonesia-business-agent-skills --domains legal-id,tax-id,hr-id
 ```
 
 **Use case**: Legal teams, compliance officers, enterprise governance, PDP/OSS/HAKI audit.
@@ -174,7 +174,7 @@ npx skills add adamriofc/indonesian-business-agent-skills --domains legal-id,tax
 > `marketing-id` + `finance-id` + `strategic-id` · 52 skills
 
 ```bash
-npx skills add adamriofc/indonesian-business-agent-skills --domains marketing-id,finance-id,strategic-id
+npx skills add adamriofc/indonesia-business-agent-skills --domains marketing-id,finance-id,strategic-id
 ```
 
 **Use case**: Startup founders, D2C brands, ecommerce sellers. Market sizing, pricing, SEO, GTM.
@@ -191,34 +191,34 @@ npx skills add adamriofc/indonesian-business-agent-skills --domains marketing-id
 Install skills directly across any supported agent framework (Claude Code, OpenCode, Codex, Cursor, OpenClaw, Hermes, Antigravity) using `npx`:
 ```bash
 # Install all skills across the repository
-npx skills add adamriofc/indonesian-business-agent-skills
+npx skills add adamriofc/indonesia-business-agent-skills
 
 # Selective installation by agent platform or skill domain
-npx skills add adamriofc/indonesian-business-agent-skills --agent claude-code
-npx skills add adamriofc/indonesian-business-agent-skills --skill pph21-calculator
+npx skills add adamriofc/indonesia-business-agent-skills --agent claude-code
+npx skills add adamriofc/indonesia-business-agent-skills --skill pph21-calculator
 
 # Direct deterministic execution via Universal CLI (Zero external dependencies)
-npx indonesian-skills calc pph21 --salary 10000000 --ptkp TK/0
-npx indonesian-skills calc phk --wage 10000000 --tenure 5 --reason resignation
+npx indonesia-skills calc pph21 --salary 10000000 --ptkp TK/0
+npx indonesia-skills calc phk --wage 10000000 --tenure 5 --reason resignation
 ```
 
 **💬 AI Agent Prompt Guide**:
-> *"Please install the Indonesian Business Agent Skills package into my workspace by running `npx skills add adamriofc/indonesian-business-agent-skills`."*
+> *"Please install the Indonesian Business Agent Skills package into my workspace by running `npx skills add adamriofc/indonesia-business-agent-skills`."*
 
 ### 2. Claude Code Marketplace (Official Plugin Integration)
 Register the repository as a marketplace source and install individual plugins:
 ```bash
 # Add the repository as a plugin marketplace source
-claude plugin marketplace add adamriofc/indonesian-business-agent-skills
+claude plugin marketplace add adamriofc/indonesia-business-agent-skills
 
 # Install individual plugins from the marketplace
-claude plugin install legal-id@indonesian-business-agent-skills
-claude plugin install tax-id@indonesian-business-agent-skills
-claude plugin install finance-id@indonesian-business-agent-skills
+claude plugin install legal-id@indonesia-business-agent-skills
+claude plugin install tax-id@indonesia-business-agent-skills
+claude plugin install finance-id@indonesia-business-agent-skills
 ```
 
 **💬 AI Agent Prompt Guide**:
-> *"Please register the marketplace source `adamriofc/indonesian-business-agent-skills` and install the domain plugins (`tax-id`, `hr-id`, `legal-id`, `finance-id`, `marketing-id`, `strategic-id`) using `claude plugin install <plugin>@indonesian-business-agent-skills`."*
+> *"Please register the marketplace source `adamriofc/indonesia-business-agent-skills` and install the domain plugins (`tax-id`, `hr-id`, `legal-id`, `finance-id`, `marketing-id`, `strategic-id`) using `claude plugin install <plugin>@indonesia-business-agent-skills`."*
 
 ### 3. Portable Agent Skills Standard (.agents / .opencode / .cursor)
 For native skill discovery without plugins, copy skills to the `.agents/skills/` directory:
@@ -236,12 +236,12 @@ cp -r .agents/skills/* .cursor/skills/
 ```
 
 **💬 AI Agent Prompt Guide**:
-> *"Please clone `https://github.com/adamriofc/indonesian-business-agent-skills` and copy all skills from its domain directories (`legal-id/skills`, `tax-id/skills`, `hr-id/skills`, `finance-id/skills`, `marketing-id/skills`, `strategic-id/skills`) into my project's `.agents/skills/` (or `.opencode/skills/` / `.cursor/skills/`)."*
+> *"Please clone `https://github.com/adamriofc/indonesia-business-agent-skills` and copy all skills from its domain directories (`legal-id/skills`, `tax-id/skills`, `hr-id/skills`, `finance-id/skills`, `marketing-id/skills`, `strategic-id/skills`) into my project's `.agents/skills/` (or `.opencode/skills/` / `.cursor/skills/`)."*
 
 ### 4. OpenWork Desktop & Cloud
 1. Open **Settings > Plugins**.
 2. Click **Add Plugin from Repository**.
-3. Input the GitHub URL: `https://github.com/adamriofc/indonesian-business-agent-skills`.
+3. Input the GitHub URL: `https://github.com/adamriofc/indonesia-business-agent-skills`.
 4. The 6 plugins and 88 skills activate automatically.
 
 *Native MCP Server Integration (OpenWork Library / Claude Desktop)*:
@@ -250,21 +250,21 @@ cp -r .agents/skills/* .cursor/skills/
   "mcpServers": {
     "indonesian-business": {
       "command": "npx",
-      "args": ["-y", "indonesian-skills-mcp"]
+      "args": ["-y", "indonesia-skills-mcp"]
     }
   }
 }
 ```
 
 **💬 AI Agent Prompt Guide**:
-> *"Please configure the Indonesian Business MCP Server in my MCP client settings (such as OpenWork Settings > Library or claude_desktop_config.json) with command `npx` and args `[\"-y\", \"indonesian-skills-mcp\"]`."*
+> *"Please configure the Indonesian Business MCP Server in my MCP client settings (such as OpenWork Settings > Library or claude_desktop_config.json) with command `npx` and args `[\"-y\", \"indonesia-skills-mcp\"]`."*
 
 ### 5. Custom SDK & REST API Microservice
 Directly import engines into your Node.js/TypeScript backend or run the standalone zero-dependency REST microservice to serve calculations across any tech stack (Python, PHP Laravel, Go, Java, C#, or ERP webhooks):
 
 ```javascript
 // Programmatic SDK Import (Node.js / TypeScript)
-const { calculatePPh21Monthly, calculatePhk, calculateBpjs, resolveProductClassification } = require('indonesian-business-agent-skills');
+const { calculatePPh21Monthly, calculatePhk, calculateBpjs, resolveProductClassification } = require('indonesia-business-agent-skills');
 
 // PPh 21 TER Tax Calculation
 const pph = calculatePPh21Monthly(10000000, 'TK/0');
@@ -275,7 +275,7 @@ const severance = calculatePhk(10000000, 5, 'resignation');
 
 ```bash
 # Start standalone REST API server (Default: http://localhost:3000)
-npx indonesian-skills serve --port 3000
+npx indonesia-skills serve --port 3000
 
 # Invoke via curl from any language (Python, Go, PHP, Rust, etc.)
 curl -X POST http://localhost:3000/api/v1/calc/pph21 \
@@ -314,7 +314,7 @@ print("Tax Withheld:", res.json()["result"]["monthlyTaxWithheld"])
 | `/audit/pkwtt` | PKWT/PKWTT compliance, probation audit & auto-conversion triggers |
 
 **💬 AI Agent Prompt Guide**:
-> *"Please start the Indonesian Business REST API microservice by running `npx indonesian-skills serve --port 3000` or import calculation engines directly via `require('indonesian-business-agent-skills')`."*
+> *"Please start the Indonesian Business REST API microservice by running `npx indonesia-skills serve --port 3000` or import calculation engines directly via `require('indonesia-business-agent-skills')`."*
 
 ---
 
@@ -810,7 +810,7 @@ console.log(diff);
 ### Q1: I am a business owner / non-technical user. How do I use this repository?
 > **Answer**: You do not need to be a developer! You can use this in 2 easy ways:
 > 1. **No-Code Interactive**: Open `docs/playground.html` directly in your browser to run interactive calculators for PPh 21, UMKM PP 20/2026, Break-Even, and Loan Amortization.
-> 2. **Via AI Agents**: If you use an AI app like Claude Code, OpenWork, or Cursor, simply run `npx skills add adamriofc/indonesian-business-agent-skills`. Afterward, you can ask questions naturally in plain language (e.g. *"What is the PPh 21 tax for a Rp 10M monthly salary?"*).
+> 2. **Via AI Agents**: If you use an AI app like Claude Code, OpenWork, or Cursor, simply run `npx skills add adamriofc/indonesia-business-agent-skills`. Afterward, you can ask questions naturally in plain language (e.g. *"What is the PPh 21 tax for a Rp 10M monthly salary?"*).
 
 ### Q2: Why should I not rely on unassisted ChatGPT / standard AI for Indonesian tax or severance calculations?
 > **Answer**: Standard AI predicts words probabilistically (*token prediction*) rather than executing math. Unassisted AI encounters:
@@ -847,9 +847,9 @@ console.log(diff);
 
 ### Q8: How do we integrate these engines into our corporate ERP, HRIS, or custom API?
 > **Answer**: Refer to `integrations/README.md`. Integration is supported through 3 enterprise-grade paths:
-> 1. **Root SDK Module**: Directly import engines into your Node.js/TypeScript backend via `const { pph21, phk, bpjs } = require('indonesian-business-agent-skills');`.
-> 2. **Standalone REST Microservice**: Run `npx indonesian-skills serve --port 3000` to expose 28+ native JSON HTTP endpoints callable from Python (FastAPI/Django), PHP (Laravel), Go, Java, or ERP webhooks.
-> 3. **Universal CLI**: Execute deterministic calculations from bash scripts or cron jobs via `npx indonesian-skills calc <target>`.
+> 1. **Root SDK Module**: Directly import engines into your Node.js/TypeScript backend via `const { pph21, phk, bpjs } = require('indonesia-business-agent-skills');`.
+> 2. **Standalone REST Microservice**: Run `npx indonesia-skills serve --port 3000` to expose 28+ native JSON HTTP endpoints callable from Python (FastAPI/Django), PHP (Laravel), Go, Java, or ERP webhooks.
+> 3. **Universal CLI**: Execute deterministic calculations from bash scripts or cron jobs via `npx indonesia-skills calc <target>`.
 
 ---
 

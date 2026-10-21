@@ -1,4 +1,4 @@
-# Contributing to `indonesian-business-agent-skills`
+# Contributing to `indonesia-business-agent-skills`
 
 Thank you for contributing to this project. Our purpose is **accurate, traceable, auditable Indonesian regulatory and business intelligence for AI agents** — every change must preserve the integrity guarantees of the repository.
 
@@ -18,8 +18,8 @@ Thank you for contributing to this project. Our purpose is **accurate, traceable
 ## Development Workflow
 
 ```bash
-git clone git@github.com:adamriofc/indonesian-business-agent-skills.git
-cd indonesian-business-agent-skills
+git clone git@github.com:adamriofc/indonesia-business-agent-skills.git
+cd indonesia-business-agent-skills
 npm ci
 npm test          # MUST pass 100% before opening a PR
 ```

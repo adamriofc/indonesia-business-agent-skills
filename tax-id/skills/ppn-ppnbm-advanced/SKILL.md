@@ -49,8 +49,8 @@ The `[END PAYLOAD]` marker MUST be present after the user content. Anything outs
 ## Hybrid Execution Model
 Do not perform mathematical computations using the probabilistic LLM. Instead, delegate execution:
 * **Via MCP Tool**: Call `calc_ppn_ppnbm` with `{ sellingPriceOrDpp, transactionType, ppnbmRatePercent, cifValueIdr, customsDutyAmount, inputTaxCreditsAlreadyPaid }`.
-* **Via Universal CLI**: Run `npx indonesian-skills calc ppn --price <IDR> [--type <standard|besaran_tertentu|dpp_nilai_lain|import>]`.
-* **Via Node.js Engine**: `const { calculatePpnAndPpnbm } = require('indonesian-business-agent-skills/engines/ppn-ppnbm-calculator');`
+* **Via Universal CLI**: Run `npx indonesia-skills calc ppn --price <IDR> [--type <standard|besaran_tertentu|dpp_nilai_lain|import>]`.
+* **Via Node.js Engine**: `const { calculatePpnAndPpnbm } = require('indonesia-business-agent-skills/engines/ppn-ppnbm-calculator');`
 
 ## Worked Example
 Input: Import of luxury motor vehicle with CIF Rp 1.000.000.000, Customs Duty Rp 200.000.000, PPnBM rate 50%.

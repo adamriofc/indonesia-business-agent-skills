@@ -199,7 +199,7 @@ function generateMetadata() {
   // Generate docs/METRICS.md
   const metricsDoc = `# Scope of Truth & Metadata Metrics (\`docs/METRICS.md\`)
 
-Official measurement definitions and exact metrics for \`indonesian-business-agent-skills\`.
+Official measurement definitions and exact metrics for \`indonesia-business-agent-skills\`.
 
 > **Single Source of Truth File**: [\`canonical-metadata.json\`](../canonical-metadata.json)  
 > **Last Generated**: ${metadata.generatedAt}  

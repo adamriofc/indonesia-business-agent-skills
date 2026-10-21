@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Indonesian Business Agent Suite Validator (`scripts/validate-suite.js`)
+ * Indonesia Business Agent Suite Validator (`scripts/validate-suite.js`)
  *
  * Verifies structural and semantic integrity of all bundle manifests:
  *  - Required fields present and correctly typed
@@ -30,7 +30,7 @@ const CANONICAL_PLUGINS = ['legal-id', 'tax-id', 'hr-id', 'finance-id', 'marketi
 const EXPECTED_FULL_SUITE_BUNDLE = 'full-business-suite.json';
 
 function validateSuite() {
-  console.log('🏢 Running Indonesian Business Agent Suite Validator...\n');
+  console.log('🏢 Running Indonesia Business Agent Suite Validator...\n');
   let errors = 0;
   let checks = 0;
 

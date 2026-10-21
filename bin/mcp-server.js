@@ -692,7 +692,7 @@ rl.on('line', (line) => {
         tools: {}
       },
       serverInfo: {
-        name: "indonesian-business-agent-skills",
+        name: "indonesia-business-agent-skills",
         version: pkg.version
       }
     });

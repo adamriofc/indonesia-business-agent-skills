@@ -53,8 +53,8 @@ The `[END PAYLOAD]` marker MUST be present after the user content. Anything outs
 ## Hybrid Execution Model
 Do not perform mathematical computations using the probabilistic LLM. Instead, delegate execution:
 * **Via MCP Tool**: Call `audit_pkwtt_compliance` with `{ monthlyWage, probationMonths, minimumWage, contractType, jobType, totalTenureMonths }`.
-* **Via Universal CLI**: Run `npx indonesian-skills audit pkwtt --wage <IDR> --probation <months> --contract <pkwt|pkwtt>`.
-* **Via Node.js Engine**: `const { auditPkwttStatus } = require('indonesian-business-agent-skills/engines/pkwtt-calculator');`
+* **Via Universal CLI**: Run `npx indonesia-skills audit pkwtt --wage <IDR> --probation <months> --contract <pkwt|pkwtt>`.
+* **Via Node.js Engine**: `const { auditPkwttStatus } = require('indonesia-business-agent-skills/engines/pkwtt-calculator');`
 * `auditPkwttStatus({ monthlyWage, probationMonths, minimumWage, jobType, contractType, totalTenureMonths, isRegisteredKemnaker })`
 
 ## Worked Example

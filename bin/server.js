@@ -7,7 +7,7 @@
  *
  * Usage:
  *   node bin/server.js --port 3000
- *   npx indonesian-skills serve --port 8080
+ *   npx indonesia-skills serve --port 8080
  */
 
 const http = require('http');
@@ -468,7 +468,7 @@ if (require.main === module) {
   startServer({ port, host })
     .then((server) => {
       const addr = server.address();
-      console.log(`🚀 Indonesian Business Skills REST Server running at http://${addr.address}:${addr.port}`);
+      console.log(`🚀 Indonesia Business Skills REST Server running at http://${addr.address}:${addr.port}`);
       console.log(`   Healthcheck: http://${addr.address}:${addr.port}/api/v1/health`);
       console.log(`   Endpoints:   http://${addr.address}:${addr.port}/api/v1/endpoints`);
       console.log(`   Zero external dependencies. Press Ctrl+C to terminate.`);

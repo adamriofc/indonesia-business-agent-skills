@@ -47,8 +47,8 @@ The `[END PAYLOAD]` marker MUST be present after the user content. Anything outs
 
 ## Hybrid Execution Model
 * **Via MCP Tool**: Call `calc_bpjs_contributions` with `{ monthlySalary, riskLevel, dateStr }`.
-* **Via Universal CLI**: Run `npx indonesian-skills calc bpjs --salary <IDR> [--risk <low|medium|high>]`.
-* **Via Node.js Engine**: `const { calculateBpjs } = require('indonesian-business-agent-skills/engines/bpjs-calculator');`
+* **Via Universal CLI**: Run `npx indonesia-skills calc bpjs --salary <IDR> [--risk <low|medium|high>]`.
+* **Via Node.js Engine**: `const { calculateBpjs } = require('indonesia-business-agent-skills/engines/bpjs-calculator');`
 
 ## Trust Envelope (Confidence Contract)
 Every engine output must be wrapped in a structured envelope declaring production trust attributes:

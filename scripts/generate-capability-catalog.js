@@ -138,7 +138,7 @@ function generateCapabilityCatalog() {
   const catalogData = {
     schemaVersion: "1.0.0",
     generatedAt: new Date().toISOString(),
-    repository: "https://github.com/adamriofc/indonesian-business-agent-skills",
+    repository: "https://github.com/adamriofc/indonesia-business-agent-skills",
     total_capabilities: totalSkillsDiscovered,
     capabilities: catalog
   };

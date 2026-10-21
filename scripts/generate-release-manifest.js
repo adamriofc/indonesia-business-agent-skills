@@ -66,7 +66,7 @@ function generateReleaseManifest() {
   const manifest = {
     manifestVersion: "1.2.0",
     provenancePolicy: "The git tag is the authoritative immutable release boundary. This manifest documents release lineage (version, source, metrics) but does NOT attempt to self-reference its own commit hash — such self-referential SHA attestation is cryptographically impossible in Git. Integrity is established by: (1) immutable git tag, (2) SHA256SUMS.txt for rulesets, (3) canonical-metadata.json, (4) npm test golden corpus.",
-    repository: "https://github.com/adamriofc/indonesian-business-agent-skills",
+    repository: "https://github.com/adamriofc/indonesia-business-agent-skills",
     releaseVersion: `v${metadata.version}`,
     releaseTag,
     releaseSourceCommitHash,

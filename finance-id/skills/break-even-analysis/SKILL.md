@@ -57,8 +57,8 @@ For multi-product cases, use the weighted-average contribution margin (weights =
 ## Hybrid Execution Model
 Do not perform mathematical computations using the probabilistic LLM. Instead, delegate execution:
 * **Via MCP Tool**: Call `analyze_break_even` with `{ fixedCosts, pricePerUnit, variableCostPerUnit, actualRevenue }`.
-* **Via Universal CLI**: Run `npx indonesian-skills calc breakeven --fixed <IDR> --price <IDR> --variable <IDR> [--revenue <IDR>]`.
-* **Via Node.js Engine**: `const be = require('indonesian-business-agent-skills/engines/break-even');`
+* **Via Universal CLI**: Run `npx indonesia-skills calc breakeven --fixed <IDR> --price <IDR> --variable <IDR> [--revenue <IDR>]`.
+* **Via Node.js Engine**: `const be = require('indonesia-business-agent-skills/engines/break-even');`
 Trust Envelope: risk LOW, `as_of` assumption date.
 
 ## Worked Example

@@ -1,5 +1,5 @@
 {
-  "description": "Performance throughput baseline for indonesian-business-agent-skills (measured on Node v26.7.0)",
+  "description": "Performance throughput baseline for indonesia-business-agent-skills (measured on Node v26.7.0)",
   "thresholdDegradationMaxPercent": 30,
   "baselineOpsPerSec": {
     "PPh 21 (TER PP 58/2023)": 10000,

@@ -1,11 +1,11 @@
 {
-  "bundle_id": "indonesian-business-agent-suite",
-  "name": "Indonesian Business Agent Suite",
+  "bundle_id": "indonesia-business-agent-suite",
+  "name": "Indonesia Business Agent Suite",
   "profile": "full-business",
   "version": "6.18.0",
   "description": "Full Indonesian business reasoning capability bundle for AI agents — spanning Legal, Tax, HR, Finance, Marketing, and Strategy with 88 agent skills, 55 deterministic engines, and shared auditable provenance.",
   "tagline": "One ecosystem. Six business domains. 88 agent capabilities.",
-  "repository": "https://github.com/adamriofc/indonesian-business-agent-skills",
+  "repository": "https://github.com/adamriofc/indonesia-business-agent-skills",
   "plugins": [
     {
       "id": "legal-id",
@@ -79,10 +79,10 @@
     "benchmarkDomains": 27
   },
   "installation": {
-    "oneCommand": "npx skills add adamriofc/indonesian-business-agent-skills",
-    "npm": "npm install adamriofc/indonesian-business-agent-skills (Git-based; npm registry publish pending)",
-    "opencode": "opencode skills add adamriofc/indonesian-business-agent-skills",
-    "git": "git clone https://github.com/adamriofc/indonesian-business-agent-skills"
+    "oneCommand": "npx skills add adamriofc/indonesia-business-agent-skills",
+    "npm": "npm install adamriofc/indonesia-business-agent-skills (Git-based; npm registry publish pending)",
+    "opencode": "opencode skills add adamriofc/indonesia-business-agent-skills",
+    "git": "git clone https://github.com/adamriofc/indonesia-business-agent-skills"
   },
   "integrity": {
     "capabilityContractSchema": "schemas/capability-contract.schema.json",

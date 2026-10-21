@@ -1,6 +1,6 @@
 # Granular Statutory Provenance Register (`PROVENANCE.md`)
 
-Every computational rule and legal prompt instruction in `indonesian-business-agent-skills` is traceably linked to official Indonesian government gazettes and versioned rulesets (`engines/rules/`).
+Every computational rule and legal prompt instruction in `indonesia-business-agent-skills` is traceably linked to official Indonesian government gazettes and versioned rulesets (`engines/rules/`).
 
 ---
 

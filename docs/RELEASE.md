@@ -1,6 +1,6 @@
 # Release Engineering & Checklist Policy (`docs/RELEASE.md`)
 
-Automated release pipeline, immutable boundaries, and release engineering checklist for `indonesian-business-agent-skills`.
+Automated release pipeline, immutable boundaries, and release engineering checklist for `indonesia-business-agent-skills`.
 
 ---
 
@@ -127,7 +127,7 @@ Each GitHub Release must include the following verifiable release artifacts:
 4. Auto-generated release notes summarizing version metadata (skills count, engine count, golden cases count, Node matrix status).
 
 
-Automated release pipeline, immutable boundaries, and release engineering checklist for \`indonesian-business-agent-skills\`.
+Automated release pipeline, immutable boundaries, and release engineering checklist for \`indonesia-business-agent-skills\`.
 
 ---
 
