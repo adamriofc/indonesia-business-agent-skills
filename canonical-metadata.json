@@ -7,12 +7,12 @@
   "goldenCases": 121,
   "benchmarkDomains": 27,
   "benchmarkAssertions": 434,
-  "totalTestAssertions": 741,
+  "totalTestAssertions": 755,
   "nodeSupport": {
     "minimumSupported": "20",
     "ltsRecommended": "22",
     "currentTested": "24"
   },
-  "generatedAt": "2026-10-21T13:32:43.641Z",
+  "generatedAt": "2026-10-21T15:06:28.371Z",
   "generator": "scripts/generate-metadata.js"
 }

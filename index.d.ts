@@ -272,9 +272,87 @@ export function calculateOvertime(params: {
   dayType?: 'WORKDAY' | 'WEEKLY_REST_5_DAYS' | 'WEEKLY_REST_6_DAYS' | 'PUBLIC_HOLIDAY';
 }): OvertimeResult;
 
-export function auditContractRisk(contractText: string): ContractRiskResult;
+export function calculateDailyOvertime(params: {
+  monthlyWage: number;
+  fixedAllowance?: number;
+  hours: number;
+  dayType?: 'WORKDAY' | 'WEEKLY_REST_5_DAYS' | 'WEEKLY_REST_6_DAYS' | 'PUBLIC_HOLIDAY';
+}): OvertimeResult;
 
+export function calculateHourlyWage(monthlyWage: number, fixedAllowance?: number): number;
+export function calculateMonthlyOvertimeSheet(monthlyWage: number, fixedAllowance?: number, records?: any[]): any;
+export function calculateUphPayout(params: {
+  monthlyWage: number;
+  remainingLeaveDays: number;
+  monthlyWorkingDays?: number;
+  relocationExpense?: number;
+  contractualAdditions?: number;
+}): any;
+
+// Additional Tax & Identity Functions
+export function calculatePPh21GrossUp(targetTakeHome: number, ptkpStatus?: string): any;
+export function calculatePPh23And26(grossAmount: number, transactionType?: string, hasNpwp?: boolean, hasDgtForm?: boolean, treatyRatePercent?: number | null): any;
+export function calculateUmkmFinalTax(grossRevenueYtd: number, currentMonthRevenue: number, taxpayerType?: string, dateStr?: string | null): any;
+export function calculatePpnAndPpnbm(params: {
+  sellingPriceOrDpp?: number;
+  transactionType?: string;
+  ppnbmRatePercent?: number;
+  cifValueIdr?: number;
+  customsDutyAmount?: number;
+  inputTaxCreditsAlreadyPaid?: number;
+}): any;
+export function calculateKmkForexConversion(params: { amountForeign: number; currency?: string; dateStr?: string | null }): any;
+export function calculateOffshoreWithholding(params: { amountForeign: number; currency?: string; dateStr?: string | null; taxType?: string; hasDgtForm?: boolean; treatyRatePercent?: number | null }): any;
+export function validateNik(nikInput: string): { isValid: boolean; nik: string; provinceCode?: string; isFemale?: boolean; birthDay?: number; birthMonth?: number; birthYearShort?: number; error?: string };
+export function validateNpwp(npwpInput: string): { isValid: boolean; npwp16?: string; npwp15?: string; formatted15?: string; formatted16?: string; isConvertedFrom15?: boolean; error?: string };
+export function normalizeTaxIdentity(taxIdentityInput: string): any;
+export function exportEbupot21Csv(payrollRecords: any[], options?: any): { totalRecords: number; csvContent: string };
+export function exportEbupot23Csv(serviceRecords: any[], options?: any): { totalRecords: number; csvContent: string };
+
+// Additional Finance Functions
+export function breakEvenUnits(fixedCosts: number, pricePerUnit: number, variableCostPerUnit: number): number;
+export function breakEvenRevenue(fixedCosts: number, pricePerUnit: number, variableCostPerUnit: number): number;
+export function contributionMargin(pricePerUnit: number, variableCostPerUnit: number): number;
+export function contributionMarginRatio(pricePerUnit: number, variableCostPerUnit: number): number;
+export function marginOfSafety(actualRevenue: number, breakEvenRevenueAmount: number): number;
+export function straightLineDepreciation(cost: number, salvage: number, lifeYears: number): any;
+export function doubleDecliningDepreciation(cost: number, salvage: number, lifeYears: number): any;
+export function sumOfYearsDigitsDepreciation(cost: number, salvage: number, lifeYears: number): any;
+export function monthlyLoanPayment(principal: number, annualRate: number, months: number): number;
+export function loanAmortizationSchedule(principal: number, annualRate: number, months: number): any;
+export function npv(rate: number, cashflows: number[]): number;
+export function npvWithTerminalValue(rate: number, cashflows: number[], terminalValue: number, terminalYearIndex: number): number;
+export function irr(cashflows: number[], opts?: any): { irr: number; iterations: number };
+export function netWorkingCapital(currentAssets: number, currentLiabilities: number): number;
+export function workingCapitalRatio(currentAssets: number, currentLiabilities: number): number;
+export function workingCapitalRequirement(cashCycleDays: number, costOfGoodsSoldPerDay: number): number;
+export function cashConversionCycle(daysInventory: number, daysSalesOutstanding: number, daysPayables: number): number;
+export function validateStatementLinkage(statements: { balanceSheet?: any; incomeStatement?: any; cashFlowStatement?: any }): any;
+export function calculateWacc(params: { equityValue: number; debtValue: number; costOfEquityPercent: number; costOfDebtPreTaxPercent: number; corporateTaxRatePercent?: number }): any;
+
+// Additional Commerce & Marketing Functions
+export function calculateMarketplaceFee(sellingPrice: number, platform?: string, sellerTier?: string, freeShippingExtra?: boolean, adSpendBudget?: number): any;
+export function calculateMarketSizing(params: { totalPopulation: number; targetPercentage?: number; annualSpendPerUser: number }): any;
+export function calculateMarketingUnitEconomics(params: { arppu: number; churnRate?: number; cac: number }): any;
+export function resolveProductClassification(input: any): any;
+export function calculateTrueNetRoas(params: { sellingPrice: number; cogs: number; platformFeePercent?: number; freeShippingFeePercent?: number; codReturnRatePercent?: number; adSpendPerDeliveredOrder?: number; shippingSubsidyPerAttempt?: number; pphFinalRatePercent?: number }): any;
+export function calculateLandedCost(params: { fobValueUsd: number; freightUsd?: number; insuranceUsd?: number; exchangeRateKmk?: number; dutyRatePercent?: number; hasApi?: boolean; hasNpwp?: boolean; unitsCount?: number }): any;
+
+// Additional Strategy & Legal Functions
+export function resolveBusinessArchetype(input: { kbliCode?: string; activityName?: string }): any;
+export function resolveOssRisk(kbliCode: string): any;
+export function auditContractRisk(contractText: string): ContractRiskResult;
+export function verifyBilingualCompliance(indonesianText: string, englishText: string): any;
+export function stressTestEnterprise(params: { baseFinancials?: any; strategyShocks?: any }): any;
+export function auditComplianceRisk(profile: any): any;
+
+// Institutional & Security Functions
 export function auditBusinessHealth(context: any): BusinessHealthResult;
+export function recordComplianceEntry(domain: string, action: string, statute: string, payload: any): any;
+export function verifyComplianceChain(): any;
+export function sanitizeUntrustedPayload(untrustedText: string): string;
+export function wrapUntrustedPayload(documentContent: string, customInstruction?: string): string;
+export function extractIsolatedPayload(isolatedPromptText: string): any;
 
 // Domain namespaces
 export const tax: any;

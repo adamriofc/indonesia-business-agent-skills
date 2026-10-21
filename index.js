@@ -118,6 +118,7 @@ module.exports = {
   calculateBpjs: bpjs.calculateBpjs,
   calculateHourlyWage: overtime.calculateHourlyWage,
   calculateDailyOvertime: overtime.calculateDailyOvertime,
+  calculateOvertime: overtime.calculateDailyOvertime, // Parity alias matching TypeScript definitions
   calculateMonthlyOvertimeSheet: overtime.calculateMonthlyOvertimeSheet,
   calculateUphPayout: uph.calculateUphPayout,
 

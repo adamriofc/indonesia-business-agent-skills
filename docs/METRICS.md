@@ -3,7 +3,7 @@
 Official measurement definitions and exact metrics for `indonesian-business-agent-skills`.
 
 > **Single Source of Truth File**: [`canonical-metadata.json`](../canonical-metadata.json)  
-> **Last Generated**: 2026-10-21T13:32:43.641Z  
+> **Last Generated**: 2026-10-21T15:06:28.371Z  
 > **Generator Command**: `npm run generate:metadata`
 
 ---
@@ -19,7 +19,7 @@ Official measurement definitions and exact metrics for `indonesian-business-agen
 | **Golden Cases** | `121` | Static golden test cases across `27` domain files in `tests/golden/*.json` |
 | **Benchmark Domains** | `27` | Domain JSON files in `tests/golden/` evaluated by `scripts/benchmark.js` |
 | **Benchmark Assertions** | `434` | Explicit assertion statements in `tests/benchmarks/` (`business-scenario-regression.test.js`, `nlp-extraction-fixture.test.js`, `cross-domain-synthetic.test.js`) |
-| **Total Test Assertions** | `741+` | Total explicit `assert.*` calls across all test files executed by `npm test` |
+| **Total Test Assertions** | `755+` | Total explicit `assert.*` calls across all test files executed by `npm test` |
 
 ---
 
@@ -27,7 +27,7 @@ Official measurement definitions and exact metrics for `indonesian-business-agen
 
 To eliminate documentation drift and ambiguity:
 - **Benchmark Assertions (`434`)**: Refers strictly to explicit assertions within the 3 benchmark suites in `tests/benchmarks/`.
-- **Total Repository Test Assertions (`741+`)**: Refers to assertions executed across unit, matrix, integration, security, and benchmark suites in `npm test`.
+- **Total Repository Test Assertions (`755+`)**: Refers to assertions executed across unit, matrix, integration, security, and benchmark suites in `npm test`.
 
 ---
 

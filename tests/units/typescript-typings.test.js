@@ -29,8 +29,25 @@ function runTypeScriptTypingsTests() {
   assert.ok(content.includes('export function calculatePPh21Monthly'), "Missing calculatePPh21Monthly function export");
   assert.ok(content.includes('export function calculatePhk'), "Missing calculatePhk function export");
   assert.ok(content.includes('export function calculateBpjs'), "Missing calculateBpjs function export");
+  assert.ok(content.includes('export function calculateOvertime'), "Missing calculateOvertime function export");
+  assert.ok(content.includes('export function calculateDailyOvertime'), "Missing calculateDailyOvertime function export");
   assert.ok(content.includes('export function auditContractRisk'), "Missing auditContractRisk function export");
   assert.ok(content.includes('export function auditBusinessHealth'), "Missing auditBusinessHealth function export");
+
+  // Verify runtime-types parity with index.js exports
+  const sdk = require('../../index');
+  assert.strictEqual(typeof sdk.calculateOvertime, 'function', "sdk.calculateOvertime must be exported as a function");
+  assert.strictEqual(typeof sdk.calculateDailyOvertime, 'function', "sdk.calculateDailyOvertime must be exported as a function");
+  assert.strictEqual(sdk.calculateOvertime, sdk.calculateDailyOvertime, "sdk.calculateOvertime must be an alias for calculateDailyOvertime");
+  assert.strictEqual(typeof sdk.calculateHourlyWage, 'function', "sdk.calculateHourlyWage must be exported as a function");
+  assert.strictEqual(typeof sdk.calculateUphPayout, 'function', "sdk.calculateUphPayout must be exported as a function");
+  assert.strictEqual(typeof sdk.calculateWacc, 'function', "sdk.calculateWacc must be exported as a function");
+  assert.strictEqual(typeof sdk.calculateTrueNetRoas, 'function', "sdk.calculateTrueNetRoas must be exported as a function");
+  assert.strictEqual(typeof sdk.calculateLandedCost, 'function', "sdk.calculateLandedCost must be exported as a function");
+  assert.strictEqual(typeof sdk.validateNik, 'function', "sdk.validateNik must be exported as a function");
+  assert.strictEqual(typeof sdk.validateNpwp, 'function', "sdk.validateNpwp must be exported as a function");
+  assert.strictEqual(typeof sdk.resolveOssRisk, 'function', "sdk.resolveOssRisk must be exported as a function");
+  assert.strictEqual(typeof sdk.auditBusinessHealth, 'function', "sdk.auditBusinessHealth must be exported as a function");
 
   // Verify domain namespaces
   assert.ok(content.includes('export const tax: any;'), "Missing tax namespace export");
