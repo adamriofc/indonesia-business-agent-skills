@@ -91,6 +91,10 @@ function printHelp() {
       "calc landed-cost": "Calculate Customs CIF, Bea Masuk, PPN 12% & PPh 22 Impor (--fob <USD>, [--freight <USD>], [--duty <%>], [--has-api <bool>])",
       "calc swot": "Quantitative SWOT/TOWS Matrix calculation (--file <swot.json> or --data <json>)",
       "calc bsc": "Balanced Scorecard evaluation & strategy map audit (--file <bsc.json> or --data <json>, [--sector <private|public>], [--cap <%>])",
+      "calc qspm": "Quantitative Strategic Planning Matrix (--file <qspm.json> or --data <json>)",
+      "calc rop": "Calculate Reorder Point & Safety Stock (--daily <N>, --lead <days>, [--daily-std <N>], [--lead-std <N>], [--service <95>], [--stock <N>], [--cost <IDR>])",
+      "calc inventory": "Calculate FIFO vs Average inventory valuation & tax impact (--file <stockcard.json> or --data <json>)",
+      "calc ecl": "Calculate PSAK 71 Expected Credit Loss AR impairment (--file <aging.json> or --data <json>)",
       "audit contract-risk": "Audit contract risk score 0-100 & clause traps (--text <string> or --file <path>)",
       "audit identity": "Validate and normalize NIK/NPWP 16-digit identity (--id <string>)",
       "audit statement-linkage": "Verify 3-statement balance & retained earnings sanity (--file <financials.json>)",
@@ -419,6 +423,73 @@ function run() {
           };
         }
         result = evaluateBalancedScorecard(inputData);
+      } else if (subAction === 'qspm') {
+        const { evaluateQspm } = require(path.join(ENGINES, 'qspm-engine'));
+        let inputData = {};
+        if (flags.file && require('fs').existsSync(flags.file)) {
+          inputData = JSON.parse(require('fs').readFileSync(flags.file, 'utf8'));
+        } else if (flags.data) {
+          inputData = typeof flags.data === 'string' ? JSON.parse(flags.data) : flags.data;
+        } else {
+          inputData = {
+            factors: [
+              { factor: "Keahlian AI Deterministik", weight: 0.5 },
+              { factor: "Permintaan Kepatuhan Regulasi", weight: 0.5 }
+            ],
+            strategies: [
+              { id: "s1", name: "B2B Enterprise", scores: [4, 4] },
+              { id: "s2", name: "D2C Retail", scores: [2, 2] }
+            ]
+          };
+        }
+        result = evaluateQspm(inputData);
+      } else if (subAction === 'rop' || subAction === 'safety-stock') {
+        const { calculateRopAndSafetyStock } = require(path.join(ENGINES, 'rop-safety-stock-engine'));
+        result = calculateRopAndSafetyStock({
+          averageDailyDemand: Number(flags.daily || flags['daily-demand'] || 50),
+          leadTimeDays: Number(flags.lead || flags['lead-time'] || 10),
+          demandStdDev: Number(flags['daily-std'] || flags['demand-std'] || 5),
+          leadTimeStdDev: Number(flags['lead-std'] || 0),
+          serviceLevelPercent: Number(flags.service || flags['service-level'] || 95),
+          currentStock: flags.stock !== undefined ? Number(flags.stock) : null,
+          unitCost: flags.cost !== undefined ? Number(flags.cost) : null
+        });
+      } else if (subAction === 'inventory' || subAction === 'inventory-valuation') {
+        const { calculateInventoryValuation } = require(path.join(ENGINES, 'inventory-valuation-engine'));
+        let inputData = {};
+        if (flags.file && require('fs').existsSync(flags.file)) {
+          inputData = JSON.parse(require('fs').readFileSync(flags.file, 'utf8'));
+        } else if (flags.data) {
+          inputData = typeof flags.data === 'string' ? JSON.parse(flags.data) : flags.data;
+        } else {
+          inputData = {
+            beginningInventory: { quantity: 100, unitCost: 10000 },
+            transactions: [
+              { type: "PURCHASE", quantity: 150, unitPrice: 12000 },
+              { type: "SALE", quantity: 120 }
+            ]
+          };
+        }
+        result = calculateInventoryValuation(inputData);
+      } else if (subAction === 'ecl' || subAction === 'ecl-provision') {
+        const { calculateEclProvisioning } = require(path.join(ENGINES, 'ecl-provision-engine'));
+        let inputData = {};
+        if (flags.file && require('fs').existsSync(flags.file)) {
+          inputData = JSON.parse(require('fs').readFileSync(flags.file, 'utf8'));
+        } else if (flags.data) {
+          inputData = typeof flags.data === 'string' ? JSON.parse(flags.data) : flags.data;
+        } else {
+          inputData = {
+            agingSchedule: {
+              days0To30: Number(flags.current || 500000000),
+              days31To60: Number(flags['days-31-60'] || 200000000),
+              days61To90: Number(flags['days-61-90'] || 100000000),
+              over90Days: Number(flags.overdue || flags['over-90'] || 50000000)
+            },
+            existingAllowanceBalance: Number(flags.existing || 40000000)
+          };
+        }
+        result = calculateEclProvisioning(inputData);
       } else {
         throw new Error(`Unknown calc target '${subAction}'. Run 'indonesia-skills help' for available commands.`);
       }

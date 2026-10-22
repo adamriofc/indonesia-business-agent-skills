@@ -8,7 +8,7 @@ const ROOT = path.join(__dirname, '../..');
 const ENGINES = path.join(ROOT, 'engines');
 
 async function testAllMcpTools() {
-  console.log("🤖 [1/3] EXHAUSTIVE AUDIT: Testing all 32 MCP Tools in bin/mcp-server.js...");
+  console.log("🤖 [1/3] EXHAUSTIVE AUDIT: Testing all 36 MCP Tools in bin/mcp-server.js...");
 
   const serverProc = spawn('node', [path.join(ROOT, 'bin/mcp-server.js')], {
     stdio: ['pipe', 'pipe', 'pipe']
@@ -89,6 +89,30 @@ async function testAllMcpTools() {
           }
         ]
       }
+    },
+    {
+      name: "calc_qspm",
+      args: {
+        factors: [{ factor: "F1", weight: 0.5 }, { factor: "F2", weight: 0.5 }],
+        strategies: [{ id: "s1", scores: [4, 3] }, { id: "s2", scores: [2, 2] }]
+      }
+    },
+    {
+      name: "calc_rop_safety_stock",
+      args: { averageDailyDemand: 50, leadTimeDays: 10, demandStdDev: 5 }
+    },
+    {
+      name: "calc_inventory_valuation",
+      args: {
+        beginningInventory: { quantity: 100, unitCost: 10000 },
+        transactions: [{ type: "PURCHASE", quantity: 50, unitPrice: 12000 }, { type: "SALE", quantity: 80 }]
+      }
+    },
+    {
+      name: "calc_ecl_provisioning",
+      args: {
+        agingSchedule: { days0To30: 100000000, days31To60: 50000000 }
+      }
     }
   ];
 
@@ -113,7 +137,7 @@ async function testAllMcpTools() {
 
   const listRes = responses.find(r => r.id === 'list');
   assert.ok(listRes && listRes.result && listRes.result.tools, "tools/list failed");
-  assert.strictEqual(listRes.result.tools.length, 32, `Expected 32 tools, got ${listRes.result.tools.length}`);
+  assert.strictEqual(listRes.result.tools.length, 36, `Expected 36 tools, got ${listRes.result.tools.length}`);
 
   let successCount = 0;
   for (let i = 0; i < testCalls.length; i++) {
@@ -126,7 +150,7 @@ async function testAllMcpTools() {
     successCount++;
   }
 
-  console.log(`  ✓ All ${successCount}/32 MCP tools executed and returned valid deterministic data!`);
+  console.log(`  ✓ All ${successCount}/36 MCP tools executed and returned valid deterministic data!`);
 }
 
 function testAllCliCommands() {
@@ -162,6 +186,10 @@ function testAllCliCommands() {
     "calc landed-cost --fob 10000 --duty 10",
     "calc swot",
     "calc bsc",
+    "calc qspm",
+    "calc rop",
+    "calc inventory",
+    "calc ecl",
     "audit pkwtt --wage 6000000 --probation 2 --contract pkwtt",
     "audit thincap --debt 2000000000 --equity 1000000000 --interest 200000000",
     "audit compliance --annual-spt true --pays-ump true",
@@ -194,7 +222,7 @@ function testAllCliCommands() {
 }
 
 async function testAllRestEndpoints() {
-  console.log("\n🌐 [3/3] EXHAUSTIVE AUDIT: Testing all 47 REST Endpoints in bin/server.js...");
+  console.log("\n🌐 [3/3] EXHAUSTIVE AUDIT: Testing all 51 REST Endpoints in bin/server.js...");
 
   const { startServer, ENDPOINT_MAP } = require(path.join(ROOT, 'bin/server.js'));
   const server = await startServer({ port: 0, host: '127.0.0.1' });
@@ -261,7 +289,7 @@ async function testAllRestEndpoints() {
 
 async function main() {
   console.log("===================================================================");
-  console.log("🛡️  EXHAUSTIVE REAL-WORLD AUDIT SUITE FOR ALL TOOLS (v6.19.0)");
+  console.log("🛡️  EXHAUSTIVE REAL-WORLD AUDIT SUITE FOR ALL TOOLS (v6.20.0)");
   console.log("===================================================================\n");
 
   await testAllMcpTools();

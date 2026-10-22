@@ -89,6 +89,13 @@ function auditBusinessHealth(profile = {}) {
     financeScore -= 30;
     criticalAlerts.push(`FINANSIAL: Rasio utang DER (${der}:1) melebihi batas statutory Thin-Cap 4:1 (PMK 172/2023).`);
   }
+  if (finance.receivablesQualityTier === 'CRITICAL_IMPAIRMENT_DISTRESSED') {
+    financeScore -= 20;
+    criticalAlerts.push("FINANSIAL: Kualitas piutang kritis (>30% menunggak / cadangan ECL >15%) — risiko gagal bayar kredit usaha tinggi.");
+  } else if (finance.receivablesQualityTier === 'WATCHLIST_MODERATE_RISK') {
+    financeScore -= 10;
+    recommendations.push("Perketat monitoring penagihan piutang dan tinjau plafon kredit pelanggan (aging schedule menunjukkan peningkatan tunggakan).");
+  }
   financeScore = Math.max(0, financeScore);
 
   // 5. Commercial & Market Pillar (Weight: 20 points)
@@ -100,6 +107,13 @@ function auditBusinessHealth(profile = {}) {
   if (commerce.isRoasAboveBreakEven === false) {
     commerceScore -= 20;
     recommendations.push("Turunkan biaya iklan atau tingkatkan konversi organik agar ROAS melampaui break-even ROAS floor.");
+  }
+  if (commerce.isStockoutRiskHigh === true || commerce.stockStatus === 'CRITICAL_BUFFER_BREACH') {
+    commerceScore -= 20;
+    criticalAlerts.push("KOMERSIAL: Level stok menembus batas kritis Safety Stock (Risiko kehabisan stok / lost sales tinggi).");
+  } else if (commerce.stockStatus === 'REORDER_IMMEDIATELY') {
+    commerceScore -= 10;
+    recommendations.push("Stok berada di bawah Reorder Point (ROP) — segera terbitkan Purchase Order ke pemasok.");
   }
   commerceScore = Math.max(0, commerceScore);
 

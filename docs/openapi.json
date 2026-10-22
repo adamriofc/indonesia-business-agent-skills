@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Indonesia Business Agent Skills REST API",
-    "version": "6.19.0",
+    "version": "6.20.0",
     "description": "Production-grade, deterministic REST API microservice for Indonesian tax, labor, finance, commercial, and legal calculations. Zero external dependencies.",
     "license": {
       "name": "MIT",
@@ -298,6 +298,113 @@
         },
         "responses": {
           "200": { "description": "Balanced Scorecard evaluation successful" },
+          "400": { "description": "Invalid input parameters" }
+        }
+      }
+    },
+    "/api/v1/strategy/qspm": {
+      "post": {
+        "summary": "Quantitative Strategic Planning Matrix (QSPM) Evaluation",
+        "description": "Evaluates alternative strategic choices by computing Total Attractiveness Scores (TAS) from IFE/EFE factor weights and Attractiveness Scores.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["factors", "strategies"],
+                "properties": {
+                  "factors": { "type": "array" },
+                  "strategies": { "type": "array" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "QSPM evaluation successful" },
+          "400": { "description": "Invalid input parameters" }
+        }
+      }
+    },
+    "/api/v1/commerce/rop-safety-stock": {
+      "post": {
+        "summary": "Calculate Reorder Point & Stochastic Safety Stock",
+        "description": "Computes Safety Stock and Reorder Point (ROP) with Z-score service level tables under demand and lead-time variability.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["averageDailyDemand", "leadTimeDays"],
+                "properties": {
+                  "averageDailyDemand": { "type": "number", "example": 50 },
+                  "leadTimeDays": { "type": "number", "example": 10 },
+                  "demandStdDev": { "type": "number", "example": 5 },
+                  "leadTimeStdDev": { "type": "number", "example": 1 },
+                  "serviceLevelPercent": { "type": "number", "example": 95.0 },
+                  "currentStock": { "type": "number", "example": 600 }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "ROP calculation successful" },
+          "400": { "description": "Invalid input parameters" }
+        }
+      }
+    },
+    "/api/v1/finance/inventory-valuation": {
+      "post": {
+        "summary": "Inventory Valuation: FIFO vs Moving Weighted Average",
+        "description": "Performs stock card costing per Article 10(6) UU PPh & PSAK 14, computing ending inventory value, COGS, and statutory 22% corporate tax delta.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["transactions"],
+                "properties": {
+                  "beginningInventory": { "type": "object" },
+                  "transactions": { "type": "array" },
+                  "corporateTaxRate": { "type": "number", "default": 0.22 }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Inventory valuation successful" },
+          "400": { "description": "Invalid input parameters" }
+        }
+      }
+    },
+    "/api/v1/finance/ecl-provision": {
+      "post": {
+        "summary": "PSAK 71 Expected Credit Loss (ECL) Receivables Impairment",
+        "description": "Calculates trade receivables impairment provision matrix, net carrying value, journal entries, and non-deductible fiscal correction under Article 9(1)(c) UU PPh.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "agingSchedule": { "type": "object" },
+                  "buckets": { "type": "array" },
+                  "existingAllowanceBalance": { "type": "number", "default": 0 },
+                  "macroAdjustmentFactor": { "type": "number", "default": 1.0 },
+                  "isFinancialInstitution": { "type": "boolean", "default": false }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "ECL provisioning calculation successful" },
           "400": { "description": "Invalid input parameters" }
         }
       }

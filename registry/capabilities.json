@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.0.0",
-  "generatedAt": "2026-10-21T19:22:53.933Z",
+  "generatedAt": "2026-10-22T15:54:45.489Z",
   "repository": "https://github.com/adamriofc/indonesia-business-agent-skills",
-  "total_capabilities": 90,
+  "total_capabilities": 94,
   "capabilities": [
     {
       "id": "accounting-basics",
@@ -618,6 +618,67 @@
       }
     },
     {
+      "id": "ecl-provisioning",
+      "canonical_id": "finance.ecl-provisioning",
+      "skillName": "ecl-provisioning",
+      "plugin": "finance-id",
+      "domain": "finance",
+      "description": "Calculate trade receivables impairment under PSAK 71 Expected Credit Loss (ECL) aging schedule matrix and evaluate Article 9(1)(c) UU PPh fiscal adjustments.",
+      "risk_level": "HIGH",
+      "rule_type": "statutory-regulatory",
+      "quality_tier": "expert-reviewed",
+      "capability": {
+        "purpose": [
+          "receivables_impairment",
+          "financial_accounting",
+          "tax_fiscal_reconciliation"
+        ],
+        "not_for": [
+          "unverified_bad_debt_writeoff",
+          "bank_specific_internal_rating_model"
+        ],
+        "requires": [
+          {
+            "name": "agingSchedule",
+            "type": "object",
+            "required": true
+          }
+        ],
+        "produces": [
+          {
+            "name": "totalGrossReceivables",
+            "type": "money_idr"
+          },
+          {
+            "name": "totalEclAllowance",
+            "type": "money_idr"
+          },
+          {
+            "name": "totalNetReceivables",
+            "type": "money_idr"
+          },
+          {
+            "name": "journalAction",
+            "type": "enum"
+          },
+          {
+            "name": "fiscalPositiveAdjustmentIdr",
+            "type": "money_idr"
+          }
+        ],
+        "consumes": [
+          "finance.cashBalance",
+          "tax.corporateTaxRate"
+        ],
+        "deterministic": true,
+        "risk": {
+          "level": "HIGH",
+          "human_review_required": false
+        },
+        "cross_domain_relevance": {}
+      }
+    },
+    {
       "id": "financial-modeling",
       "canonical_id": "finance.financial-modeling",
       "skillName": "financial-modeling",
@@ -799,6 +860,76 @@
         "deterministic": true,
         "risk": {
           "level": "MEDIUM",
+          "human_review_required": false
+        },
+        "cross_domain_relevance": {}
+      }
+    },
+    {
+      "id": "inventory-valuation",
+      "canonical_id": "finance.inventory-valuation",
+      "skillName": "inventory-valuation",
+      "plugin": "finance-id",
+      "domain": "finance",
+      "description": "Calculate inventory valuation under FIFO vs Moving Weighted Average per Article 10(6) UU PPh & PSAK 14, evaluating COGS and corporate tax impacts.",
+      "risk_level": "HIGH",
+      "rule_type": "statutory-regulatory",
+      "quality_tier": "expert-reviewed",
+      "capability": {
+        "purpose": [
+          "inventory_costing",
+          "tax_fiscal_reconciliation",
+          "cogs_calculation"
+        ],
+        "not_for": [
+          "lifo_method_execution",
+          "unverified_physical_stocktake_audit"
+        ],
+        "requires": [
+          {
+            "name": "beginningInventory",
+            "type": "object",
+            "required": true
+          },
+          {
+            "name": "transactions",
+            "type": "array",
+            "required": true
+          }
+        ],
+        "produces": [
+          {
+            "name": "fifoCogs",
+            "type": "money_idr"
+          },
+          {
+            "name": "averageCogs",
+            "type": "money_idr"
+          },
+          {
+            "name": "deltaCogs",
+            "type": "money_idr"
+          },
+          {
+            "name": "endingInventoryFifo",
+            "type": "money_idr"
+          },
+          {
+            "name": "endingInventoryAverage",
+            "type": "money_idr"
+          },
+          {
+            "name": "estimatedCorporateTaxImpactIdr",
+            "type": "money_idr"
+          }
+        ],
+        "consumes": [
+          "tax.corporateTaxRate",
+          "context.businessArchetype"
+        ],
+        "deterministic": true,
+        "risk": {
+          "level": "HIGH",
           "human_review_required": false
         },
         "cross_domain_relevance": {}
@@ -3387,6 +3518,87 @@
       }
     },
     {
+      "id": "reorder-point-safety-stock",
+      "canonical_id": "marketing.reorder-point-safety-stock",
+      "skillName": "reorder-point-safety-stock",
+      "plugin": "marketing-id",
+      "domain": "marketing",
+      "description": "Calculate Reorder Point (ROP) and stochastic Safety Stock with normal distribution Z-scores (90%-99.9%) across demand and lead-time variability.",
+      "risk_level": "MEDIUM",
+      "rule_type": "professional-standard",
+      "quality_tier": "expert-reviewed",
+      "capability": {
+        "purpose": [
+          "inventory_control",
+          "supply_chain_optimization",
+          "stockout_prevention"
+        ],
+        "not_for": [
+          "perishable_fresh_food_expiry_speculation",
+          "continuous_dips_forecasting"
+        ],
+        "requires": [
+          {
+            "name": "averageDailyDemand",
+            "type": "number",
+            "required": true
+          },
+          {
+            "name": "leadTimeDays",
+            "type": "number",
+            "required": true
+          },
+          {
+            "name": "demandStdDev",
+            "type": "number",
+            "required": true
+          },
+          {
+            "name": "leadTimeStdDev",
+            "type": "number",
+            "required": true
+          },
+          {
+            "name": "serviceLevelPercent",
+            "type": "percentage",
+            "required": true
+          }
+        ],
+        "produces": [
+          {
+            "name": "safetyStockUnits",
+            "type": "integer"
+          },
+          {
+            "name": "leadTimeDemandUnits",
+            "type": "number"
+          },
+          {
+            "name": "reorderPointUnits",
+            "type": "integer"
+          },
+          {
+            "name": "stockStatus",
+            "type": "enum"
+          },
+          {
+            "name": "isReorderNeeded",
+            "type": "boolean"
+          }
+        ],
+        "consumes": [
+          "finance.unitCostIdr",
+          "context.businessArchetype"
+        ],
+        "deterministic": true,
+        "risk": {
+          "level": "MEDIUM",
+          "human_review_required": false
+        },
+        "cross_domain_relevance": {}
+      }
+    },
+    {
       "id": "script-reels-tiktok",
       "canonical_id": "marketing.script-reels-tiktok",
       "skillName": "script-reels-tiktok",
@@ -4215,6 +4427,73 @@
           "finance.netProfit"
         ],
         "deterministic": false,
+        "risk": {
+          "level": "HIGH",
+          "human_review_required": false
+        },
+        "cross_domain_relevance": {}
+      }
+    },
+    {
+      "id": "qspm-matrix",
+      "canonical_id": "strategic.qspm-matrix",
+      "skillName": "qspm-matrix",
+      "plugin": "strategic-id",
+      "domain": "strategic",
+      "description": "Evaluates and ranks alternative strategic options using Quantitative Strategic Planning Matrix (QSPM) Stage-3 decision analysis based on IFE/EFE weights and Attractiveness Scores.",
+      "risk_level": "HIGH",
+      "rule_type": "professional-standard",
+      "quality_tier": "expert-reviewed",
+      "capability": {
+        "purpose": [
+          "strategic_decision_making",
+          "framework_evaluation",
+          "strategy_ranking"
+        ],
+        "not_for": [
+          "unverified_market_speculation",
+          "arbitrary_score_inflation"
+        ],
+        "requires": [
+          {
+            "name": "factors",
+            "type": "array",
+            "required": true
+          },
+          {
+            "name": "strategies",
+            "type": "array",
+            "required": true
+          }
+        ],
+        "produces": [
+          {
+            "name": "rankedStrategies",
+            "type": "array"
+          },
+          {
+            "name": "topStrategy",
+            "type": "object"
+          },
+          {
+            "name": "runnerUpStrategy",
+            "type": "object"
+          },
+          {
+            "name": "deltaTas",
+            "type": "number"
+          },
+          {
+            "name": "dominanceRatio",
+            "type": "number"
+          }
+        ],
+        "consumes": [
+          "context.businessArchetype",
+          "quantitativeSwot.ifeScore",
+          "quantitativeSwot.efeScore"
+        ],
+        "deterministic": true,
         "risk": {
           "level": "HIGH",
           "human_review_required": false

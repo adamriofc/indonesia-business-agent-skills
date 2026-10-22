@@ -48,6 +48,13 @@ const FRAMEWORK_APPLICABILITY_MATRIX = {
     CAPACITY_SERVICE: { status: 'ADAPTABLE', recommendationLevel: 'ADAPTABLE', unitOfAnalysis: 'CAPACITY_YIELD_SCORECARD', metric: 'RevPAU, Platform Uptime & Slot Turnover' },
     MARKETPLACE_PLATFORM: { status: 'ADAPTABLE', recommendationLevel: 'ADAPTABLE', unitOfAnalysis: 'ECOSYSTEM_HEALTH_SCORECARD', metric: 'GMV Take Rate, Merchant Retention & Order Dispute Latency' },
     HYBRID: { status: 'ADAPTABLE', recommendationLevel: 'ADAPTABLE', unitOfAnalysis: 'CORPORATE_ENTERPRISE_SCORECARD', metric: 'Consolidated EBITDA, Strategy Map Linkage & Portfolio Health' }
+  },
+  'qspm-matrix': {
+    PRODUCT_MANUFACTURING: { status: 'NATIVE', recommendationLevel: 'RECOMMENDED', unitOfAnalysis: 'PRODUCT_LINE_EXPANSION_STRATEGY', metric: 'Sum TAS & Capacity Absorption' },
+    PROFESSIONAL_SERVICE: { status: 'ADAPTABLE', recommendationLevel: 'ADAPTABLE', unitOfAnalysis: 'SERVICE_LINE_PORTFOLIO_STRATEGY', metric: 'Sum TAS & Billable Practice Return' },
+    CAPACITY_SERVICE: { status: 'ADAPTABLE', recommendationLevel: 'ADAPTABLE', unitOfAnalysis: 'CAPACITY_SLOT_SCALE_STRATEGY', metric: 'Sum TAS & Platform Slot Yield' },
+    MARKETPLACE_PLATFORM: { status: 'ADAPTABLE', recommendationLevel: 'ADAPTABLE', unitOfAnalysis: 'PLATFORM_GROWTH_STRATEGY', metric: 'Sum TAS & Network Liquidity' },
+    HYBRID: { status: 'ADAPTABLE', recommendationLevel: 'ADAPTABLE', unitOfAnalysis: 'STRATEGIC_BUSINESS_PORTFOLIO', metric: 'Sum TAS & Diversified Enterprise Value' }
   }
 };
 

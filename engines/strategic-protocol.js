@@ -78,6 +78,14 @@ function applyStrategicProtocol({
       applicabilityStatus = 'ADAPTABLE';
       applicabilityNote = 'Balanced Scorecard adapted across multi-perspective KPIs tailored to business archetype.';
     }
+  } else if (frameworkName === 'qspm-matrix') {
+    if (archetype === 'PRODUCT_MANUFACTURING') {
+      applicabilityStatus = 'NATIVE';
+      applicabilityNote = 'QSPM applies natively to product line and manufacturing capacity strategy decisions.';
+    } else {
+      applicabilityStatus = 'ADAPTABLE';
+      applicabilityNote = 'QSPM adapted to archetype-specific strategic alternatives using Attractiveness Scores against IFE/EFE factors.';
+    }
   }
 
   // 3. Evidence Sufficiency Verification

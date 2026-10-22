@@ -2,15 +2,15 @@
   "bundle_id": "indonesia-business-agent-suite",
   "name": "Indonesia Business Agent Suite",
   "profile": "full-business",
-  "version": "6.19.0",
-  "description": "Full Indonesian business reasoning capability bundle for AI agents — spanning Legal, Tax, HR, Finance, Marketing, and Strategy with 90 agent skills, 57 deterministic engines, and shared auditable provenance.",
-  "tagline": "One ecosystem. Six business domains. 90 agent capabilities.",
+  "version": "6.20.0",
+  "description": "Full Indonesian business reasoning capability bundle for AI agents — spanning Legal, Tax, HR, Finance, Marketing, and Strategy with 94 agent skills, 61 deterministic engines, and shared auditable provenance.",
+  "tagline": "One ecosystem. Six business domains. 94 agent capabilities.",
   "repository": "https://github.com/adamriofc/indonesia-business-agent-skills",
   "plugins": [
     {
       "id": "legal-id",
       "name": "Legal Intelligence",
-      "version": "6.19.0",
+      "version": "6.20.0",
       "domain": "legal",
       "skills": 9,
       "description": "Indonesian contract review, PDP compliance, KBLI/OSS navigator, trademark, NDA, SPK, legal memo, somasi, compliance risk."
@@ -18,7 +18,7 @@
     {
       "id": "tax-id",
       "name": "Tax Intelligence",
-      "version": "6.19.0",
+      "version": "6.20.0",
       "domain": "tax",
       "skills": 16,
       "description": "PPh 21 TER, PPh 21 gross-up, PPh 23/26, PPh Badan, PPn/PPnBM, UMKM final tax, transfer pricing, e-Faktur, tax audit prep, tax planning, optimization, risk analysis, cross-border, regulatory diff, regulatory impact, PSAK reporting."
@@ -26,7 +26,7 @@
     {
       "id": "hr-id",
       "name": "HR Intelligence",
-      "version": "6.19.0",
+      "version": "6.20.0",
       "domain": "hr",
       "skills": 12,
       "description": "BPJS calculator, THR, PHK severance, PHK advanced matrix, PKWT/PKWTT compliance, wage structure, surat peringatan, interview, SOP, BPJS admin, SPT tahunan."
@@ -34,30 +34,30 @@
     {
       "id": "finance-id",
       "name": "Finance Intelligence",
-      "version": "6.19.0",
+      "version": "6.20.0",
       "domain": "finance",
-      "skills": 15,
-      "description": "Break-even analysis, financial ratio, cash flow, capital budgeting, working capital, unit economics, financial modeling, financial statements, accounting basics, budgeting/forecasting, cost accounting, business feasibility, business scenario, decision engine, VC term sheet waterfall."
+      "skills": 17,
+      "description": "Break-even analysis, financial ratio, cash flow, capital budgeting, working capital, unit economics, financial modeling, financial statements, accounting basics, budgeting/forecasting, cost accounting, business feasibility, business scenario, decision engine, VC term sheet waterfall, inventory valuation, ECL provisioning."
     },
     {
       "id": "marketing-id",
       "name": "Marketing Intelligence",
-      "version": "6.19.0",
+      "version": "6.20.0",
       "domain": "marketing",
-      "skills": 26,
-      "description": "Market sizing, margin pricing, product classification, competitor analysis, customer segmentation, JTBD, voice of customer, positioning, go-to-market, SEO (Shopee/Tokopedia/GMB), content (TikTok, IG, YouTube, WhatsApp, LinkedIn), KOL brief, buyer negotiator, customer support, logistics claim."
+      "skills": 27,
+      "description": "Market sizing, margin pricing, product classification, competitor analysis, customer segmentation, JTBD, voice of customer, positioning, go-to-market, SEO (Shopee/Tokopedia/GMB), content (TikTok, IG, YouTube, WhatsApp, LinkedIn), KOL brief, buyer negotiator, customer support, logistics claim, reorder point and safety stock."
     },
     {
       "id": "strategic-id",
       "name": "Strategic Intelligence",
-      "version": "6.19.0",
+      "version": "6.20.0",
       "domain": "strategic",
-      "skills": 12,
-      "description": "BCG matrix, Porter five forces, Porter three tests, Ansoff matrix, VRIO analysis, value chain analysis, scenario planning, strategic planning, decision making, strategic risk analysis, Quantitative SWOT/TOWS matrix, Balanced Scorecard."
+      "skills": 13,
+      "description": "BCG matrix, Porter five forces, Porter three tests, Ansoff matrix, VRIO analysis, value chain analysis, scenario planning, strategic planning, decision making, strategic risk analysis, Quantitative SWOT/TOWS matrix, Balanced Scorecard, QSPM matrix."
     }
   ],
   "shared": {
-    "engines": 57,
+    "engines": 61,
     "rulesets": [
       "engines/rules/pph21.json",
       "engines/rules/bpjs.json",
@@ -73,8 +73,8 @@
   },
   "totals": {
     "plugins": 6,
-    "skills": 90,
-    "engines": 57,
+    "skills": 94,
+    "engines": 61,
     "goldenCases": 121,
     "benchmarkDomains": 27
   },

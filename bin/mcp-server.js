@@ -55,7 +55,11 @@ const engines = {
   strategyStress: () => require(path.join(ENGINES, 'strategy-stress-tester')),
   businessHealth: () => require(path.join(ENGINES, 'business-health-oracle')),
   quantitativeSwot: () => require(path.join(ENGINES, 'quantitative-swot-engine')),
-  balancedScorecard: () => require(path.join(ENGINES, 'balanced-scorecard-engine'))
+  balancedScorecard: () => require(path.join(ENGINES, 'balanced-scorecard-engine')),
+  qspm: () => require(path.join(ENGINES, 'qspm-engine')),
+  rop: () => require(path.join(ENGINES, 'rop-safety-stock-engine')),
+  inventoryValuation: () => require(path.join(ENGINES, 'inventory-valuation-engine')),
+  eclProvision: () => require(path.join(ENGINES, 'ecl-provision-engine'))
 };
 
 const TOOLS = [
@@ -590,6 +594,77 @@ const TOOLS = [
       },
       required: ["perspectives"]
     }
+  },
+  {
+    name: "calc_qspm",
+    description: "Evaluate and rank alternative strategic options using Quantitative Strategic Planning Matrix (QSPM) Stage-3 decision analysis.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        factors: { description: "Array of factors with weights (summing to 1.0) or { internal, external } object" },
+        strategies: {
+          type: "array",
+          description: "Array of strategy alternatives with attractiveness scores (1-4, or 0/null)"
+        }
+      },
+      required: ["factors", "strategies"]
+    }
+  },
+  {
+    name: "calc_rop_safety_stock",
+    description: "Calculate Reorder Point (ROP) and stochastic Safety Stock with normal distribution Z-scores (80%-99.9%) across demand and lead-time variability.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        averageDailyDemand: { type: "number", description: "Average units consumed/sold per day" },
+        leadTimeDays: { type: "number", description: "Vendor lead time in days" },
+        demandStdDev: { type: "number", default: 0, description: "Daily demand standard deviation" },
+        leadTimeStdDev: { type: "number", default: 0, description: "Vendor lead time standard deviation" },
+        serviceLevelPercent: { type: "number", default: 95.0, description: "Cycle service level percentage (e.g. 90, 95, 99)" },
+        currentStock: { type: "number", description: "Current inventory on-hand" },
+        unitCost: { type: "number", description: "Unit purchase cost in IDR" }
+      },
+      required: ["averageDailyDemand", "leadTimeDays"]
+    }
+  },
+  {
+    name: "calc_inventory_valuation",
+    description: "Calculate inventory valuation under FIFO vs Moving Weighted Average per Article 10(6) UU PPh & PSAK 14, evaluating COGS and corporate tax impacts.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        beginningInventory: {
+          type: "object",
+          description: "Beginning inventory { quantity, unitCost }"
+        },
+        transactions: {
+          type: "array",
+          description: "Array of inventory transactions: { type: 'PURCHASE'|'SALE', quantity, unitPrice }"
+        },
+        corporateTaxRate: { type: "number", default: 0.22, description: "Corporate tax rate (default 0.22)" }
+      },
+      required: ["transactions"]
+    }
+  },
+  {
+    name: "calc_ecl_provisioning",
+    description: "Calculate trade receivables impairment under PSAK 71 Expected Credit Loss (ECL) aging schedule matrix and evaluate Article 9(1)(c) UU PPh fiscal adjustments.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        agingSchedule: {
+          type: "object",
+          description: "Aging schedule balances: { days0To30, days31To60, days61To90, days91To180, over180Days }"
+        },
+        buckets: {
+          type: "array",
+          description: "Array of aging buckets with grossAmount and lossRatePercent"
+        },
+        existingAllowanceBalance: { type: "number", default: 0, description: "Current allowance on balance sheet in IDR" },
+        macroAdjustmentFactor: { type: "number", default: 1.0, description: "Forward-looking macro stress factor" },
+        isFinancialInstitution: { type: "boolean", default: false, description: "Whether entity is a financial institution under Pasal 9(1)(c) UU PPh" }
+      }
+    }
   }
 ];
 
@@ -771,6 +846,22 @@ function handleToolCall(name, args) {
     }
     case "calc_balanced_scorecard": {
       const fn = engines.balancedScorecard().evaluateBalancedScorecard;
+      return fn(args);
+    }
+    case "calc_qspm": {
+      const fn = engines.qspm().evaluateQspm;
+      return fn(args);
+    }
+    case "calc_rop_safety_stock": {
+      const fn = engines.rop().calculateRopAndSafetyStock;
+      return fn(args);
+    }
+    case "calc_inventory_valuation": {
+      const fn = engines.inventoryValuation().calculateInventoryValuation;
+      return fn(args);
+    }
+    case "calc_ecl_provisioning": {
+      const fn = engines.eclProvision().calculateEclProvisioning;
       return fn(args);
     }
     default:

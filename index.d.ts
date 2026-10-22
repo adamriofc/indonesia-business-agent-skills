@@ -329,6 +329,8 @@ export function workingCapitalRequirement(cashCycleDays: number, costOfGoodsSold
 export function cashConversionCycle(daysInventory: number, daysSalesOutstanding: number, daysPayables: number): number;
 export function validateStatementLinkage(statements: { balanceSheet?: any; incomeStatement?: any; cashFlowStatement?: any }): any;
 export function calculateWacc(params: { equityValue: number; debtValue: number; costOfEquityPercent: number; costOfDebtPreTaxPercent: number; corporateTaxRatePercent?: number }): any;
+export function calculateInventoryValuation(input: any): any;
+export function calculateEclProvisioning(input: any): any;
 
 // Additional Commerce & Marketing Functions
 export function calculateMarketplaceFee(sellingPrice: number, platform?: string, sellerTier?: string, freeShippingExtra?: boolean, adSpendBudget?: number): any;
@@ -337,6 +339,7 @@ export function calculateMarketingUnitEconomics(params: { arppu: number; churnRa
 export function resolveProductClassification(input: any): any;
 export function calculateTrueNetRoas(params: { sellingPrice: number; cogs: number; platformFeePercent?: number; freeShippingFeePercent?: number; codReturnRatePercent?: number; adSpendPerDeliveredOrder?: number; shippingSubsidyPerAttempt?: number; pphFinalRatePercent?: number }): any;
 export function calculateLandedCost(params: { fobValueUsd: number; freightUsd?: number; insuranceUsd?: number; exchangeRateKmk?: number; dutyRatePercent?: number; hasApi?: boolean; hasNpwp?: boolean; unitsCount?: number }): any;
+export function calculateRopAndSafetyStock(input: any): any;
 
 // Additional Strategy & Legal Functions
 export function resolveBusinessArchetype(input: { kbliCode?: string; activityName?: string }): any;
@@ -347,6 +350,7 @@ export function stressTestEnterprise(params: { baseFinancials?: any; strategySho
 export function auditComplianceRisk(profile: any): any;
 export function evaluateQuantitativeSwot(input: any): any;
 export function evaluateBalancedScorecard(input: any): any;
+export function evaluateQspm(input: any): any;
 
 // Institutional & Security Functions
 export function auditBusinessHealth(context: any): BusinessHealthResult;

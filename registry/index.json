@@ -1,14 +1,14 @@
 {
-  "version": "6.19.0",
+  "version": "6.20.0",
   "generated_at": "2026-10-22T00:00:00.000Z",
   "repository": "https://github.com/adamriofc/indonesia-business-agent-skills",
   "total_plugins": 6,
-  "total_skills": 90,
-  "total_engines": 57,
+  "total_skills": 94,
+  "total_engines": 61,
   "quality_tiers": {
-    "tested": 18,
+    "tested": 19,
     "source-verified": 31,
-    "expert-reviewed": 40
+    "expert-reviewed": 44
   },
   "skills": [
     {
@@ -5383,6 +5383,173 @@
       "canonical_id": "finance.working-capital"
     },
     {
+      "id": "inventory-valuation",
+      "name": "inventory-valuation",
+      "plugin": "finance-id",
+      "domain": "finance",
+      "type": "costing",
+      "quality_tier": "expert-reviewed",
+      "risk_level": "HIGH",
+      "rule_type": "statutory-regulatory",
+      "engine": "engines/inventory-valuation-engine.js",
+      "capability": {
+        "purpose": [
+          "inventory_costing",
+          "tax_fiscal_reconciliation",
+          "cogs_calculation"
+        ],
+        "not_for": [
+          "lifo_method_execution",
+          "unverified_physical_stocktake_audit"
+        ],
+        "requires": [
+          {
+            "name": "beginningInventory",
+            "type": "object",
+            "required": true
+          },
+          {
+            "name": "transactions",
+            "type": "array",
+            "required": true
+          }
+        ],
+        "produces": [
+          {
+            "name": "fifoCogs",
+            "type": "money_idr"
+          },
+          {
+            "name": "averageCogs",
+            "type": "money_idr"
+          },
+          {
+            "name": "deltaCogs",
+            "type": "money_idr"
+          },
+          {
+            "name": "endingInventoryFifo",
+            "type": "money_idr"
+          },
+          {
+            "name": "endingInventoryAverage",
+            "type": "money_idr"
+          },
+          {
+            "name": "estimatedCorporateTaxImpactIdr",
+            "type": "money_idr"
+          }
+        ],
+        "consumes": [
+          "tax.corporateTaxRate",
+          "context.businessArchetype"
+        ],
+        "deterministic": true,
+        "risk": {
+          "level": "high",
+          "human_review_required": false
+        },
+        "cross_domain_relevance": {
+          "tax": {
+            "relevance": "high",
+            "outputs": ["deltaCogs", "estimatedCorporateTaxImpactIdr"]
+          },
+          "finance": {
+            "relevance": "high",
+            "outputs": ["fifoCogs", "averageCogs", "endingInventoryFifo", "endingInventoryAverage"]
+          },
+          "marketing": {
+            "relevance": "medium",
+            "outputs": ["fifoCogs"]
+          },
+          "legal": {
+            "relevance": "medium",
+            "outputs": []
+          }
+        }
+      },
+      "canonical_id": "finance.inventory-valuation"
+    },
+    {
+      "id": "ecl-provisioning",
+      "name": "ecl-provisioning",
+      "plugin": "finance-id",
+      "domain": "finance",
+      "type": "provisioning",
+      "quality_tier": "expert-reviewed",
+      "risk_level": "HIGH",
+      "rule_type": "statutory-regulatory",
+      "engine": "engines/ecl-provision-engine.js",
+      "capability": {
+        "purpose": [
+          "receivables_impairment",
+          "financial_accounting",
+          "tax_fiscal_reconciliation"
+        ],
+        "not_for": [
+          "unverified_bad_debt_writeoff",
+          "bank_specific_internal_rating_model"
+        ],
+        "requires": [
+          {
+            "name": "agingSchedule",
+            "type": "object",
+            "required": true
+          }
+        ],
+        "produces": [
+          {
+            "name": "totalGrossReceivables",
+            "type": "money_idr"
+          },
+          {
+            "name": "totalEclAllowance",
+            "type": "money_idr"
+          },
+          {
+            "name": "totalNetReceivables",
+            "type": "money_idr"
+          },
+          {
+            "name": "journalAction",
+            "type": "enum"
+          },
+          {
+            "name": "fiscalPositiveAdjustmentIdr",
+            "type": "money_idr"
+          }
+        ],
+        "consumes": [
+          "finance.cashBalance",
+          "tax.corporateTaxRate"
+        ],
+        "deterministic": true,
+        "risk": {
+          "level": "high",
+          "human_review_required": false
+        },
+        "cross_domain_relevance": {
+          "finance": {
+            "relevance": "high",
+            "outputs": ["totalGrossReceivables", "totalEclAllowance", "totalNetReceivables", "journalAction"]
+          },
+          "tax": {
+            "relevance": "high",
+            "outputs": ["fiscalPositiveAdjustmentIdr"]
+          },
+          "legal": {
+            "relevance": "medium",
+            "outputs": []
+          },
+          "marketing": {
+            "relevance": "low",
+            "outputs": []
+          }
+        }
+      },
+      "canonical_id": "finance.ecl-provisioning"
+    },
+    {
       "id": "cost-accounting",
       "name": "cost-accounting",
       "plugin": "finance-id",
@@ -7456,6 +7623,91 @@
       "canonical_id": "strategic.balanced-scorecard"
     },
     {
+      "id": "qspm-matrix",
+      "name": "qspm-matrix",
+      "plugin": "strategic-id",
+      "domain": "strategic",
+      "type": "decision",
+      "quality_tier": "expert-reviewed",
+      "risk_level": "HIGH",
+      "rule_type": "professional-standard",
+      "engine": "engines/qspm-engine.js",
+      "capability": {
+        "purpose": [
+          "strategic_decision_making",
+          "framework_evaluation",
+          "strategy_ranking"
+        ],
+        "not_for": [
+          "unverified_market_speculation",
+          "arbitrary_score_inflation"
+        ],
+        "requires": [
+          {
+            "name": "factors",
+            "type": "array",
+            "required": true
+          },
+          {
+            "name": "strategies",
+            "type": "array",
+            "required": true
+          }
+        ],
+        "produces": [
+          {
+            "name": "rankedStrategies",
+            "type": "array"
+          },
+          {
+            "name": "topStrategy",
+            "type": "object"
+          },
+          {
+            "name": "runnerUpStrategy",
+            "type": "object"
+          },
+          {
+            "name": "deltaTas",
+            "type": "number"
+          },
+          {
+            "name": "dominanceRatio",
+            "type": "number"
+          }
+        ],
+        "consumes": [
+          "context.businessArchetype",
+          "quantitativeSwot.ifeScore",
+          "quantitativeSwot.efeScore"
+        ],
+        "deterministic": true,
+        "risk": {
+          "level": "high",
+          "human_review_required": false
+        },
+        "cross_domain_relevance": {
+          "finance": {
+            "relevance": "high",
+            "outputs": ["deltaTas", "dominanceRatio"]
+          },
+          "marketing": {
+            "relevance": "high",
+            "outputs": ["rankedStrategies", "topStrategy"]
+          },
+          "hr": {
+            "relevance": "medium",
+            "outputs": []
+          },
+          "tax": {
+            "relevance": "low",
+            "outputs": []
+          }
+        }
+      },
+      "canonical_id": "strategic.qspm-matrix"
+    },
+    {
       "id": "market-sizing",
       "name": "market-sizing",
       "plugin": "marketing-id",
@@ -8082,6 +8334,105 @@
         }
       },
       "canonical_id": "marketing.product-classification"
+    },
+    {
+      "id": "reorder-point-safety-stock",
+      "name": "reorder-point-safety-stock",
+      "plugin": "marketing-id",
+      "domain": "marketing",
+      "type": "inventory-control",
+      "quality_tier": "expert-reviewed",
+      "risk_level": "MEDIUM",
+      "rule_type": "professional-standard",
+      "engine": "engines/rop-safety-stock-engine.js",
+      "capability": {
+        "purpose": [
+          "inventory_control",
+          "supply_chain_optimization",
+          "stockout_prevention"
+        ],
+        "not_for": [
+          "perishable_fresh_food_expiry_speculation",
+          "continuous_dips_forecasting"
+        ],
+        "requires": [
+          {
+            "name": "averageDailyDemand",
+            "type": "number",
+            "required": true
+          },
+          {
+            "name": "leadTimeDays",
+            "type": "number",
+            "required": true
+          },
+          {
+            "name": "demandStdDev",
+            "type": "number",
+            "required": true
+          },
+          {
+            "name": "leadTimeStdDev",
+            "type": "number",
+            "required": true
+          },
+          {
+            "name": "serviceLevelPercent",
+            "type": "percentage",
+            "required": true
+          }
+        ],
+        "produces": [
+          {
+            "name": "safetyStockUnits",
+            "type": "integer"
+          },
+          {
+            "name": "leadTimeDemandUnits",
+            "type": "number"
+          },
+          {
+            "name": "reorderPointUnits",
+            "type": "integer"
+          },
+          {
+            "name": "stockStatus",
+            "type": "enum"
+          },
+          {
+            "name": "isReorderNeeded",
+            "type": "boolean"
+          }
+        ],
+        "consumes": [
+          "finance.unitCostIdr",
+          "context.businessArchetype"
+        ],
+        "deterministic": true,
+        "risk": {
+          "level": "medium",
+          "human_review_required": false
+        },
+        "cross_domain_relevance": {
+          "finance": {
+            "relevance": "high",
+            "outputs": ["safetyStockUnits", "reorderPointUnits"]
+          },
+          "marketing": {
+            "relevance": "high",
+            "outputs": ["stockStatus", "isReorderNeeded"]
+          },
+          "strategy": {
+            "relevance": "medium",
+            "outputs": ["stockStatus"]
+          },
+          "tax": {
+            "relevance": "low",
+            "outputs": []
+          }
+        }
+      },
+      "canonical_id": "marketing.reorder-point-safety-stock"
     }
   ]
 }

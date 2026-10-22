@@ -289,6 +289,10 @@ const ENDPOINT_MAP = {
   // Strategy & Institutional
   '/api/v1/strategy/quantitative-swot': (body) => sdk.evaluateQuantitativeSwot(body),
   '/api/v1/strategy/balanced-scorecard': (body) => sdk.evaluateBalancedScorecard(body),
+  '/api/v1/strategy/qspm': (body) => sdk.evaluateQspm(body),
+  '/api/v1/commerce/rop-safety-stock': (body) => sdk.calculateRopAndSafetyStock(body),
+  '/api/v1/finance/inventory-valuation': (body) => sdk.calculateInventoryValuation(body),
+  '/api/v1/finance/ecl-provision': (body) => sdk.calculateEclProvisioning(body),
   '/api/v1/audit/strategy-stress-test': (body) => sdk.stressTestEnterprise({
     baseFinancials: body.baseFinancials || {},
     strategyShocks: body.strategyShocks || {}

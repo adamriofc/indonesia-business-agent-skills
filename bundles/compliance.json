@@ -2,39 +2,39 @@
   "bundle_id": "compliance",
   "name": "Compliance Pack",
   "profile": "compliance",
-  "version": "6.19.0",
+  "version": "6.20.0",
   "description": "Indonesian regulatory compliance covering labor law, data protection (UU PDP), contract audit, KBLI/OSS licensing, trademark (HAKI), e-Faktur validation, and tax audit preparation — for legal teams, compliance officers, and enterprise governance.",
   "plugins": [
     {
       "id": "legal-id",
       "name": "Legal Intelligence",
-      "version": "6.19.0",
+      "version": "6.20.0",
       "domain": "legal",
       "skills": 9
     },
     {
       "id": "tax-id",
       "name": "Tax Intelligence",
-      "version": "6.19.0",
+      "version": "6.20.0",
       "domain": "tax",
       "skills": 16
     },
     {
       "id": "hr-id",
       "name": "HR Intelligence",
-      "version": "6.19.0",
+      "version": "6.20.0",
       "domain": "hr",
       "skills": 12
     }
   ],
   "shared": {
-    "engines": 57,
+    "engines": 61,
     "capabilityCatalog": "registry/capabilities.json"
   },
   "totals": {
     "plugins": 3,
     "skills": 37,
-    "engines": 57
+    "engines": 61
   },
   "use_cases": [
     "Contract risk scoring & redline detection",

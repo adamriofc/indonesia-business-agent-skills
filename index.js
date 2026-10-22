@@ -4,12 +4,12 @@
  * Universal, zero-dependency, pure Node.js SDK interface for enterprise backends,
  * AI agent frameworks, and custom applications.
  *
- * Provides direct access to 57 deterministic computational and regulatory diff engines:
+ * Provides direct access to 61 deterministic computational and regulatory diff engines:
  *   - Tax: PPh 21 TER, December Reconciliation, Gross-Up, PPh Badan 31E, PPh 23/26, PPN 12%, UMKM 0.5%, Kurs Pajak KMK, NIK/NPWP 16-Digit, e-Bupot CSV Exporter
  *   - HR: BPJS Ketenagakerjaan & Kesehatan, PHK Severance (PP 35/2021), PKWT Compensation, PKWTT Compliance, Overtime (1/173), UPH Sisa Cuti, THR
- *   - Finance: Break-Even, Loan Amortization, Depreciation (SL/DDB/SYD), NPV, IRR, 14 Financial Ratios, Working Capital, 3-Statement Linker, WACC with Tax Shield
- *   - Commerce & Marketing: Marketplace Fee (Shopee/Tokopedia/TikTok), BTKI 2022 Product Classification, True Net ROAS & COD Retur, Customs Landed Cost
- *   - Strategy & Legal: KBLI 2020 Context Routing, OSS-RBA PP 5/2021, Contract Risk Scorer (0-100), Bilingual Contract Harmonizer (UU 24/2009), Porter Three Tests (Capacity & Digital Service Model), Enterprise Strategy Stress-Tester, Quantitative SWOT/TOWS Matrix, Balanced Scorecard (Kaplan & Norton / KMK 467/2014)
+ *   - Finance: Break-Even, Loan Amortization, Depreciation (SL/DDB/SYD), NPV, IRR, 14 Financial Ratios, Working Capital, 3-Statement Linker, WACC with Tax Shield, Inventory Valuation (FIFO vs Average), ECL Receivables Impairment Matrix (PSAK 71)
+ *   - Commerce & Marketing: Marketplace Fee (Shopee/Tokopedia/TikTok), BTKI 2022 Product Classification, True Net ROAS & COD Retur, Customs Landed Cost, ROP & Safety Stock (Z-Score Normal Distribution)
+ *   - Strategy & Legal: KBLI 2020 Context Routing, OSS-RBA PP 5/2021, Contract Risk Scorer (0-100), Bilingual Contract Harmonizer (UU 24/2009), Porter Three Tests (Capacity & Digital Service Model), Enterprise Strategy Stress-Tester, Quantitative SWOT/TOWS Matrix, Balanced Scorecard (Kaplan & Norton / KMK 467/2014), Quantitative Strategic Planning Matrix (QSPM)
  *   - Institutional & Security: Local Merkle Compliance Ledger, 360° Business Health Oracle, Prompt Injection Closed Delimiter Sanitization
  *
  * Usage:
@@ -55,6 +55,8 @@ const workingCapital = require(path.join(ENGINES, 'working-capital'));
 const termSheet = require(path.join(ENGINES, 'term-sheet-waterfall'));
 const financialLinker = require(path.join(ENGINES, 'financial-statement-linker'));
 const waccCalculator = require(path.join(ENGINES, 'wacc-calculator'));
+const inventoryValuation = require(path.join(ENGINES, 'inventory-valuation-engine'));
+const eclProvision = require(path.join(ENGINES, 'ecl-provision-engine'));
 
 // 4. Marketing, Commerce & Product Classification
 const marketplace = require(path.join(ENGINES, 'marketplace-fee-calculator'));
@@ -63,6 +65,7 @@ const unitEconomics = require(path.join(ENGINES, 'marketing-unit-economics'));
 const productContext = require(path.join(ENGINES, 'product-context'));
 const roasEngine = require(path.join(ENGINES, 'roas-contribution-engine'));
 const landedCostCalculator = require(path.join(ENGINES, 'landed-cost-calculator'));
+const ropEngine = require(path.join(ENGINES, 'rop-safety-stock-engine'));
 
 // 5. Strategy, Governance & Legal Engines
 const kbli = require(path.join(ENGINES, 'kbli-context-router'));
@@ -78,6 +81,7 @@ const strategicProtocol = require(path.join(ENGINES, 'strategic-protocol'));
 const strategyStressTester = require(path.join(ENGINES, 'strategy-stress-tester'));
 const quantitativeSwot = require(path.join(ENGINES, 'quantitative-swot-engine'));
 const balancedScorecard = require(path.join(ENGINES, 'balanced-scorecard-engine'));
+const qspm = require(path.join(ENGINES, 'qspm-engine'));
 const contractRisk = require(path.join(ENGINES, 'contract-risk-engine'));
 const ossRba = require(path.join(ENGINES, 'oss-rba-engine'));
 const bilingualHarmonizer = require(path.join(ENGINES, 'bilingual-contract-harmonizer'));
@@ -144,6 +148,8 @@ module.exports = {
   cashConversionCycle: workingCapital.cashConversionCycle,
   validateStatementLinkage: financialLinker.validateStatementLinkage,
   calculateWacc: waccCalculator.calculateWacc,
+  calculateInventoryValuation: inventoryValuation.calculateInventoryValuation,
+  calculateEclProvisioning: eclProvision.calculateEclProvisioning,
   financialRatios,
 
   // Commerce & Marketing
@@ -153,6 +159,7 @@ module.exports = {
   resolveProductClassification: productContext.resolveProductClassification,
   calculateTrueNetRoas: roasEngine.calculateTrueNetRoas,
   calculateLandedCost: landedCostCalculator.calculateLandedCost,
+  calculateRopAndSafetyStock: ropEngine.calculateRopAndSafetyStock,
 
   // Strategy & Legal
   resolveBusinessArchetype: kbli.resolveBusinessArchetype,
@@ -164,6 +171,7 @@ module.exports = {
   stressTestEnterprise: strategyStressTester.stressTestEnterprise,
   evaluateQuantitativeSwot: quantitativeSwot.evaluateQuantitativeSwot,
   evaluateBalancedScorecard: balancedScorecard.evaluateBalancedScorecard,
+  evaluateQspm: qspm.evaluateQspm,
   auditContractRisk: contractRisk.auditContractRisk,
   resolveOssRisk: ossRba.resolveOssRisk,
   verifyBilingualCompliance: bilingualHarmonizer.verifyBilingualCompliance,
@@ -212,19 +220,23 @@ module.exports = {
     workingCapital,
     termSheet,
     financialLinker,
-    waccCalculator
+    waccCalculator,
+    inventoryValuation,
+    eclProvision
   },
   commerce: {
     marketplace,
     productContext,
     roasEngine,
-    landedCostCalculator
+    landedCostCalculator,
+    ropEngine
   },
   marketing: {
     marketSizing,
     unitEconomics,
     marketplace,
-    roasEngine
+    roasEngine,
+    ropEngine
   },
   strategy: {
     kbli,
@@ -238,7 +250,8 @@ module.exports = {
     strategicProtocol,
     strategyStressTester,
     quantitativeSwot,
-    balancedScorecard
+    balancedScorecard,
+    qspm
   },
   legal: {
     compliance,

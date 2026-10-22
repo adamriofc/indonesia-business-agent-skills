@@ -2,6 +2,19 @@
 
 All notable changes to this project are documented here in reverse chronological order. Regulatory/statutory changes are additionally tracked per-rule in [REGULATORY_CHANGELOG.md](./REGULATORY_CHANGELOG.md); provenance of every rule in [PROVENANCE.md](./PROVENANCE.md); release cadence in [REGULATORY_PIPELINE.md](./REGULATORY_PIPELINE.md).
 
+## [6.20.0] - 2026-10-22
+
+### Comprehensive Enterprise Supply Chain, Accounting, & Strategic Formulation Release (The 4 Pure Mathematical Gems)
+
+- **P0 — Quantitative Strategic Planning Matrix (QSPM) Engine (`engines/qspm-engine.js`)**: Implemented Stage-3 Decision Stage of Fred R. David's strategic formulation model. Computes Total Attractiveness Scores (TAS) objectively from IFE/EFE factor weights and Attractiveness Scores ($AS \in \{1, 2, 3, 4\}$), strategy score differentials ($\Delta \text{TAS}$), and dominance ratios across feasible strategic alternatives with zero subjective advice.
+- **P0 — Reorder Point (ROP) & Stochastic Safety Stock Engine (`engines/rop-safety-stock-engine.js`)**: Implemented operations research inventory control under joint daily demand variability ($\sigma_d$) and vendor lead-time variability ($\sigma_L$) with standard normal distribution service levels ($Z = 1.282$ to $3.090$ for $80\% - 99.9\%$), ROP calculation, operational inventory status (`CRITICAL_BUFFER_BREACH`, `REORDER_IMMEDIATELY`, `OPTIMAL_NORMAL`, `OVERSTOCKED`), and direct integration with 360° Sovereign Business Health Oracle.
+- **P0 — Inventory Valuation Engine: FIFO vs Moving Weighted Average (`engines/inventory-valuation-engine.js`)**: Implemented chronological stock card costing per Pasal 10 ayat (6) UU PPh and PSAK 14 with strict statutory LIFO prohibition enforcement, accounting cost conservation verification ($\text{Beginning} + \text{Purchases} \equiv \text{COGS} + \text{Ending}$), and PPh Badan 22% fiscal tax differential calculation ($22\% \times |\Delta \text{COGS}|$).
+- **P0 — Expected Credit Loss (ECL) Provisioning Engine (`engines/ecl-provision-engine.js`)**: Implemented trade receivables impairment per PSAK 71 (simplified provision matrix approach) across 5 aging buckets (0–30, 31–60, 61–90, 91–180, >180 days), macro stress adjustment multipliers, automatic double-entry journal entries (Allowance vs Reversal), and non-deductible positive fiscal adjustments under Pasal 9 ayat (1) huruf c jo. Pasal 6 ayat (1) huruf h UU PPh.
+- **P0 — 4 New Production Agent Skills**: Added `qspm-matrix` (`strategic-id`), `reorder-point-safety-stock` (`marketing-id`), `inventory-valuation` (`finance-id`), and `ecl-provisioning` (`finance-id`), expanding the suite from 90 to 94 skills, each protected by closed prompt injection delimiter boundaries.
+- **P0 — Multi-Interface Uniformity (MCP, CLI & REST)**: Expanded MCP Server from 32 to 36 tools (`calc_qspm`, `calc_rop_safety_stock`, `calc_inventory_valuation`, `calc_ecl_provisioning`), Universal CLI from 42 to 46 commands (`calc qspm`, `calc rop`, `calc inventory`, `calc ecl`), and REST server from 47 to 51 endpoints (`/api/v1/strategy/qspm`, `/api/v1/commerce/rop-safety-stock`, `/api/v1/finance/inventory-valuation`, `/api/v1/finance/ecl-provision`) with complete OpenAPI 3.1 definitions.
+- **P0 — Complete TypeScript & SDK Parity (`index.js` & `index.d.ts`)**: Exported all 4 engines on root SDK and domain namespaces (`strategy`, `commerce`, `marketing`, `finance`) with full TypeScript declarations.
+- **All artifacts synchronized to v6.20.0**: `package.json`, `package-lock.json`, `canonical-metadata.json`, `registry/index.json`, `registry/capabilities.json`, all 5 `bundles/*.json`, `README.md`, `docs/METRICS.md`, `docs/BENCHMARK.md`.
+
 ## [6.19.0] - 2026-10-22
 
 ### Apex Strategic Expansion: Quantitative SWOT/TOWS Matrix & Balanced Scorecard (BSC)
