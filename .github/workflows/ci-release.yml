@@ -127,7 +127,7 @@ jobs:
         run: REQUIRE_RELEASE_TAG=true npm run validate:release
 
       - name: Upload Benchmark Results Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: benchmark-results-latest.json
           path: docs/benchmark-results/latest.json
