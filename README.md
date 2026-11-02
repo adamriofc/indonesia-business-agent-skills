@@ -36,7 +36,7 @@
 
 > **Evidence Boundary Note**: Independent external domain validation and enterprise production proof are still pending.
 
-**Indonesia Business Agent Skills** is an open-source domain-intelligence infrastructure designed to give AI agents an authentic Indonesian business and regulatory intelligence layer. Built for **OpenWork Desktop**, **OpenCode CLI**, **Claude Code (CLI)**, **Cursor IDE**, **Codex**, **OpenClaw**, **Hermes**, and custom agent frameworks, this repository integrates **94 Agent Skills** across **6 canonical plugins** (`legal-id`, `tax-id`, `hr-id`, `finance-id`, `marketing-id`, `strategic-id`) with **61 Deterministic Computational & Regulatory Diff Engines** (`engines/`) and single-source-of-truth temporal JSON rulesets (`engines/rules/`).
+**Indonesia Business Agent Skills** is an domain intelligence infrastructure designed to give AI agents an authentic Indonesia business and regulatory intelligence layer. Built for **OpenWork Desktop**, **OpenCode CLI**, **Claude Code (CLI)**, **Cursor IDE**, **Codex**, **OpenClaw**, **Hermes**, **Gemini**, and custom agent frameworks, this repository integrates **94 Agent Skills** across **6 canonical plugins** (`legal-id`, `tax-id`, `hr-id`, `finance-id`, `marketing-id`, `strategic-id`) with **61 Deterministic Computational & Regulatory Diff Engines** (`engines/`) and single-source-of-truth temporal JSON rulesets (`engines/rules/`).
 
 ### 💡 Why Standard LLMs Fail at Indonesia Business & Compliance Calculations
 Generic AI models (such as unassisted ChatGPT or Claude) predict words probabilistically (*token prediction*). When tasked with calculating TER PPh 21 income tax, PHK severance payouts, or corporate loan interest, standard LLMs encounter 3 critical failure modes:
