@@ -441,7 +441,7 @@ function createServer() {
 }
 
 function startServer(options = {}) {
-  const port = options.port || DEFAULT_PORT;
+  const port = options.port !== undefined ? options.port : DEFAULT_PORT;
   const host = options.host || DEFAULT_HOST;
   const server = createServer();
 

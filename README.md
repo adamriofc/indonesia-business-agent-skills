@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-AGPL_3.0-blue.svg" alt="License: AGPL-3.0"></a>
   <a href="https://github.com/adamriofc/indonesia-business-agent-skills/actions/workflows/ci-release.yml"><img src="https://github.com/adamriofc/indonesia-business-agent-skills/actions/workflows/ci-release.yml/badge.svg" alt="CI Pipeline"></a>
   <a href="https://app.openworklabs.com/"><img src="https://img.shields.io/badge/OpenCode-Compatible-brightgreen.svg" alt="OpenCode Compatibility"></a>
   <a href="engines/"><img src="https://img.shields.io/badge/Hybrid%20Engine-LLM--Safe-orange.svg" alt="LLM-Safe Hybrid Engine"></a>
@@ -876,6 +876,8 @@ See [`SECURITY.md`](SECURITY.md) for prompt injection defense guidelines, [`PROV
 
 **Release Trust Anchor**: `SHA256SUMS.txt` holds SHA-256 checksums for every ruleset; verified via `./scripts/sha256sums.sh verify` and in CI.
 
-## 📄 License
+## 📄 License & Dual-Licensing
 
-MIT License. See [LICENSE](LICENSE) for details.
+Licensed under the **GNU Affero General Public License v3.0** (AGPL-3.0-or-later). See [LICENSE](LICENSE) for details.
+
+> **Enterprise & Commercial Licensing**: For commercial applications, closed-source proprietary software integration, or deployments seeking exemption from AGPL-3.0 copyleft obligations, custom enterprise licensing terms are available. Inquiries: `adamriofc@protonmail.com`.

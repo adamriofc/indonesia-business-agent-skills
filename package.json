@@ -23,7 +23,7 @@
     "watch:regulatory": "node scripts/regulatory-watch.js"
   },
   "author": "adamriofc",
-  "license": "MIT",
+  "license": "AGPL-3.0-or-later",
   "bin": {
     "indonesia-skills": "bin/cli.js",
     "indonesia-skills-mcp": "bin/mcp-server.js",

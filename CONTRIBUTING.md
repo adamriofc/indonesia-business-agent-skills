@@ -44,4 +44,4 @@ Maintainers review for factual accuracy, provenance quality, and test coverage. 
 
 ## License
 
-By contributing you agree your work is licensed under the same MIT license as this repository (`LICENSE`).
+By contributing you agree your work is licensed under the same GNU Affero General Public License v3.0 (AGPL-3.0-or-later) as this repository (`LICENSE`).
