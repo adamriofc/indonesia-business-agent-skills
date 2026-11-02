@@ -431,9 +431,9 @@ All skills and computational engines are mapped in the **Machine-Readable Regist
 
 ---
 
-## 👥 Who Uses This — Profession-Based Use Cases
+## 👥 Who Uses This — Profession Based Use Cases
 
-This suite is designed for **any professional who needs accurate, regulation-grounded Indonesian business intelligence inside their AI agent**. Below are real-world use cases organized by profession — single-domain and cross-domain.
+This suite is designed for **any professional who needs accurate, regulation-grounded Indonesian business intelligence inside their AI agent**. Below are real world use cases organized by profession — single domain and cross-domain.
 
 ---
 
@@ -559,7 +559,7 @@ This suite is designed for **any professional who needs accurate, regulation-gro
 
 **Cross-domain**: `marketing-id` + `finance-id` + `tax-id` — launch pricing → margin → tax obligation in one session.
 
-> ⚡ **30-Second Killer Cross-Domain Demo**
+> ⚡ **30-Second Killer Cross Domain Demo**
 >
 > **User**: *"I sell bags on Shopee at Rp 150,000 (cost Rp 90,000). What is my real net profit after fees, and how much UMKM final tax do I owe this month if my YTD revenue is Rp 420M?"*
 >
@@ -627,7 +627,7 @@ This suite is designed for **any professional who needs accurate, regulation-gro
 ---
 
 ### 🛒 E-Commerce Seller / D2C Brand
-**Problem**: Multi-platform selling across Shopee, Tokopedia, TikTok Shop creates pricing, margin, and content complexity.
+**Problem**: Multi platform selling across Shopee, Tokopedia, TikTok Shop creates pricing, margin, and content complexity.
 
 | Task | Skills Used |
 |---|---|
@@ -880,4 +880,4 @@ See [`SECURITY.md`](SECURITY.md) for prompt injection defense guidelines, [`PROV
 
 Licensed under the **GNU Affero General Public License v3.0** (AGPL-3.0-or-later). See [LICENSE](LICENSE) for details.
 
-> **Enterprise & Commercial Licensing**: For commercial applications, closed-source proprietary software integration, or deployments seeking exemption from AGPL-3.0 copyleft obligations, custom enterprise licensing terms are available. Inquiries: `adamriofc@protonmail.com`.
+> **Enterprise & Commercial Licensing**: For commercial applications, closed-source proprietary software integration, or deployments seeking exemption from AGPL-3.0 copyleft obligations, custom enterprise licensing terms are available. Inquiries: `adamriofc@protonmail.com`or adamrofc@gmail.com.
