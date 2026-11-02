@@ -1,8 +1,8 @@
 # Indonesia Business Agent Skills
 
-*Give AI agents a business brain for Indonesia.*
+*Give AI agents a business brain for Indonesia business.*
 
-**Open-source Indonesia business intelligence for AI agents — combining regulatory-grounded skills, temporal rulesets, deterministic engines, and auditable provenance.**
+**Indonesia business intelligence for AI agents — combining regulatory grounded skills, temporal rulesets, deterministic engines, and auditable provenance.**
 
 <p align="center">
   <img src="docs/indonesia-business-agent-skills-hero.svg" alt="Indonesia Business Agent Skills Banner" width="100%">
@@ -36,7 +36,7 @@
 
 > **Evidence Boundary Note**: Independent external domain validation and enterprise production proof are still pending.
 
-**Indonesia Business Agent Skills** is an domain intelligence infrastructure designed to give AI agents an authentic Indonesia business and regulatory intelligence layer. Built for **OpenWork Desktop**, **OpenCode CLI**, **Claude Code (CLI)**, **Cursor IDE**, **Codex**, **OpenClaw**, **Hermes**, **Gemini**, and custom agent frameworks, this repository integrates **94 Agent Skills** across **6 canonical plugins** (`legal-id`, `tax-id`, `hr-id`, `finance-id`, `marketing-id`, `strategic-id`) with **61 Deterministic Computational & Regulatory Diff Engines** (`engines/`) and single-source-of-truth temporal JSON rulesets (`engines/rules/`).
+**Indonesia Business Agent Skills** is an domain intelligence infrastructure designed to give AI agents an authentic Indonesia business and regulatory intelligence layer. Built for **OpenWork Desktop**, **OpenCode CLI**, **Claude Code (CLI)**, **Cursor IDE**, **Codex**, **OpenClaw**, **Hermes**, **Gemini**, and custom agent frameworks, this repository integrates **94 Agent Skills** across **6 canonical plugins** (`legal-id`, `tax-id`, `hr-id`, `finance-id`, `marketing-id`, `strategic-id`) with **61 Deterministic Computational & Regulatory Diff Engines** (`engines/`) and single source of truth temporal JSON rulesets (`engines/rules/`).
 
 ### 💡 Why Standard LLMs Fail at Indonesia Business & Compliance Calculations
 Generic AI models (such as unassisted ChatGPT or Claude) predict words probabilistically (*token prediction*). When tasked with calculating TER PPh 21 income tax, PHK severance payouts, or corporate loan interest, standard LLMs encounter 3 critical failure modes:
@@ -69,7 +69,7 @@ This repository decouples AI **reasoning** from **calculation**:
 
 ### 🧠 Minimum Model Capability Requirements
 
-To ensure optimal execution fidelity without vendor lock-in, host agents should satisfy these minimum capability baselines across different task domains:
+To ensure optimal execution fidelity without vendor lock in, host agents should satisfy these minimum capability baselines across different task domains:
 
 | Capability Tier | Minimum Model Specification | Target Domain & Workloads |
 |---|---|---|
