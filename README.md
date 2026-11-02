@@ -876,8 +876,8 @@ See [`SECURITY.md`](SECURITY.md) for prompt injection defense guidelines, [`PROV
 
 **Release Trust Anchor**: `SHA256SUMS.txt` holds SHA-256 checksums for every ruleset; verified via `./scripts/sha256sums.sh verify` and in CI.
 
-## 📄 License & Dual-Licensing
+## 📄 License & Dual Licensing
 
 Licensed under the **GNU Affero General Public License v3.0** (AGPL-3.0-or-later). See [LICENSE](LICENSE) for details.
 
-> **Enterprise & Commercial Licensing**: For commercial applications, closed-source proprietary software integration, or deployments seeking exemption from AGPL-3.0 copyleft obligations, custom enterprise licensing terms are available. Inquiries: `adamriofc@protonmail.com`or adamrofc@gmail.com.
+> **Enterprise & Commercial Licensing**: For commercial applications, closed source proprietary software integration, or deployments seeking exemption from AGPL-3.0 copyleft obligations, custom enterprise licensing terms are available. Inquiries: `adamriofc@protonmail.com`or adamrofc@gmail.com.
