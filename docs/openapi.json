@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Indonesia Business Agent Skills REST API",
-    "version": "6.20.0",
+    "version": "6.21.0",
     "description": "Production-grade, deterministic REST API microservice for Indonesian tax, labor, finance, commercial, and legal calculations. Zero external dependencies.",
     "license": {
       "name": "AGPL-3.0-or-later",

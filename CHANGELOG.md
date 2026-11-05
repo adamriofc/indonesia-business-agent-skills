@@ -2,6 +2,18 @@
 
 All notable changes to this project are documented here in reverse chronological order. Regulatory/statutory changes are additionally tracked per-rule in [REGULATORY_CHANGELOG.md](./REGULATORY_CHANGELOG.md); provenance of every rule in [PROVENANCE.md](./PROVENANCE.md); release cadence in [REGULATORY_PIPELINE.md](./REGULATORY_PIPELINE.md).
 
+## [6.21.0] - 2026-11-06
+
+### Pluggable Domain Extension Engine & Hub-and-Spoke Architecture Release
+
+- **P0 — Zero-Dependency Extension Registry Engine (`engines/extension-registry.js`)**: Implemented deterministic, fail-closed extension registry enabling on-demand domain verticals (e.g., Healthcare & Pharma, Logistics, Mining) to dynamically register skills, computational engines, tools, and rules into the core runtime without bloating the AGPLv3 core package (<300 kB footprint). Enforces strict manifest validation (SemVer, mandatory fields, skill boundary isolation, and engine callable checks).
+- **P0 — Multi-Interface Extension Uniformity (CLI & MCP)**:
+  - Universal CLI (`bin/cli.js`): Added `extensions list`, `extensions register`, `extensions run` sub-commands and global `--extension <path>` flag.
+  - Native MCP Server (`bin/mcp-server.js`): Added environment-driven on-demand extension loading (`INDONESIA_AGENT_EXTENSIONS`) with dynamic tool discovery and execution via stdio without mutating the 36 canonical standalone core tools.
+- **P0 — Full Root SDK & TypeScript Parity (`index.js` & `index.d.ts`)**: Exported complete extension lifecycle functions (`registerExtension`, `getExtension`, `hasExtension`, `listExtensions`, `unregisterExtension`, `clearExtensions`, `getExtensionSkill`, `getExtensionEngine`, `executeExtensionEngine`) on root SDK and `extensions` namespace with comprehensive TypeScript types (`ExtensionManifest`, `ExtensionSkill`, `ExtensionSummary`, `ExtensionRegistrationReceipt`).
+- **P0 — Comprehensive Test Coverage**: Added `tests/units/extension-registry.test.js` validating manifest structural validation, boundary conditions, dynamic engine execution, lifecycle hooks, and error taxonomy adherence.
+- **All artifacts synchronized to v6.21.0**: `package.json`, `package-lock.json`, `canonical-metadata.json`, `registry/index.json`, all 5 `bundles/*.json`, `README.md`, `docs/METRICS.md`, `docs/BENCHMARK.md`, `release-manifest.json`.
+
 ## [6.20.0] - 2026-10-22
 
 ### Comprehensive Enterprise Supply Chain, Accounting, & Strategic Formulation Release (The 4 Pure Mathematical Gems)

@@ -24,13 +24,13 @@
 <!-- GENERATED:STATS -->
 | Metric | Single Source of Truth Value | Measurement Scope |
 |---|---|---|
-| **Repository Version** | `v6.20.0` | SemVer release boundary |
+| **Repository Version** | `v6.21.0` | SemVer release boundary |
 | **Canonical Plugins** | `6` | Active plugin packages (`legal-id`, `tax-id`, `hr-id`, `finance-id`, `marketing-id`, `strategic-id`) |
 | **Agent Skills** | `94` | Machine-readable `SKILL.md` capability packs |
 | **Deterministic Engines** | `61` | Pure Node.js calculation & regulatory diff engines (`engines/`) |
 | **Golden Cases** | `121` | Static corpus cases across 27 benchmark domains |
 | **Benchmark Assertions** | `434` | Deterministic assertions in `tests/benchmarks/` |
-| **Total Test Assertions** | `932+` | Deepened matrix assertions across full `npm test` suite |
+| **Total Test Assertions** | `976+` | Deepened matrix assertions across full `npm test` suite |
 | **Node.js Compatibility** | `20 / 22 / 24` | `20` (Minimum), `22` (LTS Recommended), `24` (Current Tested) |
 <!-- /GENERATED:STATS -->
 

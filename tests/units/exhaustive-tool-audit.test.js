@@ -289,7 +289,7 @@ async function testAllRestEndpoints() {
 
 async function main() {
   console.log("===================================================================");
-  console.log("🛡️  EXHAUSTIVE REAL-WORLD AUDIT SUITE FOR ALL TOOLS (v6.20.0)");
+  console.log("🛡️  EXHAUSTIVE REAL-WORLD AUDIT SUITE FOR ALL TOOLS (v6.21.0)");
   console.log("===================================================================\n");
 
   await testAllMcpTools();
