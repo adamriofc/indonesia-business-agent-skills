@@ -91,6 +91,9 @@ const complianceLedger = require(path.join(ENGINES, 'compliance-ledger'));
 const businessHealthOracle = require(path.join(ENGINES, 'business-health-oracle'));
 const securitySanitizer = require(path.join(ENGINES, 'security-sanitizer'));
 
+// 7. Pluggable Extension Registry Engine
+const extensionRegistry = require(path.join(ENGINES, 'extension-registry'));
+
 module.exports = {
   // --- Individual Named Functions (Direct Access) ---
   // Tax
@@ -186,6 +189,17 @@ module.exports = {
   wrapUntrustedPayload: securitySanitizer.wrapUntrustedPayload,
   extractIsolatedPayload: securitySanitizer.extractIsolatedPayload,
 
+  // Pluggable Extension Registry (On-Demand Industry Domains)
+  registerExtension: extensionRegistry.registerExtension,
+  getExtension: extensionRegistry.getExtension,
+  hasExtension: extensionRegistry.hasExtension,
+  listExtensions: extensionRegistry.listExtensions,
+  unregisterExtension: extensionRegistry.unregisterExtension,
+  clearExtensions: extensionRegistry.clearExtensions,
+  getExtensionSkill: extensionRegistry.getExtensionSkill,
+  getExtensionEngine: extensionRegistry.getExtensionEngine,
+  executeExtensionEngine: extensionRegistry.executeExtensionEngine,
+
   // --- Domain Namespaces (Grouped Access) ---
   tax: {
     pph21,
@@ -265,5 +279,6 @@ module.exports = {
     complianceLedger,
     businessHealthOracle
   },
-  security: securitySanitizer
+  security: securitySanitizer,
+  extensions: extensionRegistry
 };

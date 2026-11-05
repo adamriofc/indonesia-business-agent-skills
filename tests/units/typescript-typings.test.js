@@ -60,6 +60,9 @@ function runTypeScriptTypingsTests() {
   assert.strictEqual(typeof sdk.validateNpwp, 'function', "sdk.validateNpwp must be exported as a function");
   assert.strictEqual(typeof sdk.resolveOssRisk, 'function', "sdk.resolveOssRisk must be exported as a function");
   assert.strictEqual(typeof sdk.auditBusinessHealth, 'function', "sdk.auditBusinessHealth must be exported as a function");
+  assert.strictEqual(typeof sdk.registerExtension, 'function', "sdk.registerExtension must be exported as a function");
+  assert.strictEqual(typeof sdk.listExtensions, 'function', "sdk.listExtensions must be exported as a function");
+  assert.strictEqual(typeof sdk.getExtension, 'function', "sdk.getExtension must be exported as a function");
 
   // Verify domain namespaces
   assert.ok(content.includes('export const tax: any;'), "Missing tax namespace export");
@@ -67,6 +70,7 @@ function runTypeScriptTypingsTests() {
   assert.ok(content.includes('export const finance: any;'), "Missing finance namespace export");
   assert.ok(content.includes('export const strategy: any;'), "Missing strategy namespace export");
   assert.ok(content.includes('export const legal: any;'), "Missing legal namespace export");
+  assert.ok(content.includes('export const extensions: any;'), "Missing extensions namespace export");
 
   console.log("✅ TypeScript Typings (`index.d.ts`) Tests PASSED 100%!");
 }

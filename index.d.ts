@@ -360,6 +360,61 @@ export function sanitizeUntrustedPayload(untrustedText: string): string;
 export function wrapUntrustedPayload(documentContent: string, customInstruction?: string): string;
 export function extractIsolatedPayload(isolatedPromptText: string): any;
 
+// Pluggable Extension Registry
+export interface ExtensionSkill {
+  id?: string;
+  name?: string;
+  description: string;
+  [key: string]: any;
+}
+
+export interface ExtensionManifest {
+  id: string;
+  name: string;
+  version: string;
+  domain: string;
+  author?: string;
+  license?: string;
+  skills: ExtensionSkill[];
+  engines?: Record<string, Function>;
+  rules?: Record<string, any>;
+  [key: string]: any;
+}
+
+export interface ExtensionRegistrationReceipt {
+  success: boolean;
+  extensionId: string;
+  name: string;
+  version: string;
+  domain: string;
+  skillCount: number;
+  engineCount: number;
+  registeredAt: string;
+}
+
+export interface ExtensionSummary {
+  id: string;
+  name: string;
+  version: string;
+  domain: string;
+  author: string | null;
+  license: string;
+  skillCount: number;
+  engineNames: string[];
+  skills: { id: string; name: string; description: string }[];
+  registeredAt: string;
+}
+
+export function registerExtension(manifest: ExtensionManifest): ExtensionRegistrationReceipt;
+export function getExtension(id: string): any | null;
+export function hasExtension(id: string): boolean;
+export function listExtensions(): ExtensionSummary[];
+export function unregisterExtension(id: string): boolean;
+export function clearExtensions(): void;
+export function getExtensionSkill(skillId: string): any | null;
+export function getExtensionEngine(engineName: string): Function | null;
+export function executeExtensionEngine(engineName: string, ...args: any[]): any;
+
 // Domain namespaces
 export const tax: any;
 export const hr: any;
@@ -369,3 +424,4 @@ export const marketing: any;
 export const strategy: any;
 export const legal: any;
 export const security: any;
+export const extensions: any;

@@ -103,6 +103,9 @@ function printHelp() {
       "route oss-rba": "Resolve 5-digit KBLI code to OSS-RBA Risk Classification & PB-UMKU (--code <5-digit KBLI>)",
       "ledger record": "Append compliance action to local Merkle audit chain (--domain <string>, --action <string>, --statute <string>, [--data <json>])",
       "ledger verify": "Cryptographically verify compliance Merkle chain integrity",
+      "extensions list": "List all loaded domain vertical extensions",
+      "extensions register": "Register vertical extension manifest/module (--path <manifest.json|module.js>)",
+      "extensions run": "Execute registered extension engine function (--engine <name>, [--data <json>], [--file <args.json>])",
       "route kbli": "Resolve 5-digit KBLI code to business archetype (--code <5-digit KBLI>)",
       "route btki": "Resolve BTKI commodity classification & import duty (--code <BTKI code>)",
       "serve": "Start zero-dependency REST API server ([--port <3000>], [--host <0.0.0.0>])",
@@ -128,6 +131,15 @@ function run() {
   const { positional, flags } = parseArgs(args);
   const action = positional[0]?.toLowerCase();
   const subAction = positional[1]?.toLowerCase();
+
+  // Handle optional pre-loaded vertical extension
+  if (flags.extension || flags.e) {
+    const extPath = path.resolve(process.cwd(), flags.extension || flags.e);
+    const extModule = require(extPath);
+    const manifest = extModule.manifest || extModule;
+    const { registerExtension } = require(path.join(ENGINES, 'extension-registry'));
+    registerExtension(manifest);
+  }
 
   if (action === 'mcp') {
     require('./mcp-server');
@@ -595,6 +607,39 @@ function run() {
         result = verifyComplianceChain();
       } else {
         throw new Error(`Unknown ledger command '${subAction}'. Available: record, verify.`);
+      }
+    } else if (action === 'extensions' || action === 'extension') {
+      const extRegistry = require(path.join(ENGINES, 'extension-registry'));
+      if (!subAction || subAction === 'list') {
+        result = {
+          totalExtensions: extRegistry.listExtensions().length,
+          extensions: extRegistry.listExtensions()
+        };
+      } else if (subAction === 'register') {
+        const extPath = flags.path || flags.file;
+        if (!extPath) {
+          throw new Error("Missing --path or --file flag specifying extension manifest or module.");
+        }
+        const resolved = path.resolve(process.cwd(), extPath);
+        const extMod = require(resolved);
+        const manifest = extMod.manifest || extMod;
+        result = extRegistry.registerExtension(manifest);
+      } else if (subAction === 'run' || subAction === 'exec') {
+        const engineName = flags.engine || flags.name;
+        if (!engineName) {
+          throw new Error("Missing --engine flag specifying extension engine function name.");
+        }
+        let argsData = [];
+        if (flags.data) {
+          const parsed = typeof flags.data === 'string' ? JSON.parse(flags.data) : flags.data;
+          argsData = Array.isArray(parsed) ? parsed : [parsed];
+        } else if (flags.file && require('fs').existsSync(flags.file)) {
+          const parsed = JSON.parse(require('fs').readFileSync(flags.file, 'utf8'));
+          argsData = Array.isArray(parsed) ? parsed : [parsed];
+        }
+        result = extRegistry.executeExtensionEngine(engineName, ...argsData);
+      } else {
+        throw new Error(`Unknown extension command '${subAction}'. Available: list, register, run.`);
       }
     } else {
       throw new Error(`Unknown command '${action}'. Run 'indonesia-skills help' for available commands.`);

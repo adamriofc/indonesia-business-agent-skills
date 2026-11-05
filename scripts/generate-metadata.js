@@ -57,7 +57,7 @@ function countEngines() {
   const enginesDir = path.join(ROOT, 'engines');
   const files = fs.readdirSync(enginesDir).filter(f => f.endsWith('.js'));
   // Exclude internal contract / infrastructure modules from computational engine count
-  const infraModules = ['production-contract.js', 'context-contract.js', 'failure-taxonomy.js'];
+  const infraModules = ['production-contract.js', 'context-contract.js', 'failure-taxonomy.js', 'extension-registry.js'];
   return files.filter(f => !infraModules.includes(f)).length;
 }
 

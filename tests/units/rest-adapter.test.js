@@ -86,9 +86,14 @@ async function runRestAdapterTests() {
   assert.strictEqual(typeof sdk.sanitizeUntrustedPayload, 'function');
   assert.strictEqual(typeof sdk.wrapUntrustedPayload, 'function');
 
+  // Extension Registry exports
+  assert.strictEqual(typeof sdk.registerExtension, 'function');
+  assert.strictEqual(typeof sdk.listExtensions, 'function');
+  assert.strictEqual(typeof sdk.getExtension, 'function');
+
   // Namespaces exist
-  assert.ok(sdk.tax && sdk.hr && sdk.finance && sdk.commerce && sdk.strategy && sdk.security);
-  console.log("    ✓ Root SDK exported all 40 computational engines and domain namespaces successfully.");
+  assert.ok(sdk.tax && sdk.hr && sdk.finance && sdk.commerce && sdk.strategy && sdk.security && sdk.extensions);
+  console.log("    ✓ Root SDK exported all 40 computational engines, extension registry, and domain namespaces successfully.");
 
   // -------------------------------------------------------------
   // Part 2: REST Server Startup on Ephemeral Port

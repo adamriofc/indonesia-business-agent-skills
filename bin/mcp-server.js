@@ -11,6 +11,41 @@ const pkg = require('../package.json');
 
 const ROOT = path.join(__dirname, '..');
 const ENGINES = path.join(ROOT, 'engines');
+const extensionRegistry = require(path.join(ENGINES, 'extension-registry'));
+
+// Optional dynamic extensions from environment (e.g. INDONESIA_AGENT_EXTENSIONS="/path/to/ext.js")
+const envExtensions = process.env.INDONESIA_AGENT_EXTENSIONS;
+if (envExtensions) {
+  envExtensions.split(',').map(s => s.trim()).filter(Boolean).forEach(extPath => {
+    try {
+      const resolved = path.resolve(process.cwd(), extPath);
+      const mod = require(resolved);
+      extensionRegistry.registerExtension(mod.manifest || mod);
+    } catch (e) {
+      process.stderr.write(`[MCP] Failed to load extension from ${extPath}: ${e.message}\n`);
+    }
+  });
+}
+
+function getExtensionTools() {
+  const tools = [];
+  const exts = extensionRegistry.listExtensions();
+  for (const ext of exts) {
+    const full = extensionRegistry.getExtension(ext.id);
+    if (full && Array.isArray(full.tools)) {
+      tools.push(...full.tools);
+    } else if (full && full.engines) {
+      for (const [engineName] of Object.entries(full.engines)) {
+        tools.push({
+          name: engineName,
+          description: `[Extension: ${ext.name}] Dynamic engine function ${engineName}`,
+          inputSchema: { type: "object", properties: {} }
+        });
+      }
+    }
+  }
+  return tools;
+}
 
 // Lazy load engines to minimize memory footprint
 const engines = {
@@ -864,8 +899,13 @@ function handleToolCall(name, args) {
       const fn = engines.eclProvision().calculateEclProvisioning;
       return fn(args);
     }
-    default:
+    default: {
+      const extEngine = extensionRegistry.getExtensionEngine(name);
+      if (typeof extEngine === 'function') {
+        return extEngine(args);
+      }
       throw new Error(`Unknown tool '${name}'`);
+    }
   }
 }
 
@@ -915,7 +955,8 @@ rl.on('line', (line) => {
   } else if (method === 'ping') {
     sendResponse(id, {});
   } else if (method === 'tools/list') {
-    sendResponse(id, { tools: TOOLS });
+    const extTools = getExtensionTools();
+    sendResponse(id, { tools: extTools.length > 0 ? TOOLS.concat(extTools) : TOOLS });
   } else if (method === 'tools/call') {
     const { name, arguments: args } = params || {};
     try {
