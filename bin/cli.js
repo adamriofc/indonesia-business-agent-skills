@@ -134,8 +134,15 @@ function run() {
 
   // Handle optional pre-loaded vertical extension
   if (flags.extension || flags.e) {
-    const extPath = path.resolve(process.cwd(), flags.extension || flags.e);
-    const extModule = require(extPath);
+    const rawExt = flags.extension || flags.e;
+    let extModule;
+    try {
+      const resolvedPkg = require.resolve(rawExt, { paths: [process.cwd()] });
+      extModule = require(resolvedPkg);
+    } catch {
+      const extPath = path.resolve(process.cwd(), rawExt);
+      extModule = require(extPath);
+    }
     const manifest = extModule.manifest || extModule;
     const { registerExtension } = require(path.join(ENGINES, 'extension-registry'));
     registerExtension(manifest);
@@ -616,12 +623,18 @@ function run() {
           extensions: extRegistry.listExtensions()
         };
       } else if (subAction === 'register') {
-        const extPath = flags.path || flags.file;
-        if (!extPath) {
+        const rawPath = flags.path || flags.file;
+        if (!rawPath) {
           throw new Error("Missing --path or --file flag specifying extension manifest or module.");
         }
-        const resolved = path.resolve(process.cwd(), extPath);
-        const extMod = require(resolved);
+        let extMod;
+        try {
+          const resolvedPkg = require.resolve(rawPath, { paths: [process.cwd()] });
+          extMod = require(resolvedPkg);
+        } catch {
+          const resolved = path.resolve(process.cwd(), rawPath);
+          extMod = require(resolved);
+        }
         const manifest = extMod.manifest || extMod;
         result = extRegistry.registerExtension(manifest);
       } else if (subAction === 'run' || subAction === 'exec') {
